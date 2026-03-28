@@ -1,0 +1,91 @@
+- slot_key: swppp_prd_set
+  jurisdiction_key: ca_statewide
+  program_key: swppp_cgp
+  slot_code: swppp.prd_set
+  required_stage_code: swppp.prd_assembly
+  kind: document_set
+  label: Permit Registration Documents set
+- slot_key: swppp_eauthorization
+  jurisdiction_key: ca_statewide
+  program_key: swppp_cgp
+  slot_code: swppp.eauthorization
+  required_stage_code: swppp.noi_ready
+  kind: document
+  label: SMARTS eAuthorization
+- slot_key: swppp_wdid_posting
+  jurisdiction_key: ca_statewide
+  program_key: swppp_cgp
+  slot_code: swppp.wdid_posting
+  required_stage_code: swppp.opening_conditions
+  kind: photo_or_pdf
+  label: WDID posting confirmation
+- slot_key: swppp_swppp_onsite
+  jurisdiction_key: ca_statewide
+  program_key: swppp_cgp
+  slot_code: swppp.swppp_onsite
+  required_stage_code: swppp.opening_conditions
+  kind: photo_or_pdf
+  label: SWPPP onsite availability evidence
+- slot_key: swppp_training_roster
+  jurisdiction_key: ca_statewide
+  program_key: swppp_cgp
+  slot_code: swppp.training_roster
+  required_stage_code: swppp.opening_conditions
+  kind: document
+  label: Training / delegation roster
+- slot_key: special_cover_packet
+  jurisdiction_key: ca_statewide
+  program_key: special_inspections
+  slot_code: special.cover_packet
+  required_stage_code: special.pre_permit
+  kind: document_set
+  label: Special inspection cover packet
+- slot_key: special_approved_agency
+  jurisdiction_key: ca_statewide
+  program_key: special_inspections
+  slot_code: special.approved_agency
+  required_stage_code: special.pre_permit
+  kind: document
+  label: Approved / recognized agency evidence
+- slot_key: special_final_report
+  jurisdiction_key: ca_statewide
+  program_key: special_inspections
+  slot_code: special.final_report
+  required_stage_code: special.closeout
+  kind: document
+  label: Final special inspections report
+- slot_key: sf_dust_approved_plan
+  jurisdiction_key: san_francisco
+  program_key: dust_control
+  slot_code: dust.approved_plan
+  required_stage_code: dust.plan_approval
+  kind: document
+  label: Approved dust control plan
+- slot_key: asbestos_j_notice
+  jurisdiction_key: bay_area_regional
+  program_key: asbestos_baaqmd
+  slot_code: asbestos.j_notice
+  required_stage_code: asbestos.j_ready
+  kind: document
+  label: BAAQMD J# notice evidence
+- slot_key: asbestos_ack_letter
+  jurisdiction_key: bay_area_regional
+  program_key: asbestos_baaqmd
+  slot_code: asbestos.ack_letter
+  required_stage_code: asbestos.pre_demo
+  kind: document
+  label: Acknowledgment letter / confirmation
+- slot_key: hazmat_inventory
+  jurisdiction_key: ca_statewide
+  program_key: hazmat_cers
+  slot_code: hazmat.inventory
+  required_stage_code: hazmat.packet_assembly
+  kind: document
+  label: HazMat inventory
+- slot_key: hazmat_site_map
+  jurisdiction_key: ca_statewide
+  program_key: hazmat_cers
+  slot_code: hazmat.site_map
+  required_stage_code: hazmat.packet_assembly
+  kind: document
+  label: Site map

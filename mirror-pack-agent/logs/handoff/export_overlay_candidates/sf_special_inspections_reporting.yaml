@@ -1,0 +1,22 @@
+task_key: sf_special_inspections_reporting
+overlay_candidates:
+- asset_key: sf_special_reporting_wizard_template
+  classification: direct_mirror
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dbi_special_inspection_form_2025
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dbi_special_inspections_process_2025
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dbi_coi_attestation_requirement
+  classification: recognition_control_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: sf_coi_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []

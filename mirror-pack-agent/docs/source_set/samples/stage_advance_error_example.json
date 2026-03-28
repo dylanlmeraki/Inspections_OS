@@ -1,0 +1,16 @@
+{
+  "error": "stage_advance_blocked",
+  "runId": "22222222-2222-2222-2222-222222222222",
+  "fromStage": "swppp.noi_ready",
+  "toStage": "swppp.opening_conditions",
+  "blockers": [
+    {
+      "code": "SWPPP_EAUTH_MISSING",
+      "message": "SMARTS eAuthorization evidence is required before NOI readiness."
+    },
+    {
+      "code": "SWPPP_PRD_SET_MISSING",
+      "message": "Permit Registration Documents set is incomplete."
+    }
+  ]
+}

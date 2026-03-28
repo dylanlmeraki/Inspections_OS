@@ -1,0 +1,92 @@
+- agency_key: state_water_resources_control_board
+  jurisdiction_key: ca_statewide
+  name: State Water Resources Control Board
+  program_owner_flag: true
+- agency_key: smarts_state_water_resources_control_board
+  jurisdiction_key: ca_statewide
+  name: SMARTS / State Water Resources Control Board
+  program_owner_flag: true
+- agency_key: bay_area_air_quality_management_district
+  jurisdiction_key: bay_area_regional
+  name: Bay Area Air Quality Management District
+  program_owner_flag: true
+- agency_key: san_francisco_department_of_building_inspection
+  jurisdiction_key: san_francisco
+  name: San Francisco Department of Building Inspection
+  program_owner_flag: true
+- agency_key: san_francisco_department_of_public_health
+  jurisdiction_key: san_francisco
+  name: San Francisco Department of Public Health
+  program_owner_flag: true
+- agency_key: city_of_oakland_planning_and_building
+  jurisdiction_key: oakland
+  name: City of Oakland Planning & Building
+  program_owner_flag: true
+- agency_key: alameda_county_building
+  jurisdiction_key: alameda_county
+  name: Alameda County Building
+  program_owner_flag: true
+- agency_key: contra_costa_county_building_inspection_services
+  jurisdiction_key: contra_costa_county
+  name: Contra Costa County Building Inspection Services
+  program_owner_flag: true
+- agency_key: city_of_walnut_creek_community_development
+  jurisdiction_key: walnut_creek
+  name: City of Walnut Creek Community Development
+  program_owner_flag: true
+- agency_key: marin_county_community_development_agency
+  jurisdiction_key: marin_county
+  name: Marin County Community Development Agency
+  program_owner_flag: true
+- agency_key: city_of_san_rafael_community_development
+  jurisdiction_key: san_rafael
+  name: City of San Rafael Community Development
+  program_owner_flag: true
+- agency_key: napa_county_planning_building_and_environmental_services
+  jurisdiction_key: napa_county
+  name: Napa County Planning, Building & Environmental Services
+  program_owner_flag: true
+- agency_key: city_of_napa_community_development
+  jurisdiction_key: city_of_napa
+  name: City of Napa Community Development
+  program_owner_flag: true
+- agency_key: county_of_san_mateo_planning_and_building
+  jurisdiction_key: san_mateo_county
+  name: County of San Mateo Planning and Building
+  program_owner_flag: true
+- agency_key: county_of_santa_clara_planning_and_development
+  jurisdiction_key: santa_clara_county
+  name: County of Santa Clara Planning and Development
+  program_owner_flag: true
+- agency_key: city_of_san_jos_planning_building_and_code_enforcement
+  jurisdiction_key: san_jos
+  name: City of San José Planning, Building and Code Enforcement
+  program_owner_flag: true
+- agency_key: solano_county_building_and_safety
+  jurisdiction_key: solano_county
+  name: Solano County Building and Safety
+  program_owner_flag: true
+- agency_key: permit_sonoma
+  jurisdiction_key: permit_sonoma
+  name: Permit Sonoma
+  program_owner_flag: true
+- agency_key: san_francisco_department_of_public_health_city_and_county_of_san_francisco
+  jurisdiction_key: san_francisco
+  name: San Francisco Department of Public Health / City and County of San Francisco
+  program_owner_flag: true
+- agency_key: marin_county_city_level_reference_gap
+  jurisdiction_key: marin_county
+  name: Marin County / city-level reference gap
+  program_owner_flag: true
+- agency_key: contra_costa_county_walnut_creek_reference_split
+  jurisdiction_key: contra_costa_county
+  name: Contra Costa County / Walnut Creek reference split
+  program_owner_flag: true
+- agency_key: marin_county_community_development_agency_building_and_safety
+  jurisdiction_key: marin_county
+  name: Marin County Community Development Agency / Building and Safety
+  program_owner_flag: true
+- agency_key: contra_costa_county_building_inspection_services_conservation_and_development
+  jurisdiction_key: contra_costa_county
+  name: Contra Costa County Building Inspection Services / Conservation & Development
+  program_owner_flag: true

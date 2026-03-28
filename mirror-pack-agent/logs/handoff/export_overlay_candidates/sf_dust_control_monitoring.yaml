@@ -1,0 +1,30 @@
+task_key: sf_dust_control_monitoring
+overlay_candidates:
+- asset_key: sf_dust_monitoring_wizard_template
+  classification: direct_mirror
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dph_dust_control_plan_submission
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dph_dust_control_overview_pdf
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dust_applicability_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: sf_dust_plan_required_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: sf_dust_article_22b_requirements
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: sf_dust_monitoring_checklist_blank
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []

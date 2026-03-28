@@ -1,0 +1,144 @@
+task_key: statewide_swppp_weekly_family
+
+jurisdiction_keys:
+  - ca_statewide
+
+inspection_type_keys:
+  - swppp_active_series
+
+workflow_stage_codes:
+  - swppp.weekly
+
+pack_families:
+  - swppp
+
+asset_entries:
+  - asset_key: cgp_2022_governing_order
+    title: California Construction General Permit Order 2022-0057-DWQ
+    classification: source_reference_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.weekly
+    packet_roles:
+      - governing_order
+    source_evidence:
+      - source_record_key: statewide_ca_waterboards_construction_general_permit_order_2022_0057_dwq
+      - source_url: https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-0057-dwq-with-attachments/cgp2022_order.pdf
+      - verification_status: verified-direct
+      - local_file_name: "[STATEWIDE]_CA-WaterBoards_Construction-General-Permit_Order-2022-0057-DWQ.pdf"
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: high
+    notes: >
+      The CGP Order drives weekly inspection timing, documentation requirements,
+      QSP duties, and corrective-action obligations. Referenced in swppp.weekly
+      packet_rule via governing_order packet_role. Source URL is known and
+      verified-direct, but the actual runtime-mirrored PDF byte copy is not present in
+      the local pack directory. Classify as source_reference_only until a
+      controlled crawler delivers the mirrored bytes.
+
+  - asset_key: swppp_weekly_wizard_template
+    title: SWPPP Weekly Inspection Wizard Template (swppp.weekly.v1)
+    classification: direct_mirror
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.weekly
+    packet_roles:
+      - inspection_template
+    source_evidence:
+      - source_file: docs/source_set/manifests/swppp.manifest.yaml
+      - template_key: swppp.weekly.v1
+      - export_profile: compliance_packet
+    direct_mirror_candidate: true
+    fallback_behavior: use_as_canonical_template
+    confidence: high
+    notes: >
+      The wizard manifest swppp.manifest.yaml defines the full section and field
+      schema for the weekly inspection run. Sections: site_conditions, bmp_controls,
+      documentation_presence, deficiencies, photos, signoff, gate_preview.
+      This is the primary inspection execution asset for the swppp.weekly stage.
+
+  - asset_key: mosswood_bmp_inspection_example
+    title: Mosswood BMP Inspection Sample (11-22-24)
+    classification: example_output_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.weekly
+    packet_roles:
+      - inspection_sample
+    source_evidence:
+      - local_file: docs/source_set/BMP Inspection 11-22-24.pdf
+      - file_size_bytes: 250652
+    direct_mirror_candidate: false
+    fallback_behavior: use_for_field_mapping_reference_only
+    confidence: medium
+    notes: >
+      This is a filled example output BMP inspection report, not an official source
+      pack. Useful for extracting real-world field label patterns and section
+      ordering for the wizard layout, but must not be represented as a direct mirror.
+
+  - asset_key: swppp_weekly_photo_on_fail_rule
+    title: SWPPP Weekly Photo-on-Fail Rule
+    classification: trigger_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.weekly
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: swppp.weekly.photo_on_fail
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      The packet_rules seed defines a blocker rule: any failed BMP item requires
+      at least one attached photo. This is a trigger/gate classification only —
+      not a form pack.
+
+  - asset_key: cgp_d1_risk_worksheet
+    title: CGP Attachment D.1 Risk Determination Worksheet
+    classification: source_reference_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.weekly
+    packet_roles:
+      - threshold_gate_reference
+    source_evidence:
+      - source_record_key: statewide_ca_waterboards_cgp_attachment_d1_risk_determination_worksheet
+      - source_url: https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-july/d1-risk-determination-worksheet.pdf
+      - verification_status: verified-direct
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: high
+    notes: >
+      Relevant for stage context (project risk level drives inspection frequency).
+      Not a weekly inspection form but an upstream enabler that must be resolved
+      before the weekly stage is meaningful. Classified source_reference_only.
+
+packet_roles_present:
+  - governing_order
+  - inspection_template
+  - threshold_gate_reference
+  - gate_rule
+  - inspection_sample
+
+fallback_behavior: >
+  For all source_reference_only assets, expose the verified source_url in the
+  admin document vault. Do not block inspection execution if the governing order
+  URL is accessible but not locally mirrored. Gate blockers (photo_on_fail) are
+  enforced independently of PDF mirror status.
+
+completeness_rating: partial
+
+unresolved_count: 2

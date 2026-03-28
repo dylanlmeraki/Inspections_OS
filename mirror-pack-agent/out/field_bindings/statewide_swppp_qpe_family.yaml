@@ -1,0 +1,169 @@
+task_key: statewide_swppp_qpe_family
+
+canonical_field_sets:
+  - swppp_pre_qpe_forecast
+  - swppp_pre_qpe_storm_readiness
+  - swppp_pre_qpe_bmp_preparation
+  - swppp_during_qpe_fields
+  - swppp_post_qpe_fields
+
+bindings:
+  - binding_key: pre_qpe_forecast_source_name
+    canonical_field_key: run.forecast.source_name
+    packet_field_key: forecast.forecast_source_name
+    target_section_key: forecast
+    target_field_key: forecast_source_name
+    status: mapped
+    transform: string
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[forecast].items[forecast_source_name];
+      packet_rules.seed.yaml rule_key=swppp.pre_qpe.requires_forecast_reference
+    notes: Gate blocker PRE_QPE_FORECAST_METADATA_MISSING fires if missing.
+
+  - binding_key: pre_qpe_forecast_issued_at
+    canonical_field_key: run.forecast.issued_at
+    packet_field_key: forecast.forecast_issued_at
+    target_section_key: forecast
+    target_field_key: forecast_issued_at
+    status: mapped
+    transform: iso8601_datetime
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[forecast].items[forecast_issued_at]
+    notes: ""
+
+  - binding_key: pre_qpe_qualifying_event_window
+    canonical_field_key: run.forecast.qualifying_event_window
+    packet_field_key: forecast.qualifying_event_window
+    target_section_key: forecast
+    target_field_key: qualifying_event_window
+    status: mapped
+    transform: string_or_structured_window
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[forecast].items[qualifying_event_window]
+    notes: Describes the weather window (e.g., 0.5 inch / 24 hours) that triggers QPE status.
+
+  - binding_key: pre_qpe_materials_secured
+    canonical_field_key: run.storm_readiness.materials_secured
+    packet_field_key: storm_readiness.materials_secured
+    target_section_key: storm_readiness
+    target_field_key: materials_secured
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[storm_readiness].items[materials_secured]
+    notes: ""
+
+  - binding_key: pre_qpe_drain_inlets_protected
+    canonical_field_key: run.storm_readiness.drain_inlets_protected
+    packet_field_key: storm_readiness.drain_inlets_protected
+    target_section_key: storm_readiness
+    target_field_key: drain_inlets_protected
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[storm_readiness].items[drain_inlets_protected]
+    notes: ""
+
+  - binding_key: pre_qpe_stockpiles_protected
+    canonical_field_key: run.storm_readiness.stockpiles_protected
+    packet_field_key: storm_readiness.stockpiles_protected
+    target_section_key: storm_readiness
+    target_field_key: stockpiles_protected
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[storm_readiness].items[stockpiles_protected]
+    notes: ""
+
+  - binding_key: pre_qpe_perimeter_verified
+    canonical_field_key: run.bmp_preparation.perimeter_verified
+    packet_field_key: bmp_preparation.perimeter_verified
+    target_section_key: bmp_preparation
+    target_field_key: perimeter_verified
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[bmp_preparation].items[perimeter_verified]
+    notes: ""
+
+  - binding_key: pre_qpe_stabilization_verified
+    canonical_field_key: run.bmp_preparation.stabilization_verified
+    packet_field_key: bmp_preparation.stabilization_verified
+    target_section_key: bmp_preparation
+    target_field_key: stabilization_verified
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[bmp_preparation].items[stabilization_verified]
+    notes: ""
+
+  - binding_key: pre_qpe_overview_photos
+    canonical_field_key: run.photos.pre_storm_overview_photos
+    packet_field_key: photos.pre_storm_overview_photos
+    target_section_key: photos
+    target_field_key: pre_storm_overview_photos
+    status: mapped
+    transform: photo_attachment_list
+    requiredness: required
+    evidence_basis: >
+      swppp.pre_qpe.manifest.yaml sections[photos].items[pre_storm_overview_photos]
+    notes: Mosswood samples confirm pre-storm overview photos are standard practice.
+
+unresolved_bindings:
+  - binding_key: during_qpe_all_fields
+    canonical_field_key: run.during_qpe.*
+    packet_field_key: during_qpe.*
+    target_section_key: during_qpe
+    target_field_key: all
+    status: unresolved
+    transform: unresolved
+    requiredness: unknown
+    evidence_basis: >
+      programs_and_stages.seed.yaml defines swppp.during_qpe as ordinal 65,
+      but no wizard manifest exists for this stage. Mosswood examples suggest
+      during-storm inspections occur but their exact field schema is not recoverable
+      from the example outputs alone.
+    notes: >
+      Do not invent during_qpe field bindings. Requires wizard manifest
+      authorship before any binding can be established.
+
+  - binding_key: post_qpe_all_fields
+    canonical_field_key: run.post_qpe.*
+    packet_field_key: post_qpe.*
+    target_section_key: post_qpe
+    target_field_key: all
+    status: unresolved
+    transform: unresolved
+    requiredness: unknown
+    evidence_basis: >
+      programs_and_stages.seed.yaml defines swppp.post_qpe as ordinal 70,
+      but no wizard manifest exists. Post-storm discharge monitoring is required
+      by the CGP but no template is available to bind fields from.
+    notes: >
+      Do not invent post_qpe field bindings. Requires wizard manifest
+      authorship before any binding can be established.
+
+  - binding_key: qpe_inspector_qualifications
+    canonical_field_key: run.inspector.qsp_qualified
+    packet_field_key: signoff.inspector_qsp_cert
+    target_section_key: signoff
+    target_field_key: inspector_qsp_cert
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      CGP 2022-0057-DWQ requires QPE inspections to be performed by a QSP or QSD.
+      No field for QSP certification number or qualification level appears in the
+      available wizard manifests.
+    notes: >
+      Must be added to wizard manifest before QPE stage can properly gate-advance.
+      Acquisition of the specific CGP section number governing QSP requirements
+      would support this binding.

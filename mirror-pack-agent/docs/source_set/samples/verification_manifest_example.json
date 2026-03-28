@@ -1,0 +1,40 @@
+{
+  "manifestId": "55555555-5555-5555-5555-555555555555",
+  "exportId": "66666666-6666-6666-6666-666666666666",
+  "packetClass": "compliance_packet",
+  "jurisdictionKey": "san_francisco",
+  "ruleSnapshotRef": "snapshot:special.sf.requires_coi_language@2026-03-22",
+  "sourceRecordsUsed": [
+    {
+      "sourceRecordKey": "city_san_francisco_dbi_special_inspection_and_structural_observation_form_2025",
+      "verificationStatus": "verified-direct",
+      "packetRole": "cover_form",
+      "fingerprintHash": "7d48367a9735"
+    },
+    {
+      "sourceRecordKey": "city_san_francisco_dbi_special_inspections_conflict_of_interest_attestation",
+      "verificationStatus": "verified-indirect",
+      "packetRole": "coi_requirement",
+      "fingerprintHash": "e30ee22918f2"
+    }
+  ],
+  "documentsIncluded": [
+    {
+      "kind": "inspection_pdf",
+      "name": "SF-Special-Inspection-Run-2026-03-22.pdf",
+      "hash": "sha256:abc123",
+      "linkedRunId": "44444444-4444-4444-4444-444444444444"
+    },
+    {
+      "kind": "photo_appendix",
+      "name": "photo-appendix.pdf",
+      "hash": "sha256:def456",
+      "linkedRunId": "44444444-4444-4444-4444-444444444444"
+    }
+  ],
+  "auditRefs": [
+    "audit:packet_rendered:66666666-6666-6666-6666-666666666666",
+    "audit:inspection_approved:44444444-4444-4444-4444-444444444444"
+  ],
+  "unresolvedAmbiguities": []
+}

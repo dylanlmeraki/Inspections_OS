@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TemplateManifest",
+  "type": "object",
+  "required": [
+    "template_key",
+    "family",
+    "surface_modes",
+    "inspection_type_key",
+    "stage_code",
+    "display_name",
+    "sections"
+  ],
+  "properties": {
+    "template_key": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "surface_modes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inspection_type_key": {
+      "type": "string"
+    },
+    "stage_code": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "wizard": {
+      "type": "object"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "title",
+          "items"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "export_profile": {
+      "type": "string"
+    }
+  }
+}

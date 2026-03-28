@@ -1,0 +1,34 @@
+task_key: statewide_swppp_weekly_family
+workflow_stage_codes:
+- swppp.weekly
+required_artifacts_by_stage:
+- workflow_stage_code: swppp.weekly
+  asset_keys:
+  - cgp_2022_governing_order
+  - swppp_weekly_wizard_template
+  - mosswood_bmp_inspection_example
+  - swppp_weekly_photo_on_fail_rule
+  - cgp_d1_risk_worksheet
+  packet_roles:
+  - gate_rule
+  - governing_order
+  - inspection_sample
+  - inspection_template
+  - threshold_gate_reference
+summary:
+  task_key: statewide_swppp_weekly_family
+  pack_family_count: 1
+  asset_count: 5
+  direct_mirror_count: 1
+  source_reference_only_count: 2
+  trigger_only_count: 1
+  recognition_control_only_count: 0
+  example_output_only_count: 1
+  unresolved_count: 2
+  completeness_rating: partial
+  blocker_items:
+  - "CGP governing order PDF not locally mirrored \u2014 classified source_reference_only;\
+    \ vault reference acceptable for MVP but full mirror needed for offline export"
+  - "BMP item-level detail field schema unresolved \u2014 wizard engineering spec\
+    \ required before binding can be finalized"
+  - "Photo attachment metadata fields unresolved \u2014 wizard engineering spec required"

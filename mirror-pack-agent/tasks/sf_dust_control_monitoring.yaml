@@ -1,0 +1,27 @@
+task_key: sf_dust_control_monitoring
+scope:
+  jurisdiction_keys:
+    - san_francisco
+  inspection_type_keys:
+    - dust_sf
+  workflow_stage_codes:
+    - dust.applicability
+    - dust.plan_approval
+    - dust.monitoring
+inputs:
+  required_files:
+    - docs/source_set/InspectionOS_Source_of_Truth_v2.docx
+    - docs/source_set/InspectionOS_PRD_v2.docx
+    - docs/source_set/InspectionOS_BayArea_Next_Pass_Binder_2026-03-21.pdf
+    - docs/source_set/InspectionOS_BayArea_Official_Forms_Index_v3.pdf
+  optional_files:
+    - docs/source_set/sf_dust_control_examples/
+outputs:
+  pack_registry: out/pack_registry/sf_dust_control_monitoring.yaml
+  field_bindings: out/field_bindings/sf_dust_control_monitoring.yaml
+  unresolved: out/unresolved/sf_dust_control_monitoring.md
+  summary: out/summary/sf_dust_control_monitoring.json
+rules:
+  no_runtime_code_edits: true
+  no_fake_direct_mirrors: true
+  max_output_files: 4

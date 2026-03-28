@@ -1,0 +1,35 @@
+{
+  "task_key": "sf_special_inspections_reporting",
+  "pack_family_count": 1,
+  "asset_count": 5,
+  "direct_mirror_count": 1,
+  "source_reference_only_count": 2,
+  "trigger_only_count": 1,
+  "recognition_control_only_count": 1,
+  "example_output_only_count": 0,
+  "unresolved_count": 1,
+  "completeness_rating": "partial",
+  "blocker_items": [
+    "SF COI attestation verbatim text not yet extracted — exact text must be retrieved from SF DBI inspection services page and stored as a versioned product constant before gate can be enforced in text-verification mode",
+    "SF DBI cover form and process PDF not locally mirrored — source_reference_only; vault URL references acceptable for MVP",
+    "SF DBI weekly report form existence unconfirmed — query needed to determine if AHJ-issued weekly form is required or firm-generated with COI footer is acceptable"
+  ],
+  "classification_notes": {
+    "direct_mirror_assets": [
+      "sf_special_reporting_wizard_template"
+    ],
+    "source_reference_only_assets": [
+      "sf_dbi_special_inspection_form_2025",
+      "sf_dbi_special_inspections_process_2025"
+    ],
+    "trigger_only_assets": [
+      "sf_coi_gate_rule"
+    ],
+    "recognition_control_only_assets": [
+      "sf_dbi_coi_attestation_requirement"
+    ],
+    "example_output_only_assets": [],
+    "unresolved_assets": [],
+    "note": "Auto-derived from pack_registry classifications to preserve scope-level summary notes."
+  }
+}

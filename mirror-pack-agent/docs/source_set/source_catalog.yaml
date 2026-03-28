@@ -1,0 +1,215 @@
+version: 1
+catalog_generated_for: mirror-pack-agent-hardened-v2
+entries:
+  - canonical_key: inspectionos_source_of_truth_v2
+    expected_basename: InspectionOS_Source_of_Truth_v2.docx
+    actual_relative_path: docs/source_set/InspectionOS_Source_of_Truth_v1 (1).docx
+    aliases:
+      - InspectionOS_Source_of_Truth_v1.docx
+      - InspectionOS_Source_of_Truth_v1 (1).docx
+      - InspectionOS_Source_of_Truth_v2.docx
+    file_type: docx
+    version_status: substitute_older_version
+    version_declared: v2
+    version_actual: v1
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_weekly_family
+      - statewide_swppp_qpe_family
+      - sf_special_inspections_reporting
+      - contra_costa_special_pre_permit
+      - marin_special_pre_permit
+      - sf_dust_control_monitoring
+      - baaqmd_asbestos_readiness
+    notes: Bundle contains v1 source-of-truth under a duplicate filename; allow substitute until v2 is supplied.
+  - canonical_key: inspectionos_prd_v2
+    expected_basename: InspectionOS_PRD_v2.docx
+    actual_relative_path: docs/source_set/InspectionOS_PRD_v1 (2).docx
+    aliases:
+      - InspectionOS_PRD_v1.docx
+      - InspectionOS_PRD_v1 (2).docx
+      - InspectionOS_PRD_v2.docx
+    file_type: docx
+    version_status: substitute_older_version
+    version_declared: v2
+    version_actual: v1
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_weekly_family
+      - statewide_swppp_qpe_family
+      - sf_special_inspections_reporting
+      - contra_costa_special_pre_permit
+      - marin_special_pre_permit
+      - sf_dust_control_monitoring
+      - baaqmd_asbestos_readiness
+    notes: Bundle contains v1 PRD; allow substitute until v2 is supplied.
+  - canonical_key: inspectionos_mvp_and_phasing_plan_v2
+    expected_basename: InspectionOS_MVP_and_Phasing_Plan_v2.docx
+    actual_relative_path: docs/source_set/InspectionOS_MVP_and_Phasing_Plan_v1 (2).docx
+    aliases:
+      - InspectionOS_MVP_and_Phasing_Plan_v1.docx
+      - InspectionOS_MVP_and_Phasing_Plan_v1 (2).docx
+      - InspectionOS_MVP_and_Phasing_Plan_v2.docx
+    file_type: docx
+    version_status: substitute_older_version
+    version_declared: v2
+    version_actual: v1
+    superseded_by: null
+    task_eligibility: []
+    notes: Optional supporting reference.
+  - canonical_key: inspectionos_upgrade_companion_v2
+    expected_basename: InspectionOS_Upgrade_Companion_v2.docx
+    actual_relative_path: docs/source_set/InspectionOS_Upgrade_Companion_v1.docx
+    aliases:
+      - InspectionOS_Upgrade_Companion_v1.docx
+      - InspectionOS_Upgrade_Companion_v2.docx
+    file_type: docx
+    version_status: substitute_older_version
+    version_declared: v2
+    version_actual: v1
+    superseded_by: null
+    task_eligibility: []
+    notes: Optional supporting reference.
+  - canonical_key: inspectionos_bayarea_next_pass_binder_2026_03_21
+    expected_basename: InspectionOS_BayArea_Next_Pass_Binder_2026-03-21.pdf
+    actual_relative_path: docs/source_set/InspectionOS_BayArea_Next_Pass_Binder_2026-03-21 (3) (1).pdf
+    aliases:
+      - InspectionOS_BayArea_Next_Pass_Binder_2026-03-21.pdf
+      - InspectionOS_BayArea_Next_Pass_Binder_2026-03-21 (3).pdf
+      - InspectionOS_BayArea_Next_Pass_Binder_2026-03-21 (3) (1).pdf
+    file_type: pdf
+    version_status: direct
+    version_declared: next-pass-binder
+    version_actual: next-pass-binder
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_weekly_family
+      - statewide_swppp_qpe_family
+      - sf_special_inspections_reporting
+      - contra_costa_special_pre_permit
+      - marin_special_pre_permit
+      - sf_dust_control_monitoring
+      - baaqmd_asbestos_readiness
+    notes: Primary binder artifact in bundle.
+  - canonical_key: inspectionos_bayarea_official_forms_index_v3
+    expected_basename: InspectionOS_BayArea_Official_Forms_Index_v3.pdf
+    actual_relative_path: docs/source_set/InspectionOS_BayArea_Official_Forms_Index_v2_2026-03-21 (3) (1).pdf
+    aliases:
+      - InspectionOS_BayArea_Official_Forms_Index_v3.pdf
+      - InspectionOS_BayArea_Official_Forms_Index_v2_2026-03-21 (3).pdf
+      - InspectionOS_BayArea_Official_Forms_Index_v2_2026-03-21 (3) (1).pdf
+    file_type: pdf
+    version_status: substitute_older_version
+    version_declared: v3
+    version_actual: v2
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_weekly_family
+      - statewide_swppp_qpe_family
+      - sf_special_inspections_reporting
+      - sf_dust_control_monitoring
+    notes: Current bundle contains v2 index only.
+  - canonical_key: inspectionos_mvp_app_native_schema_and_service_layer_v2
+    expected_basename: InspectionOS_MVP_App_Native_Schema_and_Service_Layer_v2.pdf
+    actual_relative_path: docs/source_set/InspectionOS_MVP_App_Native_Schema_Tables_2026-03-21 (2) (1).pdf
+    aliases:
+      - InspectionOS_MVP_App_Native_Schema_and_Service_Layer_v2.pdf
+      - InspectionOS_MVP_App_Native_Schema_Tables_2026-03-21 (2).pdf
+      - InspectionOS_MVP_App_Native_Schema_Tables_2026-03-21 (2) (1).pdf
+    file_type: pdf
+    version_status: substitute_related_artifact
+    version_declared: schema-service-layer-v2
+    version_actual: schema-tables-v1-family
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_weekly_family
+      - statewide_swppp_qpe_family
+      - sf_special_inspections_reporting
+    notes: Current bundle contains schema tables rather than the later schema/service-layer PDF.
+  - canonical_key: county_marin_building_permit_submittal_checklist_special_inspection_trigger
+    expected_basename: '[COUNTY-Marin]_Building-Permit-Submittal-Checklist_Special-Inspection-Trigger.pdf'
+    actual_relative_path: docs/source_set/[COUNTY-Marin]_Building-Permit-Submittal-Checklist_Special-Inspection-Trigger (1).pdf
+    aliases:
+      - '[COUNTY-Marin]_Building-Permit-Submittal-Checklist_Special-Inspection-Trigger.pdf'
+      - '[COUNTY-Marin]_Building-Permit-Submittal-Checklist_Special-Inspection-Trigger (1).pdf'
+    file_type: pdf
+    version_status: direct
+    version_declared: county-replacement
+    version_actual: county-replacement
+    superseded_by: null
+    task_eligibility:
+      - marin_special_pre_permit
+    notes: Direct county trigger source.
+  - canonical_key: county_contra_costa_special_inspections_program_and_recognized_agencies
+    expected_basename: '[COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies.pdf'
+    actual_relative_path: docs/source_set/[COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies (1).pdf
+    aliases:
+      - '[COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies.pdf'
+      - '[COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies (1).pdf'
+    file_type: pdf
+    version_status: direct
+    version_declared: county-replacement
+    version_actual: county-replacement
+    superseded_by: null
+    task_eligibility:
+      - contra_costa_special_pre_permit
+    notes: County program + recognized agencies packet support.
+  - canonical_key: mosswood_swppp_weekly
+    expected_basename: mosswood_swppp_weekly.pdf
+    actual_relative_path: docs/source_set/mosswood 2-20-25.pdf
+    aliases:
+      - mosswood_swppp_weekly.pdf
+      - mosswood 2-20-25.pdf
+      - BMP Inspection 11-22-24.pdf
+    file_type: pdf
+    version_status: example_output_only
+    version_declared: weekly-example
+    version_actual: weekly-example
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_weekly_family
+    notes: Weekly-family representative output example.
+  - canonical_key: mosswood_swppp_pre_qpe
+    expected_basename: Mosswood_2-13-25.pdf
+    actual_relative_path: docs/source_set/Mosswood 2-13-25.pdf
+    aliases:
+      - Mosswood_2-13-25.pdf
+      - Mosswood 2-13-25.pdf
+    file_type: pdf
+    version_status: example_output_only
+    version_declared: pre-qpe-example
+    version_actual: pre-qpe-example
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_qpe_family
+    notes: Pre-QPE example output.
+  - canonical_key: mosswood_swppp_during_qpe
+    expected_basename: Mosswood_2-14-25.pdf
+    actual_relative_path: docs/source_set/Mosswood 2-14-25.pdf
+    aliases:
+      - Mosswood_2-14-25.pdf
+      - Mosswood 2-14-25.pdf
+    file_type: pdf
+    version_status: example_output_only
+    version_declared: during-qpe-example
+    version_actual: during-qpe-example
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_qpe_family
+    notes: During-QPE example output.
+  - canonical_key: mosswood_swppp_post_qpe
+    expected_basename: Mosswood_2-25-25.pdf
+    actual_relative_path: docs/source_set/Mosswood 2-25-25.pdf
+    aliases:
+      - Mosswood_2-25-25.pdf
+      - Mosswood 2-25-25.pdf
+      - mosswood 2-25-25_0001.pdf
+      - mosswood 2-25-25_2.pdf
+    file_type: pdf
+    version_status: example_output_only
+    version_declared: post-qpe-example
+    version_actual: post-qpe-example
+    superseded_by: null
+    task_eligibility:
+      - statewide_swppp_qpe_family
+    notes: Post-QPE example output family with duplicate local variants.

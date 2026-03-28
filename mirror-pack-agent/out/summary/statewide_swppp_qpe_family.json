@@ -1,0 +1,38 @@
+{
+  "task_key": "statewide_swppp_qpe_family",
+  "pack_family_count": 1,
+  "asset_count": 6,
+  "direct_mirror_count": 1,
+  "source_reference_only_count": 1,
+  "trigger_only_count": 1,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 1,
+  "unresolved_count": 2,
+  "completeness_rating": "partial",
+  "blocker_items": [
+    "swppp.during_qpe stage has no wizard manifest — stage cannot execute until manifest is authored",
+    "swppp.post_qpe stage has no wizard manifest — stage cannot execute until manifest is authored",
+    "QSP/QSD inspector qualification field is absent from all QPE manifests — required by CGP Attachment G",
+    "CGP governing order PDF not locally mirrored — source_reference_only; same acquisition as weekly family"
+  ],
+  "classification_notes": {
+    "direct_mirror_assets": [
+      "swppp_pre_qpe_wizard_template"
+    ],
+    "source_reference_only_assets": [
+      "cgp_2022_governing_order_qpe"
+    ],
+    "trigger_only_assets": [
+      "pre_qpe_forecast_gate_rule"
+    ],
+    "recognition_control_only_assets": [],
+    "example_output_only_assets": [
+      "mosswood_storm_inspection_examples"
+    ],
+    "unresolved_assets": [
+      "during_qpe_wizard_template",
+      "post_qpe_wizard_template"
+    ],
+    "note": "Auto-derived from pack_registry classifications to preserve scope-level summary notes."
+  }
+}

@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build:
+      context: ./Inspections_OS
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Inspections_OS:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev -- --host 0.0.0.0
+
+  agent:
+    build:
+      context: ./mirror-pack-agent
+      dockerfile: Dockerfile
+    volumes:
+      - ./mirror-pack-agent:/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    # We override CMD to just keep the container alive for dev/agent execution
+    command: tail -f /dev/null

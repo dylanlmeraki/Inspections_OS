@@ -1,0 +1,177 @@
+task_key: contra_costa_special_pre_permit
+
+jurisdiction_keys:
+  - contra_costa_county
+
+inspection_type_keys:
+  - special_cbc17
+
+workflow_stage_codes:
+  - special.pre_permit
+
+pack_families:
+  - special_inspections
+
+asset_entries:
+  - asset_key: contra_costa_special_inspections_program_and_recognized_agencies
+    title: Contra Costa County Special Inspections Program and Recognized Agencies
+    classification: source_reference_only
+    jurisdiction_scope: contra_costa_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - agencies_list
+    source_evidence:
+      - local_file: "docs/source_set/[COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies (1).pdf"
+      - file_size_bytes: 4313
+      - source_record_key: county_contra_costa_special_inspections_program_and_recognized_agencies
+      - verification_status: verified-indirect
+      - form_record: county_contra_costa_special_inspections_program_and_recognized_agencies
+    direct_mirror_candidate: false
+    fallback_behavior: use_as_recognition_control_reference
+    confidence: high
+    notes: >
+      This PDF is physically present in the source set (4.3 KB). It represents the
+      Contra Costa County Special Inspections Program and recognized agencies list.
+      However, at 4.3 KB it is a very small document — likely a directory listing page
+      rather than a complete recognized-agencies list with full firm names, certifications,
+      and contact details. It is NOT classified as direct_mirror because (a) it is a small
+      excerpt/reference page rather than a full mirrored form pack, and (b) it serves
+      primarily as a recognition control reference, not an executable wizard form.
+      Package role confirmed in form_records seed: agencies_list / recognition control.
+
+  - asset_key: contra_costa_recognized_agency_gate_rule
+    title: Contra Costa Recognized Agency Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: contra_costa_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: special.contra.requires_recognized_agency
+      - blocker_code: CONTRA_SPECIAL_AGENCY_NOT_SELECTED
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Blocker: project.special_inspections.selected_agency must be set and validated
+      against the Contra Costa recognized agencies list before stage advancement.
+      Source record: county_contra_costa_special_inspections_program_and_recognized_agencies.
+
+  - asset_key: contra_costa_general_pre_permit_gate_rule
+    title: General Special Inspection Pre-Permit Cover and Agency Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: contra_costa_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: special.pre_permit.requires_cover_and_agency
+      - blocker_codes:
+          - SPECIAL_COVER_PACKET_MISSING
+          - SPECIAL_APPROVED_AGENCY_MISSING
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Statewide gate: cover packet and approved agency evidence required before
+      special.pre_permit stage can advance. Applies to Contra Costa as a county.
+
+  - asset_key: contra_costa_county_cover_form
+    title: Contra Costa County Special Inspections Cover Form (County-Issued)
+    classification: unresolved
+    jurisdiction_scope: contra_costa_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - cover_form
+    source_evidence:
+      - source_record_key: county_contra_costa_special_inspections_program_and_recognized_agencies
+    direct_mirror_candidate: false
+    fallback_behavior: block_until_acquired
+    confidence: low
+    notes: >
+      No Contra Costa County-specific special inspections statement/cover form
+      has been identified or mirrored in the source set. The provided PDF
+      (4.3 KB) covers the recognized agencies listing and program overview,
+      not a fillable cover form. Cities within Contra Costa (e.g., Walnut Creek,
+      Concord) may have their own forms. The county-issued unincorporated/county-level
+      special inspection statement form is not present.
+
+  - asset_key: walnut_creek_special_inspection_program
+    title: Walnut Creek Special Inspection and Observation Program (Contra Costa county city)
+    classification: source_reference_only
+    jurisdiction_scope: contra_costa_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - reference_asset
+    source_evidence:
+      - source_record_key: city_walnut_creek_special_inspection_and_observation_program
+      - source_url: https://www.walnutcreekca.gov/home/showpublisheddocument/4482/639064999209170000
+      - verification_status: verified-direct
+    direct_mirror_candidate: false
+    fallback_behavior: expose_as_city_specific_reference
+    confidence: high
+    notes: >
+      Walnut Creek is within Contra Costa County. This city-level document
+      provides a special inspection and observation program form. URL is verified-direct.
+      Not included as direct_mirror because the task scope is Contra Costa county,
+      not the city of Walnut Creek specifically. Included as a reference asset to
+      illustrate the pattern for city-level forms within the county.
+
+  - asset_key: contra_costa_city_coverage_gap_note
+    title: Contra Costa County vs City Special Inspections Coverage Note
+    classification: unresolved
+    jurisdiction_scope: contra_costa_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - ambiguity_note
+    source_evidence:
+      - source_record_key: county_contra_costa_county_vs_city_special_inspections_coverage_note
+      - form_record: county_contra_costa_county_vs_city_special_inspections_coverage_note
+      - verification_status: gap-note
+    direct_mirror_candidate: false
+    fallback_behavior: surface_as_ambiguity_in_jurisdiction_selector
+    confidence: low
+    notes: >
+      The source records seed explicitly identifies this as a coverage gap-note.
+      Cities within Contra Costa (Walnut Creek, Concord, Antioch, etc.) may each have
+      their own special inspection forms. The county-level vs city-level path
+      must be resolved at project intake based on project location within the county.
+      This ambiguity must be surfaced in the jurisdiction selector UI.
+
+packet_roles_present:
+  - agencies_list
+  - gate_rule
+  - cover_form
+  - reference_asset
+  - ambiguity_note
+
+fallback_behavior: >
+  The Contra Costa recognized agencies reference PDF is present but is a small
+  summary document, not a runtime-mirrored full agencies list. The county cover form
+  is unresolved. The city-level forms (Walnut Creek) are source_reference_only. The
+  jurisdiction selector must route projects to city-level forms when within an
+  incorporated city, and the county unincorporated form when resolved.
+
+completeness_rating: partial
+
+unresolved_count: 2

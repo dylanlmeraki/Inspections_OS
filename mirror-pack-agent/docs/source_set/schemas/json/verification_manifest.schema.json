@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VerificationManifest",
+  "type": "object",
+  "required": [
+    "manifestId",
+    "exportId",
+    "packetClass",
+    "jurisdictionKey",
+    "ruleSnapshotRef",
+    "sourceRecordsUsed",
+    "documentsIncluded",
+    "auditRefs"
+  ],
+  "properties": {
+    "manifestId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "exportId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "packetClass": {
+      "type": "string",
+      "enum": [
+        "inspection_packet",
+        "issue_packet",
+        "compliance_packet",
+        "closeout_packet"
+      ]
+    },
+    "jurisdictionKey": {
+      "type": "string"
+    },
+    "ruleSnapshotRef": {
+      "type": "string"
+    },
+    "sourceRecordsUsed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceRecordKey",
+          "verificationStatus",
+          "packetRole"
+        ],
+        "properties": {
+          "sourceRecordKey": {
+            "type": "string"
+          },
+          "verificationStatus": {
+            "type": "string"
+          },
+          "packetRole": {
+            "type": "string"
+          },
+          "fingerprintHash": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "documentsIncluded": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "name",
+          "hash"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "linkedRunId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "auditRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unresolvedAmbiguities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "task_key": "contra_costa_special_pre_permit",
+  "pack_family_count": 1,
+  "asset_count": 6,
+  "direct_mirror_count": 0,
+  "source_reference_only_count": 2,
+  "trigger_only_count": 2,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 0,
+  "unresolved_count": 2,
+  "completeness_rating": "partial",
+  "blocker_items": [
+    "No Contra Costa County-issued special inspection cover form (statement) is present — this is a hard blocker for unincorporated county projects; county form must be acquired before the cover_form slot can proceed",
+    "The provided recognized agencies PDF (4313 bytes) is likely a partial summary page, not a complete agencies list — agency selector cannot be reliably populated until the full list is confirmed",
+    "City vs county routing is unresolved — no jurisdiction boundary resolver is in place; routing to the correct AHJ requires GIS or address-based city membership lookup",
+    "Special inspection forms for Contra Costa incorporated cities other than Walnut Creek are absent from the source set"
+  ],
+  "classification_notes": {
+    "direct_mirror_assets": [],
+    "source_reference_only_assets": [
+      "contra_costa_special_inspections_program_and_recognized_agencies",
+      "walnut_creek_special_inspection_program"
+    ],
+    "trigger_only_assets": [
+      "contra_costa_recognized_agency_gate_rule",
+      "contra_costa_general_pre_permit_gate_rule"
+    ],
+    "recognition_control_only_assets": [],
+    "example_output_only_assets": [],
+    "unresolved_assets": [
+      "contra_costa_county_cover_form",
+      "contra_costa_city_coverage_gap_note"
+    ],
+    "note": "Auto-derived from pack_registry classifications to preserve scope-level summary notes."
+  }
+}

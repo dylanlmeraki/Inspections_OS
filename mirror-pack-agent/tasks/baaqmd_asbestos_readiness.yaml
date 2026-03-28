@@ -1,0 +1,26 @@
+task_key: baaqmd_asbestos_readiness
+scope:
+  jurisdiction_keys:
+    - bay_area_regional
+  inspection_type_keys:
+    - asbestos_j
+  workflow_stage_codes:
+    - asbestos.j_ready
+    - asbestos.date_revision
+    - asbestos.pre_demo
+inputs:
+  required_files:
+    - docs/source_set/InspectionOS_Source_of_Truth_v2.docx
+    - docs/source_set/InspectionOS_PRD_v2.docx
+    - docs/source_set/InspectionOS_BayArea_Next_Pass_Binder_2026-03-21.pdf
+  optional_files:
+    - docs/source_set/baaqmd_asbestos_examples/
+outputs:
+  pack_registry: out/pack_registry/baaqmd_asbestos_readiness.yaml
+  field_bindings: out/field_bindings/baaqmd_asbestos_readiness.yaml
+  unresolved: out/unresolved/baaqmd_asbestos_readiness.md
+  summary: out/summary/baaqmd_asbestos_readiness.json
+rules:
+  no_runtime_code_edits: true
+  no_fake_direct_mirrors: true
+  max_output_files: 4

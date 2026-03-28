@@ -1,0 +1,182 @@
+task_key: marin_special_pre_permit
+
+jurisdiction_keys:
+  - marin_county
+
+inspection_type_keys:
+  - special_cbc17
+
+workflow_stage_codes:
+  - special.pre_permit
+
+pack_families:
+  - special_inspections
+
+asset_entries:
+  - asset_key: marin_building_permit_submittal_checklist_special_inspection_trigger
+    title: Marin County Building Permit Submittal Checklist — Special Inspection Trigger
+    classification: trigger_only
+    jurisdiction_scope: marin_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - permit_trigger
+    source_evidence:
+      - local_file: "docs/source_set/[COUNTY-Marin]_Building-Permit-Submittal-Checklist_Special-Inspection-Trigger (1).pdf"
+        file_size_bytes: 4274
+        source_record_key: county_marin_building_permit_submittal_checklist_special_inspection_trigger
+        verification_status: verified-indirect
+        version_declared: county-replacement
+        issuing_authority: "Marin County Community Development Agency / Building and Safety"
+        source_url: "https://assets.marincounty.gov/marincounty-prod/public/2024-12/submittal-requirements-checklist-v12-20-24.pdf"
+        document_date: "2024-12-20"
+        relevant_language: >
+          "Structural Drawings — List structural observations and special inspections."
+        section_ref: "Structural Plans, Sections, and Calculations"
+    direct_mirror_candidate: false
+    fallback_behavior: >
+      Surface the county checklist requirement at the trigger gate. Block packet completion
+      with MARIN_SPECIAL_TRIGGER_NOT_ACKNOWLEDGED until project.special_inspections.trigger_acknowledged
+      is set true.
+    confidence: high
+    notes: >
+      Classified trigger_only per the BayArea Next Pass Binder (2026-03-21) which directs:
+      "requirement_type = trigger; evidence_source = county checklist." The county checklist
+      is explicitly described as "not a dedicated special-inspection cover form" but is
+      "explicit enough to support county-level packet logic." Relevant language: "Structural
+      Drawings — List structural observations and special inspections." This source replaces
+      the prior gap-note artifact (county_marin_special_inspections_city_county_gap_note)
+      which is now superseded. A standalone county statement/agreement form still was not
+      surfaced and remains unresolved.
+
+  - asset_key: marin_trigger_acknowledgment_gate_rule
+    title: Marin County Special Inspection Trigger Acknowledgment Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: marin_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+        rule_key: special.marin.requires_trigger_ack
+        blocker_code: MARIN_SPECIAL_TRIGGER_NOT_ACKNOWLEDGED
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Blocker fires when project.structural_drawings_required=true and
+      project.special_inspections.trigger_acknowledged is not yet set.
+      The trigger source is the Marin building permit submittal checklist.
+
+  - asset_key: general_pre_permit_gate_rule_marin
+    title: General Special Inspection Pre-Permit Cover and Agency Gate Rule (Marin)
+    classification: trigger_only
+    jurisdiction_scope: marin_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+        rule_key: special.pre_permit.requires_cover_and_agency
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Statewide gate: cover packet and approved agency evidence required before
+      special.pre_permit stage can advance. Applies to Marin as a county.
+
+  - asset_key: san_rafael_special_inspection_form
+    title: San Rafael Special Inspection Form (Marin county city)
+    classification: source_reference_only
+    jurisdiction_scope: marin_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - reference_asset
+    source_evidence:
+      - source_record_key: city_san_rafael_special_inspection_form
+        source_url: "https://storage.googleapis.com/proudcity/sanrafaelca/uploads/2017/10/Special-lnspection-Form-updated-7-12-21.pdf"
+        verification_status: verified-direct
+    direct_mirror_candidate: false
+    fallback_behavior: expose_as_city_specific_reference
+    confidence: high
+    notes: >
+      San Rafael is within Marin County. This city-level document provides
+      a special inspection form. URL is verified-direct, fingerprint `81b949e097ee`.
+      Included as a reference asset rather than the primary county form since the
+      task scope is Marin County, not specific to the city of San Rafael.
+
+  - asset_key: marin_city_county_coverage_gap_note
+    title: Marin County vs City Special Inspections Coverage Note (Superseded)
+    classification: unresolved
+    jurisdiction_scope: marin_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - ambiguity_note
+    source_evidence:
+      - source_record_key: county_marin_special_inspections_city_county_gap_note
+        verification_status: gap-note
+        active_for_runtime: false
+        superseded_by: county_marin_building_permit_submittal_checklist_special_inspection_trigger
+    direct_mirror_candidate: false
+    fallback_behavior: surface_as_ambiguity_in_jurisdiction_selector
+    confidence: low
+    notes: >
+      This gap-note artifact is superseded by the county trigger checklist source
+      (county_marin_building_permit_submittal_checklist_special_inspection_trigger, version:
+      county-replacement). Not active for runtime. Retained here as a documentation record
+      of the prior coverage gap state. The city/county routing ambiguity it described
+      (San Rafael vs unincorporated Marin) remains structurally open even though the county
+      trigger has been verified. Cities within Marin (San Rafael, Mill Valley, Tiburon, Novato,
+      Sausalito, etc.) may each have their own special inspection forms.
+
+  - asset_key: marin_county_cover_form
+    title: Marin County Special Inspections Cover Form (County-Issued Unincorporated)
+    classification: unresolved
+    jurisdiction_scope: marin_county
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.pre_permit
+    packet_roles:
+      - cover_form
+    source_evidence: []
+    direct_mirror_candidate: false
+    fallback_behavior: block_until_acquired
+    confidence: low
+    notes: >
+      No Marin County-issued unincorporated special inspection statement/cover form
+      has been identified or mirrored in the source set. The trigger checklist PDF
+      (4274 bytes) is a permit submittal checklist, not a fillable special inspection
+      statement cover form. A county-level or Marin Community Development permit package
+      form is needed for unincorporated projects.
+
+packet_roles_present:
+  - permit_trigger
+  - gate_rule
+  - reference_asset
+  - ambiguity_note
+  - cover_form
+
+fallback_behavior: >
+  The trigger acknowledgment gate is defined and enforceable. The county cover form
+  for unincorporated projects is unresolved. For projects in incorporated cities,
+  route to city-specific forms (San Rafael form is source_reference_only and available
+  via URL). For other Marin cities, forms are not yet acquired.
+
+completeness_rating: partial
+
+unresolved_count: 2

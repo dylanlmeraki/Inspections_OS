@@ -1,0 +1,41 @@
+task_key: marin_special_pre_permit
+workflow_stage_codes:
+- special.pre_permit
+required_artifacts_by_stage:
+- workflow_stage_code: special.pre_permit
+  asset_keys:
+  - marin_building_permit_submittal_checklist_special_inspection_trigger
+  - marin_trigger_acknowledgment_gate_rule
+  - general_pre_permit_gate_rule_marin
+  - san_rafael_special_inspection_form
+  - marin_city_county_coverage_gap_note
+  - marin_county_cover_form
+  packet_roles:
+  - ambiguity_note
+  - cover_form
+  - gate_rule
+  - permit_trigger
+  - reference_asset
+summary:
+  task_key: marin_special_pre_permit
+  pack_family_count: 1
+  asset_count: 6
+  direct_mirror_count: 0
+  source_reference_only_count: 2
+  trigger_only_count: 2
+  recognition_control_only_count: 0
+  example_output_only_count: 0
+  unresolved_count: 2
+  completeness_rating: partial
+  blocker_items:
+  - "No Marin County-issued special inspection cover form (statement) is present \u2014\
+    \ hard blocker for unincorporated Marin County projects; county form must be acquired\
+    \ before the cover_form slot can proceed"
+  - "No Marin County recognized agencies list is present \u2014 agency selector cannot\
+    \ be validated; field remains free-text until list is acquired"
+  - "City vs county routing is unresolved \u2014 no jurisdiction boundary resolver\
+    \ in place; routing requires GIS or address-based city membership lookup"
+  - Special inspection forms for Marin incorporated cities other than San Rafael are
+    absent from the source set
+  - "San Rafael form is source_reference_only (URL verified-direct) \u2014 needs local\
+    \ mirror for offline support"

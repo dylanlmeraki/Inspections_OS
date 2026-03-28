@@ -1,0 +1,6 @@
+services:
+  claudemirroragentbundlev2:
+    image: claudemirroragentbundlev2
+    build:
+      context: .
+      dockerfile: ./Dockerfile

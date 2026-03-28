@@ -1,0 +1,149 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required:
+  - task_key
+  - canonical_field_sets
+  - bindings
+  - unresolved_bindings
+properties:
+  task_key:
+    type: string
+  canonical_field_sets:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+  bindings:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - binding_key
+        - canonical_field_key
+        - packet_field_key
+        - target_section_key
+        - target_field_key
+        - status
+        - transform
+        - requiredness
+        - evidence_basis
+        - notes
+      properties:
+        binding_key:
+          type: string
+        canonical_field_key:
+          type: string
+        packet_field_key:
+          type: string
+        target_section_key:
+          type: string
+        target_field_key:
+          type: string
+        status:
+          type: string
+          enum: [mapped, partial, unresolved, partially_mapped, inferred]
+        transform:
+          type: string
+        requiredness:
+          type: string
+        evidence_basis:
+          type: [string, array]
+          minLength: 1
+          items:
+            type: object
+            additionalProperties: false
+            required: [kind, ref]
+            properties:
+              kind:
+                type: string
+              ref:
+                type: string
+        notes:
+          type: string
+  unresolved_bindings:
+    type: array
+    items:
+      oneOf:
+        - type: object
+          additionalProperties: false
+          required:
+            - binding_key
+            - canonical_field_key
+            - packet_field_key
+            - target_section_key
+            - target_field_key
+            - status
+            - transform
+            - requiredness
+            - evidence_basis
+            - notes
+          properties:
+            binding_key:
+              type: string
+            canonical_field_key:
+              type: string
+            packet_field_key:
+              type: string
+            target_section_key:
+              type: string
+            target_field_key:
+              type: string
+            status:
+              type: string
+              enum: [unresolved, partial, mapped, partially_mapped, inferred]
+            transform:
+              type: string
+            requiredness:
+              type: string
+            evidence_basis:
+              type: [string, array]
+            notes:
+              type: string
+        - type: object
+          additionalProperties: false
+          required:
+            - canonical_field_key
+            - reason
+            - blocker_type
+          properties:
+            canonical_field_key:
+              type: string
+            reason:
+              type: string
+            blocker_type:
+              type: string
+              enum:
+                - missing_direct_pack
+                - missing_field_map
+                - missing_stage_specific_artifact
+                - ambiguous_county_city_path
+                - insufficient_evidence
+  completeness_matrix:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - canonical_field_set
+        - mapped_count
+        - partial_count
+        - unresolved_count
+        - completeness_rating
+      properties:
+        canonical_field_set:
+          type: string
+        mapped_count:
+          type: integer
+          minimum: 0
+        partial_count:
+          type: integer
+          minimum: 0
+        unresolved_count:
+          type: integer
+          minimum: 0
+        completeness_rating:
+          type: string
+          enum: [none, low, medium, high, partial, production_candidate]

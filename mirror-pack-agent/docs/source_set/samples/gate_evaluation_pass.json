@@ -1,0 +1,30 @@
+{
+  "gateEvaluationId": "33333333-3333-3333-3333-333333333333",
+  "runId": "44444444-4444-4444-4444-444444444444",
+  "jurisdictionKey": "san_francisco",
+  "stageCode": "special.reporting",
+  "status": "pass",
+  "requirements": [
+    {
+      "code": "text.coi_footer",
+      "kind": "text_snippet",
+      "status": "met",
+      "message": "SF conflict-of-interest footer present.",
+      "evidenceRefs": [
+        "render:footer:coi"
+      ]
+    },
+    {
+      "code": "document.special_cover_packet",
+      "kind": "document",
+      "status": "met",
+      "message": "Special inspection cover packet linked.",
+      "evidenceRefs": [
+        "document:special.cover_packet"
+      ]
+    }
+  ],
+  "blockers": [],
+  "waiverEligible": false,
+  "ruleSnapshotRef": "snapshot:special.sf.requires_coi_language@2026-03-22"
+}

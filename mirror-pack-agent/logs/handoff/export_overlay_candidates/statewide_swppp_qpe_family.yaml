@@ -1,0 +1,26 @@
+task_key: statewide_swppp_qpe_family
+overlay_candidates:
+- asset_key: swppp_pre_qpe_wizard_template
+  classification: direct_mirror
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: cgp_2022_governing_order_qpe
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: pre_qpe_forecast_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: mosswood_storm_inspection_examples
+  classification: example_output_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: during_qpe_wizard_template
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: post_qpe_wizard_template
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []

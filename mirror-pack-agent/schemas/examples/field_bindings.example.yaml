@@ -1,0 +1,25 @@
+task_key: statewide_swppp_qpe_family
+canonical_field_sets: [swppp_qpe_core]
+bindings:
+  - binding_key: swppp_qpe_inspector_name
+    canonical_field_key: inspection.inspector_name
+    packet_field_key: packet.inspector_name
+    target_section_key: certification
+    target_field_key: inspector_name
+    requiredness: required
+    status: mapped
+    transform: identity
+    evidence_basis:
+      - kind: sample_output
+        ref: docs/source_set/Mosswood 2-13-25.pdf
+    notes: Mapped from sample output.
+unresolved_bindings:
+  - canonical_field_key: inspection.storm_event_window
+    reason: Missing direct pack field map.
+    blocker_type: missing_field_map
+completeness_matrix:
+  - canonical_field_set: swppp_qpe_core
+    mapped_count: 1
+    partial_count: 0
+    unresolved_count: 1
+    completeness_rating: medium

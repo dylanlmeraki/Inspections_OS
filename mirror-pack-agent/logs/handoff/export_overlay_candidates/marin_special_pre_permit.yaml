@@ -1,0 +1,28 @@
+task_key: marin_special_pre_permit
+overlay_candidates:
+- asset_key: marin_building_permit_submittal_checklist_special_inspection_trigger
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections:
+  - trigger
+- asset_key: marin_trigger_acknowledgment_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: general_pre_permit_gate_rule_marin
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: san_rafael_special_inspection_form
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections:
+  - cover_form_selection
+- asset_key: marin_city_county_coverage_gap_note
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: marin_county_cover_form
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []

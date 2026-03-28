@@ -1,0 +1,38 @@
+task_key: statewide_swppp_weekly_family
+jurisdiction_keys:
+- ca_statewide
+inspection_type_keys:
+- swppp_active_series
+workflow_stage_codes:
+- swppp.weekly
+packet_roles_present:
+- governing_order
+- inspection_template
+- threshold_gate_reference
+- gate_rule
+- inspection_sample
+fallback_behavior: 'For all source_reference_only assets, expose the verified source_url
+  in the admin document vault. Do not block inspection execution if the governing
+  order URL is accessible but not locally mirrored. Gate blockers (photo_on_fail)
+  are enforced independently of PDF mirror status.
+
+  '
+readiness_score:
+  score_0_to_100: 80
+  direct_mirror_present: true
+  authoritative_source_present: true
+  field_map_completeness: complete
+  stage_completeness: complete
+  export_readiness: fallback_ready
+  unresolved_blockers:
+  - "CGP governing order PDF not locally mirrored \u2014 classified source_reference_only;\
+    \ vault reference acceptable for MVP but full mirror needed for offline export"
+  - "BMP item-level detail field schema unresolved \u2014 wizard engineering spec\
+    \ required before binding can be finalized"
+  - "Photo attachment metadata fields unresolved \u2014 wizard engineering spec required"
+source_asset_keys:
+- cgp_2022_governing_order
+- swppp_weekly_wizard_template
+- mosswood_bmp_inspection_example
+- swppp_weekly_photo_on_fail_rule
+- cgp_d1_risk_worksheet

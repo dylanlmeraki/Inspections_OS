@@ -1,0 +1,52 @@
+template_key: special.reporting.weekly.v1
+family: special_inspections
+surface_modes:
+- mobile_field_runner
+- desktop_tablet
+jurisdiction_scope:
+- ca_statewide
+inspection_type_key: special_cbc17
+stage_code: special.reporting
+display_name: Special Inspections Weekly Report
+wizard:
+  project_step: select_project
+  program_step: confirm_jurisdiction_and_cover_form
+  stage_step: reporting
+  guided_sections:
+  - jurisdiction_requirements
+  - inspection_events
+  - nonconformance
+  - distribution
+  - signature_footer
+  - gate_preview
+sections:
+- code: jurisdiction_requirements
+  title: Jurisdiction Requirements
+  items:
+  - cover_form_reference
+  - recognized_agency_reference
+  - coi_requirement_if_applicable
+- code: inspection_events
+  title: Inspection Events
+  items:
+  - system_or_trade
+  - location
+  - finding_summary
+- code: nonconformance
+  title: Nonconformance
+  items:
+  - ncr_flag
+  - ncr_description
+  - issue_creation
+- code: distribution
+  title: Distribution
+  items:
+  - distributed_to_owner
+  - distributed_to_engineer
+  - distributed_to_ahj_if_required
+- code: signature_footer
+  title: Signatures
+  items:
+  - inspector_signature
+  - coi_footer_if_sf
+export_profile: compliance_packet

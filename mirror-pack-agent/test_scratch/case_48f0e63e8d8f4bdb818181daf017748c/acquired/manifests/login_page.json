@@ -1,0 +1,47 @@
+{
+  "source_record_key": "login_page",
+  "requested_url": "http://127.0.0.1:64453/login.html",
+  "requested_urls": [
+    "http://127.0.0.1:64453/login.html"
+  ],
+  "final_url": "http://127.0.0.1:64453/login.html",
+  "status": "requires_manual_review",
+  "aliases": [
+    "login.pdf",
+    "login_page"
+  ],
+  "fetched_at": "2026-03-26T03:47:15.995124Z",
+  "content_type": "text/html",
+  "sha256": "50d1921824b8214791d9124bc9c685baf64860788dbc4cdfe746b9e782173e0f",
+  "file_size": 40,
+  "stored_path": "C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_48f0e63e8d8f4bdb818181daf017748c/acquired/files/login_page__login_page__login.html",
+  "page_title": "",
+  "discovered_pdf_links": [],
+  "notes": "Public HTML page requires manual review or unsupported interaction.",
+  "http_status": 200,
+  "redirect_chain": [
+    "http://127.0.0.1:64453/login.html"
+  ],
+  "source_type_detected": "html",
+  "local_file_name": "login.pdf",
+  "jurisdiction_name": "Test City",
+  "program_label": "Testing",
+  "fetch_attempts": [
+    {
+      "requested_url": "http://127.0.0.1:64453/login.html",
+      "final_url": "http://127.0.0.1:64453/login.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "redirect_chain": [
+        "http://127.0.0.1:64453/login.html"
+      ],
+      "status": "requires_manual_review",
+      "stored_path": "C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_48f0e63e8d8f4bdb818181daf017748c/acquired/files/login_page__login_page__login.html",
+      "sha256": "50d1921824b8214791d9124bc9c685baf64860788dbc4cdfe746b9e782173e0f",
+      "file_size": 40,
+      "page_title": "",
+      "notes": "Public HTML page requires manual review or unsupported interaction.",
+      "source_type_detected": "html"
+    }
+  ]
+}

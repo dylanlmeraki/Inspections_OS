@@ -1,0 +1,13 @@
+{
+	"model": "sonnet",
+	"env": {
+		"CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+	},
+	"allowedTools": [
+		"Bash",
+		"Read",
+		"Write",
+		"Grep",
+		"Glob"
+	]
+}

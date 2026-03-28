@@ -1,0 +1,41 @@
+template_key: asbestos.j_readiness.v1
+family: asbestos_baaqmd
+surface_modes:
+- desktop_tablet
+- mobile_field_runner
+jurisdiction_scope:
+- bay_area_regional
+inspection_type_key: asbestos_j
+stage_code: asbestos.j_ready
+display_name: BAAQMD Asbestos J# Readiness
+wizard:
+  guided_sections:
+  - project_scope
+  - notice
+  - date_lock
+  - acknowledgment
+  - gate_preview
+sections:
+- code: project_scope
+  title: Project Scope
+  items:
+  - demolition_flag
+  - covered_renovation_flag
+  - residential_small_building_flag
+- code: notice
+  title: Notice Readiness
+  items:
+  - j_number
+  - notice_submitted_at
+  - work_start_date
+  - work_end_date
+- code: date_lock
+  title: Date Lock
+  items:
+  - dates_confirmed_match_field_plan
+  - revision_required_if_changed
+- code: acknowledgment
+  title: Acknowledgment
+  items:
+  - ack_letter_uploaded
+export_profile: compliance_packet

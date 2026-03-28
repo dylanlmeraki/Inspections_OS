@@ -1,0 +1,46 @@
+template_key: dust.sf.monitoring.v1
+family: dust_control
+surface_modes:
+- mobile_field_runner
+- desktop_tablet
+jurisdiction_scope:
+- san_francisco
+inspection_type_key: dust_sf
+stage_code: dust.monitoring
+display_name: San Francisco Dust Control Monitoring Log
+wizard:
+  project_step: select_project
+  program_step: resolve_applicability
+  stage_step: monitoring
+  guided_sections:
+  - applicability
+  - approved_plan_reference
+  - controls
+  - receptor_observations
+  - photos
+  - gate_preview
+sections:
+- code: applicability
+  title: Applicability
+  items:
+  - disturbed_acres
+  - sensitive_receptors_within_1000ft
+  - plan_required
+- code: approved_plan_reference
+  title: Approved Plan
+  items:
+  - approved_plan_uploaded
+  - plan_revision
+- code: controls
+  title: Controls and Monitoring
+  items:
+  - watering
+  - trackout
+  - stockpile_covering
+  - stop_work_if_needed
+- code: receptor_observations
+  title: Receptor Observations
+  items:
+  - visible_dust
+  - complaints_received
+export_profile: compliance_packet

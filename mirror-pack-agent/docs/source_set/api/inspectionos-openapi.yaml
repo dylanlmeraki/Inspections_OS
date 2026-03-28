@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: Inspection.OS Build-Start API
+  version: 0.1.0
+  summary: Starter API contract for wizard sessions, gate evaluations, packet rules, and export manifests.
+servers:
+  - url: https://api.inspectionos.local/v1
+tags:
+  - name: Wizard
+  - name: Workflow Runs
+  - name: Gate Manager
+  - name: Exports
+  - name: Admin Library
+paths:
+  /projects:
+    post:
+      tags: [Workflow Runs]
+      summary: Create a project or jobsite.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, jurisdictionKey]
+              properties:
+                name: { type: string }
+                jurisdictionKey: { type: string }
+                site:
+                  type: object
+                  properties:
+                    address: { type: string }
+                    disturbedAcres: { type: number }
+      responses:
+        '201':
+          description: Project created.
+  /wizard-sessions:
+    post:
+      tags: [Wizard]
+      summary: Start a creation wizard session for a program stage.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WizardSessionCreate'
+      responses:
+        '201':
+          description: Wizard session started.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WizardSession'
+  /wizard-sessions/{wizardSessionId}:
+    patch:
+      tags: [Wizard]
+      summary: Save wizard answers incrementally.
+      parameters:
+        - in: path
+          name: wizardSessionId
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [answers]
+              properties:
+                answers:
+                  type: object
+      responses:
+        '200':
+          description: Wizard session updated.
+  /wizard-sessions/{wizardSessionId}/next:
+    get:
+      tags: [Wizard]
+      summary: Resolve the next wizard step based on current answers and packet rules.
+      parameters:
+        - in: path
+          name: wizardSessionId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Next step resolved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nextStepCode: { type: string }
+                  blockers:
+                    type: array
+                    items: { type: string }
+  /workflow-runs:
+    post:
+      tags: [Workflow Runs]
+      summary: Create a draft workflow run from a wizard session or template.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [projectId, inspectionTypeKey, stageCode]
+              properties:
+                projectId: { type: string, format: uuid }
+                inspectionTypeKey: { type: string }
+                stageCode: { type: string }
+                templateKey: { type: string }
+                wizardSessionId: { type: string, format: uuid }
+      responses:
+        '201':
+          description: Workflow run created.
+  /workflow-runs/{runId}/advance:
+    post:
+      tags: [Gate Manager]
+      summary: Attempt to advance a run to the next stage.
+      parameters:
+        - in: path
+          name: runId
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [targetStageCode]
+              properties:
+                targetStageCode: { type: string }
+                waiverReason: { type: string }
+      responses:
+        '200':
+          description: Stage advanced.
+        '409':
+          description: Stage blocked.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GateEvaluation'
+  /gate-evaluations:
+    post:
+      tags: [Gate Manager]
+      summary: Evaluate packet rules for a run and stage without advancing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [runId, jurisdictionKey, stageCode]
+              properties:
+                runId: { type: string, format: uuid }
+                jurisdictionKey: { type: string }
+                stageCode: { type: string }
+      responses:
+        '200':
+          description: Evaluation complete.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GateEvaluation'
+  /exports/verification-packets:
+    post:
+      tags: [Exports]
+      summary: Assemble a branded packet and verification manifest.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [runId, packetClass]
+              properties:
+                runId: { type: string, format: uuid }
+                packetClass:
+                  type: string
+                  enum: [inspection_packet, issue_packet, compliance_packet, closeout_packet]
+      responses:
+        '202':
+          description: Packet render accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exportId: { type: string, format: uuid }
+                  manifest:
+                    $ref: '#/components/schemas/VerificationManifest'
+  /source-records:
+    get:
+      tags: [Admin Library]
+      summary: Browse the controlled forms library.
+      parameters:
+        - in: query
+          name: countyGroup
+          schema: { type: string }
+        - in: query
+          name: verificationStatus
+          schema: { type: string }
+      responses:
+        '200':
+          description: Source records returned.
+  /packet-rules:
+    get:
+      tags: [Admin Library]
+      summary: List jurisdiction packet rules.
+      responses:
+        '200':
+          description: Rules returned.
+components:
+  schemas:
+    WizardSessionCreate:
+      type: object
+      required: [projectId, inspectionTypeKey, stageCode, surfaceMode]
+      properties:
+        projectId: { type: string, format: uuid }
+        inspectionTypeKey: { type: string }
+        stageCode: { type: string }
+        surfaceMode:
+          type: string
+          enum: [mobile_field_runner, desktop_tablet]
+    WizardSession:
+      $ref: './schemas/json/wizard_session.schema.json'
+    GateEvaluation:
+      $ref: './schemas/json/gate_evaluation.schema.json'
+    VerificationManifest:
+      $ref: './schemas/json/verification_manifest.schema.json'

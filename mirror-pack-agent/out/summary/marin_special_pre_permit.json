@@ -1,0 +1,34 @@
+{
+  "task_key": "marin_special_pre_permit",
+  "pack_family_count": 1,
+  "asset_count": 6,
+  "direct_mirror_count": 0,
+  "source_reference_only_count": 1,
+  "trigger_only_count": 3,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 0,
+  "unresolved_count": 2,
+  "completeness_rating": "partial",
+  "classification_notes": {
+    "trigger_only_assets": [
+      "marin_building_permit_submittal_checklist_special_inspection_trigger",
+      "marin_trigger_acknowledgment_gate_rule",
+      "general_pre_permit_gate_rule_marin"
+    ],
+    "source_reference_only_assets": [
+      "san_rafael_special_inspection_form"
+    ],
+    "unresolved_assets": [
+      "marin_city_county_coverage_gap_note (superseded, not active for runtime)",
+      "marin_county_cover_form"
+    ],
+    "reclassification_note": "marin_building_permit_submittal_checklist_special_inspection_trigger reclassified from source_reference_only to trigger_only per BayArea Next Pass Binder 2026-03-21: requirement_type = trigger, document is the county permit submittal checklist not a fillable cover pack."
+  },
+  "blocker_items": [
+    "No Marin County-issued special inspection cover form (statement) is present — hard blocker for unincorporated Marin County projects; county form must be acquired before the cover_form slot can proceed",
+    "No Marin County recognized agencies list is present — agency selector cannot be validated; field remains free-text until list is acquired",
+    "City vs county routing is unresolved — no jurisdiction boundary resolver in place; routing requires GIS or address-based city membership lookup",
+    "Special inspection forms for Marin incorporated cities other than San Rafael are absent from the source set",
+    "San Rafael form is source_reference_only (URL verified-direct) — needs local mirror for offline support"
+  ]
+}

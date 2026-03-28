@@ -1,0 +1,549 @@
+- form_record_key: statewide_ca_waterboards_construction_general_permit_order_2022_0057_dwq
+  source_record_key: statewide_ca_waterboards_construction_general_permit_order_2022_0057_dwq
+  packet_role: governing_order
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / CGP
+  workflow_stage_label: Program baseline
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: statewide_ca_waterboards_cgp_attachment_d1_risk_determination_worksheet
+  source_record_key: statewide_ca_waterboards_cgp_attachment_d1_risk_determination_worksheet
+  packet_role: threshold_gate_reference
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / CGP
+  workflow_stage_label: Enrollment / threshold gate
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: statewide_ca_waterboards_cgp_attachment_d2_permit_registration_documents
+  source_record_key: statewide_ca_waterboards_cgp_attachment_d2_permit_registration_documents
+  packet_role: prd_reference
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / CGP
+  workflow_stage_label: PRD assembly
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: statewide_smarts_construction_general_permit_help_guides
+  source_record_key: statewide_smarts_construction_general_permit_help_guides
+  packet_role: portal_guidance
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / SMARTS
+  workflow_stage_label: Portal filing guidance
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: statewide_smarts_eauthorization_help_guide
+  source_record_key: statewide_smarts_eauthorization_help_guide
+  packet_role: signer_control_reference
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / SMARTS
+  workflow_stage_label: Signer / certification path
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: statewide_smarts_notice_of_termination_help_guide
+  source_record_key: statewide_smarts_notice_of_termination_help_guide
+  packet_role: closeout_reference
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / SMARTS
+  workflow_stage_label: NOT closeout
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: statewide_smarts_construction_site_monitoring_and_reporting_annual_report
+  source_record_key: statewide_smarts_construction_site_monitoring_and_reporting_annual_report
+  packet_role: annual_reporting_reference
+  form_kind: reference_sheet
+  jurisdiction_name: California statewide
+  program_label: Construction stormwater / SMARTS
+  workflow_stage_label: Annual reporting
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: regional_baaqmd_asbestos_permit_program
+  source_record_key: regional_baaqmd_asbestos_permit_program
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Bay Area regional
+  program_label: Asbestos / demolition-renovation notification
+  workflow_stage_label: Notice readiness
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: regional_baaqmd_asbestos_compliance_tips_and_demolition_flowchart
+  source_record_key: regional_baaqmd_asbestos_compliance_tips_and_demolition_flowchart
+  packet_role: pre_demo_guidance
+  form_kind: reference_sheet
+  jurisdiction_name: Bay Area regional
+  program_label: Asbestos / demolition-renovation notification
+  workflow_stage_label: Pre-demo checklist
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: regional_baaqmd_online_asbestos_notifications_advisory_contractors
+  source_record_key: regional_baaqmd_online_asbestos_notifications_advisory_contractors
+  packet_role: revision_control_guidance
+  form_kind: reference_sheet
+  jurisdiction_name: Bay Area regional
+  program_label: Asbestos / demolition-renovation notification
+  workflow_stage_label: Date revision control
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: regional_baaqmd_online_asbestos_notifications_advisory_building_departments
+  source_record_key: regional_baaqmd_online_asbestos_notifications_advisory_building_departments
+  packet_role: coordination_guidance
+  form_kind: reference_sheet
+  jurisdiction_name: Bay Area regional
+  program_label: Asbestos / demolition-renovation notification
+  workflow_stage_label: Agency coordination
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_san_francisco_dbi_special_inspections_process_2025
+  source_record_key: city_san_francisco_dbi_special_inspections_process_2025
+  packet_role: process_note
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet / closeout
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_francisco_dbi_special_inspection_and_structural_observation_form_2025
+  source_record_key: city_san_francisco_dbi_special_inspection_and_structural_observation_form_2025
+  packet_role: cover_form
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_francisco_dbi_special_inspections_conflict_of_interest_attestation
+  source_record_key: city_san_francisco_dbi_special_inspections_conflict_of_interest_attestation
+  packet_role: coi_requirement
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Special inspections
+  workflow_stage_label: COI / recognition control
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_francisco_dph_dust_control_plan_submission
+  source_record_key: city_san_francisco_dph_dust_control_plan_submission
+  packet_role: approval_submission
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Dust control
+  workflow_stage_label: Applicability gate / DCP approval
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_francisco_dph_dust_control_overview_and_requirements
+  source_record_key: city_san_francisco_dph_dust_control_overview_and_requirements
+  packet_role: requirements_detail
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Dust control
+  workflow_stage_label: Applicability gate / monitoring
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_san_francisco_dbi_inspection_scheduling_building_plumbing_mechanical_electrical
+  source_record_key: city_san_francisco_dbi_inspection_scheduling_building_plumbing_mechanical_electrical
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_oakland_building_special_inspections_faq_and_process
+  source_record_key: city_oakland_building_special_inspections_faq_and_process
+  packet_role: process_note
+  form_kind: reference_sheet
+  jurisdiction_name: Oakland
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet / construction rules
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_oakland_recognized_special_inspection_and_testing_agencies
+  source_record_key: city_oakland_recognized_special_inspection_and_testing_agencies
+  packet_role: agencies_list
+  form_kind: reference_sheet
+  jurisdiction_name: Oakland
+  program_label: Special inspections
+  workflow_stage_label: COI / recognition control
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_oakland_trade_inspection_types_and_scheduling_guides
+  source_record_key: city_oakland_trade_inspection_types_and_scheduling_guides
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Oakland
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling / result handling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_alameda_inspection_requirements_and_scheduling_procedures
+  source_record_key: county_alameda_inspection_requirements_and_scheduling_procedures
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Alameda County (unincorporated)
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling / result handling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_contra_costa_inspection_codes_and_scheduling
+  source_record_key: county_contra_costa_inspection_codes_and_scheduling
+  packet_role: code_reference
+  form_kind: reference_sheet
+  jurisdiction_name: Contra Costa County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_walnut_creek_special_inspection_and_observation_program
+  source_record_key: city_walnut_creek_special_inspection_and_observation_program
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Walnut Creek
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_walnut_creek_building_inspection_request_page
+  source_record_key: city_walnut_creek_building_inspection_request_page
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Walnut Creek
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_marin_schedule_a_building_inspection_and_instructions
+  source_record_key: county_marin_schedule_a_building_inspection_and_instructions
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Marin County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_san_rafael_special_inspection_form
+  source_record_key: city_san_rafael_special_inspection_form
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: San Rafael
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_rafael_inspection_record_code_card
+  source_record_key: city_san_rafael_inspection_record_code_card
+  packet_role: result_card
+  form_kind: reference_sheet
+  jurisdiction_name: San Rafael
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling / result handling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_napa_special_inspection_and_testing_document
+  source_record_key: county_napa_special_inspection_and_testing_document
+  packet_role: cover_form
+  form_kind: reference_sheet
+  jurisdiction_name: Napa County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_napa_inspection_scheduling_guides
+  source_record_key: county_napa_inspection_scheduling_guides
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Napa County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_napa_special_inspection_proposal
+  source_record_key: city_napa_special_inspection_proposal
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: City of Napa
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_san_mateo_special_inspection_and_testing_form
+  source_record_key: county_san_mateo_special_inspection_and_testing_form
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: San Mateo County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_san_mateo_special_inspection_and_testing_agencies
+  source_record_key: county_san_mateo_special_inspection_and_testing_agencies
+  packet_role: coi_requirement
+  form_kind: reference_sheet
+  jurisdiction_name: San Mateo County
+  program_label: Special inspections
+  workflow_stage_label: COI / recognition control
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_santa_clara_special_inspection_and_testing_schedule_short_form_cbc_2025
+  source_record_key: county_santa_clara_special_inspection_and_testing_schedule_short_form_cbc_2025
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Santa Clara County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_santa_clara_statement_of_special_inspection_long_form_cbc_2025
+  source_record_key: county_santa_clara_statement_of_special_inspection_long_form_cbc_2025
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Santa Clara County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_santa_clara_insite_schedule_inspections_online_user_guide
+  source_record_key: county_santa_clara_insite_schedule_inspections_online_user_guide
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Santa Clara County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_jose_special_inspection_existing_building_form
+  source_record_key: city_san_jose_special_inspection_existing_building_form
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: San José
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_jose_special_inspection_new_building_form
+  source_record_key: city_san_jose_special_inspection_new_building_form
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: San José
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_san_jose_inspection_scheduling_and_residential_construction_guidelines
+  source_record_key: city_san_jose_inspection_scheduling_and_residential_construction_guidelines
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: San José
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling / field expectations
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_solano_special_inspection_and_testing_agreement
+  source_record_key: county_solano_special_inspection_and_testing_agreement
+  packet_role: cover_form
+  form_kind: reference_sheet
+  jurisdiction_name: Solano County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet / weekly / closeout
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_solano_building_documents_and_inspection_workflow
+  source_record_key: county_solano_building_documents_and_inspection_workflow
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Solano County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling / supporting documents
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_sonoma_cni_033r_residential_statement_of_special_inspections
+  source_record_key: county_sonoma_cni_033r_residential_statement_of_special_inspections
+  packet_role: cover_form
+  form_kind: reference_sheet
+  jurisdiction_name: Permit Sonoma / Sonoma County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_sonoma_cni_033a_steel_appendix_statement_of_special_inspections
+  source_record_key: county_sonoma_cni_033a_steel_appendix_statement_of_special_inspections
+  packet_role: cover_form
+  form_kind: reference_sheet
+  jurisdiction_name: Permit Sonoma / Sonoma County
+  program_label: Special inspections
+  workflow_stage_label: Pre-permit packet
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_sonoma_cni_043_calgreen_special_inspector_project_verification_form
+  source_record_key: county_sonoma_cni_043_calgreen_special_inspector_project_verification_form
+  packet_role: closeout_verification_form
+  form_kind: reference_sheet
+  jurisdiction_name: Permit Sonoma / Sonoma County
+  program_label: Special inspections / CALGreen
+  workflow_stage_label: Closeout / verification
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_sonoma_inspection_codes_and_scheduling
+  source_record_key: county_sonoma_inspection_codes_and_scheduling
+  packet_role: code_reference
+  form_kind: reference_sheet
+  jurisdiction_name: Permit Sonoma / Sonoma County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_san_mateo_special_inspection_program_page
+  source_record_key: county_san_mateo_special_inspection_program_page
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: San Mateo County
+  program_label: Special inspections
+  workflow_stage_label: Program overview
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_santa_clara_building_forms_index
+  source_record_key: county_santa_clara_building_forms_index
+  packet_role: forms_index
+  form_kind: reference_sheet
+  jurisdiction_name: Santa Clara County
+  program_label: Building forms
+  workflow_stage_label: Forms index
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_san_jose_recognized_special_inspection_agencies_page
+  source_record_key: city_san_jose_recognized_special_inspection_agencies_page
+  packet_role: agencies_list
+  form_kind: reference_sheet
+  jurisdiction_name: San José
+  program_label: Special inspections
+  workflow_stage_label: COI / recognition control
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_marin_inspection_instructions
+  source_record_key: county_marin_inspection_instructions_pdf
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Marin County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling detail
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_contra_costa_inspection_codes_list
+  source_record_key: county_contra_costa_inspection_codes_list
+  packet_role: code_reference
+  form_kind: reference_sheet
+  jurisdiction_name: Contra Costa County
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling detail
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_napa_forms_and_handouts_index
+  source_record_key: county_napa_forms_and_handouts_index
+  packet_role: forms_index
+  form_kind: reference_sheet
+  jurisdiction_name: Napa County
+  program_label: Building forms
+  workflow_stage_label: Forms index
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_alameda_building_inspection_requirements_page
+  source_record_key: county_alameda_building_inspection_requirements_page
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Alameda County (unincorporated)
+  program_label: Trade inspections
+  workflow_stage_label: Program overview
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_solano_special_inspection_documents_page
+  source_record_key: county_solano_special_inspection_documents_page
+  packet_role: forms_index
+  form_kind: reference_sheet
+  jurisdiction_name: Solano County
+  program_label: Building documents
+  workflow_stage_label: Forms index
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_sonoma_calgreen_forms_index
+  source_record_key: county_sonoma_calgreen_forms_index
+  packet_role: forms_index
+  form_kind: reference_sheet
+  jurisdiction_name: Permit Sonoma / Sonoma County
+  program_label: CALGreen / building forms
+  workflow_stage_label: Forms index
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_san_francisco_dust_control_article_22b_requirements
+  source_record_key: city_san_francisco_dust_control_article_22b_requirements
+  packet_role: requirements_detail
+  form_kind: reference_sheet
+  jurisdiction_name: San Francisco
+  program_label: Dust control
+  workflow_stage_label: Applicability gate / requirements detail
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_oakland_inspection_types
+  source_record_key: city_oakland_inspection_types_pdf
+  packet_role: reference_asset
+  form_kind: reference_sheet
+  jurisdiction_name: Oakland
+  program_label: Trade inspections
+  workflow_stage_label: Inspection type mapping
+  verification_status: verified-direct
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: city_oakland_web_based_scheduling_guide
+  source_record_key: city_oakland_web_based_scheduling_guide
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Oakland
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling detail
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: city_oakland_inspection_scheduling_app_guide
+  source_record_key: city_oakland_inspection_scheduling_app_guide
+  packet_role: scheduling_guide
+  form_kind: reference_sheet
+  jurisdiction_name: Oakland
+  program_label: Trade inspections
+  workflow_stage_label: Scheduling detail
+  verification_status: verified-indirect
+  runtime_visibility: admin_library
+- form_record_key: county_marin_special_inspections_city_county_gap_note
+  source_record_key: county_marin_special_inspections_city_county_gap_note
+  packet_role: ambiguity_note
+  form_kind: reference_sheet
+  jurisdiction_name: Marin County
+  program_label: Special inspections
+  workflow_stage_label: Coverage note
+  verification_status: gap-note
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_contra_costa_county_vs_city_special_inspections_coverage_note
+  source_record_key: county_contra_costa_county_vs_city_special_inspections_coverage_note
+  packet_role: ambiguity_note
+  form_kind: reference_sheet
+  jurisdiction_name: Contra Costa County
+  program_label: Special inspections
+  workflow_stage_label: Coverage note
+  verification_status: gap-note
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_marin_building_permit_submittal_checklist_special_inspection_trigger
+  source_record_key: county_marin_building_permit_submittal_checklist_special_inspection_trigger
+  packet_role: permit_trigger
+  form_kind: reference_sheet
+  jurisdiction_name: Marin County
+  program_label: Special inspections / permit intake
+  workflow_stage_label: Pre-permit packet trigger
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin
+- form_record_key: county_contra_costa_special_inspections_program_and_recognized_agencies
+  source_record_key: county_contra_costa_special_inspections_program_and_recognized_agencies
+  packet_role: agencies_list
+  form_kind: reference_sheet
+  jurisdiction_name: Contra Costa County
+  program_label: Special inspections
+  workflow_stage_label: Program overview + recognition control
+  verification_status: verified-indirect
+  runtime_visibility: packet_builder_and_admin

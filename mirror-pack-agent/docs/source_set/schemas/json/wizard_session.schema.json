@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WizardSession",
+  "type": "object",
+  "required": [
+    "wizardSessionId",
+    "projectId",
+    "inspectionTypeKey",
+    "stageCode",
+    "surfaceMode",
+    "status",
+    "steps"
+  ],
+  "properties": {
+    "wizardSessionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionTypeKey": {
+      "type": "string"
+    },
+    "stageCode": {
+      "type": "string"
+    },
+    "surfaceMode": {
+      "type": "string",
+      "enum": [
+        "mobile_field_runner",
+        "desktop_tablet"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "in_progress",
+        "ready_for_gate_preview",
+        "submitted",
+        "abandoned"
+      ]
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "title",
+          "status"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "active",
+              "complete",
+              "blocked"
+            ]
+          },
+          "blockingMessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

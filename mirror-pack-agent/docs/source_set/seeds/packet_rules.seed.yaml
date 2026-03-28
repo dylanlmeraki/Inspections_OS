@@ -1,0 +1,356 @@
+- rule_key: swppp.enrollment.requires_risk_and_prd
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_enrollment
+  workflow_stage_code: swppp.enrollment_gate
+  required_flag: true
+  severity: blocker
+  packet_role: threshold_gate_reference
+  rule_expression:
+    all:
+    - fact: project.programs.swppp.enabled
+      op: eq
+      value: true
+    - fact: project.site.disturbed_acres
+      op: gte
+      value: 1.0
+    require:
+      fields:
+      - project.site.disturbed_acres
+      - project.site.receiving_water_risk
+      - project.site.risk_level
+      source_records:
+      - statewide_ca_waterboards_cgp_attachment_d1_risk_determination_worksheet
+      documents:
+      - swppp_prd_set
+    blockers:
+    - code: SWPPP_RISK_INCOMPLETE
+      message: Risk determination inputs are incomplete.
+    - code: SWPPP_PRD_SET_MISSING
+      message: Permit Registration Documents set is incomplete.
+- rule_key: swppp.noi.requires_signer_controls
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_enrollment
+  workflow_stage_code: swppp.noi_ready
+  required_flag: true
+  severity: blocker
+  packet_role: signer_control_reference
+  rule_expression:
+    all:
+    - fact: project.programs.swppp.enabled
+      op: eq
+      value: true
+    require:
+      documents:
+      - swppp_eauthorization
+      fields:
+      - project.swppp.lrp_name
+      - project.swppp.dar_name
+      - project.swppp.organization_id
+      source_records:
+      - statewide_smarts_eauthorization_help_guide
+    blockers:
+    - code: SWPPP_EAUTH_MISSING
+      message: SMARTS eAuthorization evidence is required before NOI readiness.
+    - code: SWPPP_SIGNER_PATH_INCOMPLETE
+      message: LRP / DAR signer path is incomplete.
+- rule_key: swppp.opening.requires_wdid_and_docs
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  workflow_stage_code: swppp.opening_conditions
+  required_flag: true
+  severity: blocker
+  packet_role: governing_order
+  rule_expression:
+    all:
+    - fact: project.programs.swppp.active
+      op: eq
+      value: true
+    require:
+      documents:
+      - swppp_wdid_posting
+      - swppp_swppp_onsite
+      - swppp_training_roster
+      inspection_answers:
+      - opening.wdid_posted
+      - opening.swppp_onsite
+      - opening.contacts_confirmed
+    blockers:
+    - code: SWPPP_WDID_NOT_CONFIRMED
+      message: WDID posting has not been confirmed.
+    - code: SWPPP_ONSITE_DOCS_NOT_CONFIRMED
+      message: SWPPP onsite availability is not confirmed.
+- rule_key: swppp.weekly.photo_on_fail
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  workflow_stage_code: swppp.weekly
+  required_flag: true
+  severity: blocker
+  packet_role: governing_order
+  rule_expression:
+    all:
+    - fact: run.template_family
+      op: eq
+      value: swppp.weekly
+    require:
+      evidence_rules:
+      - when_answer: fail
+        attachment_kind: photo
+        minimum: 1
+      issue_creation_on_fail: true
+    blockers:
+    - code: WEEKLY_FAIL_WITHOUT_PHOTO
+      message: Failed weekly items require photo evidence.
+- rule_key: swppp.pre_qpe.requires_forecast_reference
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  workflow_stage_code: swppp.pre_qpe
+  required_flag: true
+  severity: blocker
+  packet_role: governing_order
+  rule_expression:
+    all:
+    - fact: run.template_family
+      op: eq
+      value: swppp.pre_qpe
+    require:
+      fields:
+      - forecast.source_name
+      - forecast.issued_at
+      - forecast.qualifying_event_window
+      inspection_answers:
+      - pre_qpe.bmp_readiness_confirmed
+    blockers:
+    - code: PRE_QPE_FORECAST_METADATA_MISSING
+      message: Forecast metadata is required for pre-QPE inspections.
+- rule_key: swppp.not.requires_final_stabilization
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  workflow_stage_code: swppp.not_closeout
+  required_flag: true
+  severity: blocker
+  packet_role: closeout_reference
+  rule_expression:
+    all:
+    - fact: project.programs.swppp.active
+      op: eq
+      value: true
+    require:
+      inspection_answers:
+      - closeout.final_stabilization_confirmed
+      - closeout.unresolved_items_swept
+      attachments:
+      - kind: photo
+        tag: final_stabilization
+        minimum: 3
+      source_records:
+      - statewide_smarts_notice_of_termination_help_guide
+    blockers:
+    - code: NOT_FINAL_STABILIZATION_NOT_CONFIRMED
+      message: Final stabilization is not yet confirmed.
+    - code: NOT_CLOSEOUT_PHOTOS_MISSING
+      message: Final stabilization photo set is incomplete.
+- rule_key: special.pre_permit.requires_cover_and_agency
+  jurisdiction_key: ca_statewide
+  inspection_type_key: special_cbc17
+  workflow_stage_code: special.pre_permit
+  required_flag: true
+  severity: blocker
+  packet_role: cover_form
+  rule_expression:
+    all:
+    - fact: project.programs.special_inspections.enabled
+      op: eq
+      value: true
+    require:
+      documents:
+      - special_cover_packet
+      - special_approved_agency
+      fields:
+      - project.special_inspections.cover_form_key
+      - project.special_inspections.agency_name
+    blockers:
+    - code: SPECIAL_COVER_PACKET_MISSING
+      message: Special inspection cover packet is required.
+    - code: SPECIAL_APPROVED_AGENCY_MISSING
+      message: Approved / recognized agency evidence is required.
+- rule_key: special.sf.requires_coi_language
+  jurisdiction_key: san_francisco
+  inspection_type_key: special_cbc17
+  workflow_stage_code: special.reporting
+  required_flag: true
+  severity: blocker
+  packet_role: coi_requirement
+  rule_expression:
+    all:
+    - fact: project.jurisdiction_key
+      op: eq
+      value: san_francisco
+    require:
+      text_snippets:
+      - special_report.signature_footer_contains_coi_attestation
+      source_records:
+      - city_san_francisco_dbi_special_inspections_conflict_of_interest_attestation
+    blockers:
+    - code: SF_COI_ATTESTATION_MISSING
+      message: SF conflict-of-interest attestation language is required on submitted special inspection reports.
+- rule_key: special.contra.requires_recognized_agency
+  jurisdiction_key: contra_costa_county
+  inspection_type_key: special_cbc17
+  workflow_stage_code: special.pre_permit
+  required_flag: true
+  severity: blocker
+  packet_role: agencies_list
+  rule_expression:
+    all:
+    - fact: project.special_inspections.flagged
+      op: eq
+      value: true
+    require:
+      source_records:
+      - county_contra_costa_special_inspections_program_and_recognized_agencies
+      fields:
+      - project.special_inspections.selected_agency
+    blockers:
+    - code: CONTRA_SPECIAL_AGENCY_NOT_SELECTED
+      message: Contra Costa special inspections require recognized-agency selection before stage advancement.
+- rule_key: special.marin.requires_trigger_ack
+  jurisdiction_key: marin_county
+  inspection_type_key: special_cbc17
+  workflow_stage_code: special.pre_permit
+  required_flag: true
+  severity: blocker
+  packet_role: permit_trigger
+  rule_expression:
+    all:
+    - fact: project.structural_drawings_required
+      op: eq
+      value: true
+    require:
+      source_records:
+      - county_marin_building_permit_submittal_checklist_special_inspection_trigger
+      fields:
+      - project.special_inspections.trigger_acknowledged
+    blockers:
+    - code: MARIN_SPECIAL_TRIGGER_NOT_ACKNOWLEDGED
+      message: Marin county-level trigger for special inspections has not been acknowledged.
+- rule_key: dust.sf.applicability
+  jurisdiction_key: san_francisco
+  inspection_type_key: dust_sf
+  workflow_stage_code: dust.applicability
+  required_flag: true
+  severity: blocker
+  packet_role: requirements_detail
+  rule_expression:
+    all:
+    - fact: project.jurisdiction_key
+      op: eq
+      value: san_francisco
+    require:
+      fields:
+      - project.site.disturbed_acres
+      - project.site.sensitive_receptors_within_1000ft
+      compute:
+      - target: project.programs.dust_control.plan_required
+        formula: disturbed_acres > 0.5 and sensitive_receptors_within_1000ft == true
+    blockers:
+    - code: SF_DUST_APPLICABILITY_NOT_RESOLVED
+      message: San Francisco dust control applicability has not been resolved.
+- rule_key: dust.sf.plan_required
+  jurisdiction_key: san_francisco
+  inspection_type_key: dust_sf
+  workflow_stage_code: dust.plan_approval
+  required_flag: true
+  severity: blocker
+  packet_role: approval_submission
+  rule_expression:
+    all:
+    - fact: project.programs.dust_control.plan_required
+      op: eq
+      value: true
+    require:
+      documents:
+      - sf_dust_approved_plan
+      source_records:
+      - city_san_francisco_dph_dust_control_plan_submission
+    blockers:
+    - code: SF_DUST_PLAN_NOT_UPLOADED
+      message: Approved San Francisco dust control plan is required before advancing.
+- rule_key: asbestos.j_readiness
+  jurisdiction_key: bay_area_regional
+  inspection_type_key: asbestos_j
+  workflow_stage_code: asbestos.j_ready
+  required_flag: true
+  severity: blocker
+  packet_role: program_overview
+  rule_expression:
+    all:
+    - fact: project.demolition_or_covered_renovation
+      op: eq
+      value: true
+    require:
+      documents:
+      - asbestos_j_notice
+      fields:
+      - project.asbestos.j_number
+      - project.asbestos.start_date
+      - project.asbestos.end_date
+    blockers:
+    - code: BAAQMD_J_NOTICE_NOT_READY
+      message: BAAQMD J# notice readiness is incomplete.
+- rule_key: asbestos.date_revision
+  jurisdiction_key: bay_area_regional
+  inspection_type_key: asbestos_j
+  workflow_stage_code: asbestos.date_revision
+  required_flag: false
+  severity: warning
+  packet_role: revision_control_guidance
+  rule_expression:
+    all:
+    - fact: project.asbestos.dates_changed
+      op: eq
+      value: true
+    require:
+      source_records:
+      - regional_baaqmd_online_asbestos_notifications_advisory_contractors
+    blockers:
+    - code: BAAQMD_DATE_REVISION_REQUIRED
+      message: Project dates changed; contractor date-revision guidance should be followed before work proceeds.
+- rule_key: hazmat.threshold_gate
+  jurisdiction_key: ca_statewide
+  inspection_type_key: hazmat_hmbp
+  workflow_stage_code: hazmat.threshold_gate
+  required_flag: true
+  severity: blocker
+  packet_role: reference_asset
+  rule_expression:
+    all:
+    - fact: project.programs.hazmat.enabled
+      op: eq
+      value: true
+    require:
+      fields:
+      - project.hazmat.total_liquid_gallons
+      - project.hazmat.total_solid_pounds
+      - project.hazmat.total_compressed_gas_cuft
+    blockers:
+    - code: HAZMAT_THRESHOLD_INPUTS_MISSING
+      message: HazMat threshold inputs are required to determine HMBP packet applicability.
+- rule_key: trade.request.requires_code_selection
+  jurisdiction_key: ca_statewide
+  inspection_type_key: trade_building
+  workflow_stage_code: trade.request
+  required_flag: true
+  severity: blocker
+  packet_role: code_reference
+  rule_expression:
+    all:
+    - fact: project.programs.trade_inspections.enabled
+      op: eq
+      value: true
+    require:
+      fields:
+      - run.trade.trade_code
+      - run.trade.requested_date
+    blockers:
+    - code: TRADE_CODE_NOT_SELECTED
+      message: A trade inspection code must be selected before request submission.

@@ -1,0 +1,90 @@
+- jurisdiction_key: ca_statewide
+  name: California statewide
+  level: statewide
+  parent_key: null
+  county_group: null
+- jurisdiction_key: bay_area_regional
+  name: Bay Area regional
+  level: regional
+  parent_key: null
+  county_group: null
+- jurisdiction_key: alameda_county
+  name: Alameda County
+  level: county
+  parent_key: ca_statewide
+  county_group: Alameda County
+- jurisdiction_key: contra_costa_county
+  name: Contra Costa County
+  level: county
+  parent_key: ca_statewide
+  county_group: Contra Costa County
+- jurisdiction_key: marin_county
+  name: Marin County
+  level: county
+  parent_key: ca_statewide
+  county_group: Marin County
+- jurisdiction_key: napa_county
+  name: Napa County
+  level: county
+  parent_key: ca_statewide
+  county_group: Napa County
+- jurisdiction_key: san_francisco_county
+  name: San Francisco County
+  level: county
+  parent_key: ca_statewide
+  county_group: San Francisco County
+- jurisdiction_key: san_mateo_county
+  name: San Mateo County
+  level: county
+  parent_key: ca_statewide
+  county_group: San Mateo County
+- jurisdiction_key: santa_clara_county
+  name: Santa Clara County
+  level: county
+  parent_key: ca_statewide
+  county_group: Santa Clara County
+- jurisdiction_key: solano_county
+  name: Solano County
+  level: county
+  parent_key: ca_statewide
+  county_group: Solano County
+- jurisdiction_key: sonoma_county
+  name: Sonoma County
+  level: county
+  parent_key: ca_statewide
+  county_group: Sonoma County
+- jurisdiction_key: san_francisco
+  name: San Francisco
+  level: city
+  parent_key: san_francisco_county
+  county_group: San Francisco County
+- jurisdiction_key: oakland
+  name: Oakland
+  level: city
+  parent_key: alameda_county
+  county_group: Alameda County
+- jurisdiction_key: walnut_creek
+  name: Walnut Creek
+  level: city
+  parent_key: contra_costa_county
+  county_group: Contra Costa County
+- jurisdiction_key: san_rafael
+  name: San Rafael
+  level: city
+  parent_key: marin_county
+  county_group: Marin County
+- jurisdiction_key: city_of_napa
+  name: City of Napa
+  level: city
+  parent_key: napa_county
+  county_group: Napa County
+- jurisdiction_key: san_jos
+  name: San José
+  level: city
+  parent_key: santa_clara_county
+  county_group: Santa Clara County
+- jurisdiction_key: permit_sonoma
+  name: Permit Sonoma
+  level: county_program
+  parent_key: sonoma_county
+  county_group: Sonoma County

@@ -1,0 +1,57 @@
+{
+	"servers": {
+		"docker-runtime": {
+			"command": "docker",
+			"args": [
+				"run",
+				"-i",
+				"--rm",
+				"mcp/time"
+			],
+			"type": "stdio"
+		},
+		"azure-tools": {
+			"type": "stdio",
+			"command": "dnx",
+			"args": [
+				"Azure.Mcp@2.0.0-beta.33",
+				"--yes",
+				"--",
+				"server",
+				"start"
+			],
+			"gallery": "https://api.mcp.github.com",
+			"version": "2.0.0-beta.33"
+		},
+		"github-tools": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-github"
+			],
+			"env": {
+				"GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_TOKEN_HERE"
+			}
+		},
+		"com.microsoft/azure": {
+			"type": "stdio",
+			"command": "dnx",
+			"args": [
+				"Azure.Mcp@2.0.0-beta.33",
+				"--yes",
+				"--",
+				"server",
+				"start"
+			],
+			"gallery": "https://api.mcp.github.com",
+			"version": "2.0.0-beta.33"
+		},
+		"my-mcp-server-d044ded3": {
+			"type": "stdio",
+			"command": "mcr.microsoft.com/azure-sdk/azure-mcp:latest",
+			"args": []
+		}
+	},
+	"inputs": []
+}

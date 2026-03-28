@@ -1,0 +1,102 @@
+- source_record_key: direct_pdf
+  local_file_name: direct.pdf
+  jurisdiction_name: Test City
+  program_label: Testing
+  source_url: http://127.0.0.1:55532/direct.pdf
+  acquisition:
+    status: direct_mirror_downloaded
+    requested_url: http://127.0.0.1:55532/direct.pdf
+    final_url: http://127.0.0.1:55532/direct.pdf
+    fetched_at: '2026-03-26T03:45:46.054801Z'
+    content_type: application/pdf
+    http_status: 200
+    sha256: 7fef0d8820b2ec446627e8daa4521746eaf88040ef726e39b32684b995b7f005
+    file_size: 76
+    stored_path: C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/direct_pdf__direct.pdf
+    artifact_paths:
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/direct_pdf__direct.pdf
+    pdf_artifact_paths:
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/direct_pdf__direct.pdf
+    page_title: null
+    notes: ''
+- source_record_key: html_page
+  local_file_name: page-with-pdf.pdf
+  jurisdiction_name: Test City
+  program_label: Testing
+  source_url: http://127.0.0.1:55532/page-with-pdf.html
+  acquisition:
+    status: source_reference_verified
+    requested_url: http://127.0.0.1:55532/page-with-pdf.html
+    final_url: http://127.0.0.1:55532/page-with-pdf.html
+    fetched_at: '2026-03-26T03:45:46.112380Z'
+    content_type: text/html
+    http_status: 200
+    sha256: c1b54b7cf2076d8dad4034307a86b353485346a229ac93a68e7ae6bfd1a9265a
+    file_size: 106
+    stored_path: C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/html_page__html_page__page-with-pdf.html
+    artifact_paths:
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/html_page__html_page__page-with-pdf.html
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/html_page__linked_1__linked.pdf
+    pdf_artifact_paths:
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/html_page__linked_1__linked.pdf
+    page_title: Test PDF Links
+    notes: Downloaded 1 linked PDF artifact(s) from HTML page.
+- source_record_key: page_only
+  local_file_name: page-only.pdf
+  jurisdiction_name: Test City
+  program_label: Testing
+  source_url: http://127.0.0.1:55532/page-without-pdf.html
+  acquisition:
+    status: html_page_snapshotted
+    requested_url: http://127.0.0.1:55532/page-without-pdf.html
+    final_url: http://127.0.0.1:55532/page-without-pdf.html
+    fetched_at: '2026-03-26T03:45:46.208179Z'
+    content_type: text/html
+    http_status: 200
+    sha256: d10a925d55b3829e2f0c2a7d5204c566081fa40d2a5ccf890ef1577130c84899
+    file_size: 85
+    stored_path: C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/page_only__page_only__page-without-pdf.html
+    artifact_paths:
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/page_only__page_only__page-without-pdf.html
+    pdf_artifact_paths: []
+    page_title: No PDFs
+    notes: HTML page fetched, but no downloadable PDF links were found.
+- source_record_key: login_page
+  local_file_name: login.pdf
+  jurisdiction_name: Test City
+  program_label: Testing
+  source_url: http://127.0.0.1:55532/login.html
+  acquisition:
+    status: requires_manual_review
+    requested_url: http://127.0.0.1:55532/login.html
+    final_url: http://127.0.0.1:55532/login.html
+    fetched_at: '2026-03-26T03:45:46.256950Z'
+    content_type: text/html
+    http_status: 200
+    sha256: 50d1921824b8214791d9124bc9c685baf64860788dbc4cdfe746b9e782173e0f
+    file_size: 40
+    stored_path: C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/login_page__login_page__login.html
+    artifact_paths:
+    - C:/Users/dylan/Documents/Hardened_pack/mirror-pack-agent/test_scratch/case_db2297a37ca54d60888f49525fa40ecc/acquired/files/login_page__login_page__login.html
+    pdf_artifact_paths: []
+    page_title: ''
+    notes: Public HTML page requires manual review or unsupported interaction.
+- source_record_key: missing
+  local_file_name: missing.pdf
+  jurisdiction_name: Test City
+  program_label: Testing
+  source_url: http://127.0.0.1:55532/missing.pdf
+  acquisition:
+    status: http_error
+    requested_url: http://127.0.0.1:55532/missing.pdf
+    final_url: http://127.0.0.1:55532/missing.pdf
+    fetched_at: '2026-03-26T03:45:46.313905Z'
+    content_type: ''
+    http_status: 404
+    sha256: null
+    file_size: null
+    stored_path: null
+    artifact_paths: []
+    pdf_artifact_paths: []
+    page_title: null
+    notes: 'HTTP Error 404: Not Found'

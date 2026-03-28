@@ -1,0 +1,43 @@
+task_key: statewide_swppp_qpe_family
+jurisdiction_keys:
+- ca_statewide
+inspection_type_keys:
+- swppp_active_series
+workflow_stage_codes:
+- swppp.pre_qpe
+- swppp.during_qpe
+- swppp.post_qpe
+packet_roles_present:
+- governing_order
+- inspection_template
+- gate_rule
+- inspection_sample
+fallback_behavior: 'For source_reference_only assets, expose the verified source URL
+  in the admin document vault. The pre_qpe stage wizard template is fully defined
+  and can execute. The during_qpe and post_qpe stages must be blocked at the stage
+  definition level until wizard manifests are provided.
+
+  '
+readiness_score:
+  score_0_to_100: 55
+  direct_mirror_present: true
+  authoritative_source_present: true
+  field_map_completeness: complete
+  stage_completeness: complete
+  export_readiness: prototype_only
+  unresolved_blockers:
+  - "swppp.during_qpe stage has no wizard manifest \u2014 stage cannot execute until\
+    \ manifest is authored"
+  - "swppp.post_qpe stage has no wizard manifest \u2014 stage cannot execute until\
+    \ manifest is authored"
+  - "QSP/QSD inspector qualification field is absent from all QPE manifests \u2014\
+    \ required by CGP Attachment G"
+  - "CGP governing order PDF not locally mirrored \u2014 source_reference_only; same\
+    \ acquisition as weekly family"
+source_asset_keys:
+- swppp_pre_qpe_wizard_template
+- cgp_2022_governing_order_qpe
+- pre_qpe_forecast_gate_rule
+- mosswood_storm_inspection_examples
+- during_qpe_wizard_template
+- post_qpe_wizard_template

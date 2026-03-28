@@ -1,0 +1,46 @@
+template_key: hazmat.hmbp.packet.v1
+family: hazmat_cers
+surface_modes:
+- desktop_tablet
+jurisdiction_scope:
+- ca_statewide
+inspection_type_key: hazmat_hmbp
+stage_code: hazmat.packet_assembly
+display_name: HazMat / HMBP Packet Readiness
+wizard:
+  guided_sections:
+  - thresholds
+  - inventory
+  - site_map
+  - emergency_contacts
+  - training
+  - gate_preview
+sections:
+- code: thresholds
+  title: Threshold Evaluation
+  items:
+  - liquid_gallons
+  - solid_pounds
+  - gas_cuft
+- code: inventory
+  title: Inventory
+  items:
+  - material_name
+  - quantity
+  - location
+  - hazard_class
+- code: site_map
+  title: Site Map
+  items:
+  - site_map_uploaded
+- code: emergency_contacts
+  title: Emergency Contacts
+  items:
+  - owner_contact
+  - site_contact
+  - after_hours_contact
+- code: training
+  title: Training and Acknowledgment
+  items:
+  - training_record_uploaded
+export_profile: compliance_packet

@@ -1,0 +1,23 @@
+{
+  "task_key": "statewide_swppp_qpe_family",
+  "pack_family_count": 1,
+  "asset_count": 1,
+  "direct_mirror_count": 0,
+  "source_reference_only_count": 0,
+  "trigger_only_count": 0,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 1,
+  "unresolved_count": 1,
+  "completeness_rating": "medium",
+  "confidence_band": "medium",
+  "blocker_items": ["missing_direct_pack"],
+  "readiness_score": {
+    "score_0_to_100": 62,
+    "direct_mirror_present": false,
+    "authoritative_source_present": true,
+    "field_map_completeness": "partial",
+    "stage_completeness": "mostly_complete",
+    "export_readiness": "fallback_ready",
+    "unresolved_blockers": ["missing_direct_pack"]
+  }
+}

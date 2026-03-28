@@ -1,0 +1,38 @@
+{
+  "task_key": "baaqmd_asbestos_readiness",
+  "pack_family_count": 1,
+  "asset_count": 7,
+  "direct_mirror_count": 1,
+  "source_reference_only_count": 3,
+  "trigger_only_count": 2,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 0,
+  "unresolved_count": 1,
+  "completeness_rating": "partial",
+  "blocker_items": [
+    "Acknowledgment letter format from BAAQMD portal is unresolved — must determine whether it is a system PDF, confirmation number, or upload scan before the acknowledgment slot can be fully bound",
+    "date_revision stage has no wizard manifest — stage cannot be surfaced as a guided step until authored",
+    "pre_demo stage has no wizard manifest — stage cannot be surfaced as a guided step until authored",
+    "Three BAAQMD reference PDFs are source_reference_only — not locally mirrored; acceptable for MVP via vault URL references"
+  ],
+  "classification_notes": {
+    "direct_mirror_assets": [
+      "asbestos_j_readiness_wizard_template"
+    ],
+    "source_reference_only_assets": [
+      "baaqmd_asbestos_permit_program_page",
+      "baaqmd_asbestos_compliance_tips_flowchart",
+      "baaqmd_date_revision_advisory_contractors"
+    ],
+    "trigger_only_assets": [
+      "baaqmd_date_revision_gate_rule",
+      "baaqmd_j_readiness_gate_rule"
+    ],
+    "recognition_control_only_assets": [],
+    "example_output_only_assets": [],
+    "unresolved_assets": [
+      "baaqmd_ack_letter_slot"
+    ],
+    "note": "Auto-derived from pack_registry classifications to preserve scope-level summary notes."
+  }
+}

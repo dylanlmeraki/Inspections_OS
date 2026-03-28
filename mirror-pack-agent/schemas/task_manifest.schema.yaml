@@ -1,0 +1,87 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required:
+  - task_key
+  - scope
+  - inputs
+  - outputs
+  - rules
+properties:
+  task_key:
+    type: string
+    pattern: "^[a-z0-9_]+$"
+  scope:
+    type: object
+    additionalProperties: false
+    required: [jurisdiction_keys, inspection_type_keys, workflow_stage_codes]
+    properties:
+      jurisdiction_keys:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+          pattern: "^[a-z0-9_.-]+$"
+      inspection_type_keys:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+          pattern: "^[a-z0-9_.-]+$"
+      workflow_stage_codes:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+          pattern: "^[a-z0-9_.-]+$"
+  inputs:
+    type: object
+    additionalProperties: false
+    required: [required_files, optional_files]
+    properties:
+      required_files:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+      optional_files:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  outputs:
+    type: object
+    additionalProperties: false
+    required: [pack_registry, field_bindings, unresolved, summary]
+    properties:
+      pack_registry:
+        type: string
+        pattern: "^out/pack_registry/.+\\.ya?ml$"
+      field_bindings:
+        type: string
+        pattern: "^out/field_bindings/.+\\.ya?ml$"
+      unresolved:
+        type: string
+        pattern: "^out/unresolved/.+\\.md$"
+      summary:
+        type: string
+        pattern: "^out/summary/.+\\.json$"
+  rules:
+    type: object
+    additionalProperties: false
+    required: [no_runtime_code_edits, no_fake_direct_mirrors, max_output_files]
+    properties:
+      no_runtime_code_edits:
+        type: boolean
+        const: true
+      no_fake_direct_mirrors:
+        type: boolean
+        const: true
+      max_output_files:
+        type: integer
+        minimum: 4
+        maximum: 8

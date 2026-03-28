@@ -1,0 +1,36 @@
+task_key: statewide_swppp_qpe_family
+jurisdiction_keys: [ca_statewide]
+inspection_type_keys: [swppp_active_series]
+workflow_stage_codes: [swppp.pre_qpe, swppp.during_qpe, swppp.post_qpe]
+pack_families: [swppp_qpe_family]
+packet_roles_present: [reference_asset, example_output_only]
+fallback_behavior: source_reference_composition_allowed
+completeness_rating: medium
+confidence_band: medium
+unresolved_count: 1
+readiness_score:
+  score_0_to_100: 62
+  direct_mirror_present: false
+  authoritative_source_present: true
+  field_map_completeness: partial
+  stage_completeness: mostly_complete
+  export_readiness: fallback_ready
+  unresolved_blockers: [missing_direct_pack]
+asset_entries:
+  - asset_key: mosswood_swppp_pre_qpe
+    title: Mosswood Pre-QPE Example
+    classification: example_output_only
+    jurisdiction_scope: [ca_statewide]
+    inspection_type_scope: [swppp_active_series]
+    workflow_stage_scope: [swppp.pre_qpe]
+    packet_roles: [example_output_only]
+    source_evidence:
+      - source_type: sample_output
+        ref: docs/source_set/Mosswood 2-13-25.pdf
+        relevance: stage example
+    direct_mirror_candidate: false
+    fallback_behavior: use_example_output_only
+    confidence_band: medium
+    completeness_rating: medium
+    acquisition_state: unresolved
+    notes: Example output only.

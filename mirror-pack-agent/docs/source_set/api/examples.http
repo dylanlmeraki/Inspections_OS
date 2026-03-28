@@ -1,0 +1,62 @@
+### Create project
+POST https://api.inspectionos.local/v1/projects
+Content-Type: application/json
+
+{
+  "name": "Pier 70 Parcel B",
+  "jurisdictionKey": "san_francisco",
+  "site": {
+    "address": "San Francisco, CA",
+    "disturbedAcres": 1.75
+  }
+}
+
+### Start wizard session
+POST https://api.inspectionos.local/v1/wizard-sessions
+Content-Type: application/json
+
+{
+  "projectId": "22222222-2222-2222-2222-222222222222",
+  "inspectionTypeKey": "swppp_active_series",
+  "stageCode": "swppp.pre_qpe",
+  "surfaceMode": "mobile_field_runner"
+}
+
+### Save wizard answers
+PATCH https://api.inspectionos.local/v1/wizard-sessions/11111111-1111-1111-1111-111111111111
+Content-Type: application/json
+
+{
+  "answers": {
+    "forecast.source_name": "NWS",
+    "forecast.issued_at": "2026-03-22T07:00:00Z",
+    "forecast.qualifying_event_window": "2026-03-23"
+  }
+}
+
+### Preview gate evaluation
+POST https://api.inspectionos.local/v1/gate-evaluations
+Content-Type: application/json
+
+{
+  "runId": "44444444-4444-4444-4444-444444444444",
+  "jurisdictionKey": "ca_statewide",
+  "stageCode": "swppp.pre_qpe"
+}
+
+### Advance stage
+POST https://api.inspectionos.local/v1/workflow-runs/44444444-4444-4444-4444-444444444444/advance
+Content-Type: application/json
+
+{
+  "targetStageCode": "swppp.post_qpe"
+}
+
+### Render compliance packet
+POST https://api.inspectionos.local/v1/exports/verification-packets
+Content-Type: application/json
+
+{
+  "runId": "44444444-4444-4444-4444-444444444444",
+  "packetClass": "compliance_packet"
+}

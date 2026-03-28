@@ -1,0 +1,93 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required:
+  - task_key
+  - pack_family_count
+  - asset_count
+  - direct_mirror_count
+  - source_reference_only_count
+  - trigger_only_count
+  - recognition_control_only_count
+  - example_output_only_count
+  - unresolved_count
+  - completeness_rating
+  - blocker_items
+properties:
+  task_key:
+    type: string
+  pack_family_count:
+    type: integer
+    minimum: 0
+  asset_count:
+    type: integer
+    minimum: 0
+  direct_mirror_count:
+    type: integer
+    minimum: 0
+  source_reference_only_count:
+    type: integer
+    minimum: 0
+  trigger_only_count:
+    type: integer
+    minimum: 0
+  recognition_control_only_count:
+    type: integer
+    minimum: 0
+  example_output_only_count:
+    type: integer
+    minimum: 0
+  unresolved_count:
+    type: integer
+    minimum: 0
+  completeness_rating:
+    type: string
+    enum: [none, low, medium, high, partial, production_candidate]
+  confidence_band:
+    type: string
+    enum: [low, medium, high]
+  classification_notes:
+    type: object
+    additionalProperties: true
+  notes_omitted_for_validation:
+    type: boolean
+  notes_omission_reason:
+    type: string
+    minLength: 1
+  blocker_items:
+    type: array
+    items:
+      type: string
+  readiness_score:
+    type: object
+    additionalProperties: false
+    required:
+      - score_0_to_100
+      - direct_mirror_present
+      - authoritative_source_present
+      - field_map_completeness
+      - stage_completeness
+      - export_readiness
+      - unresolved_blockers
+    properties:
+      score_0_to_100:
+        type: integer
+        minimum: 0
+        maximum: 100
+      direct_mirror_present:
+        type: boolean
+      authoritative_source_present:
+        type: boolean
+      field_map_completeness:
+        type: string
+        enum: [none, partial, mostly_complete, complete]
+      stage_completeness:
+        type: string
+        enum: [none, partial, mostly_complete, complete]
+      export_readiness:
+        type: string
+        enum: [not_ready, prototype_only, fallback_ready, direct_mirror_ready]
+      unresolved_blockers:
+        type: array
+        items:
+          type: string

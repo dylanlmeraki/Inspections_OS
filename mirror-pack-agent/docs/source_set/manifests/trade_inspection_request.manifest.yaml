@@ -1,0 +1,52 @@
+template_key: trade.request.v1
+family: trade_inspections
+surface_modes:
+- mobile_field_runner
+- desktop_tablet
+jurisdiction_scope:
+- ca_statewide
+inspection_type_key: trade_building
+stage_code: trade.request
+display_name: Trade Inspection Request
+wizard:
+  guided_sections:
+  - project
+  - jurisdiction
+  - trade_code
+  - before_cover_conditions
+  - request
+  - result_placeholder
+  - gate_preview
+sections:
+- code: project
+  title: Project
+  items:
+  - project_reference
+  - site_location
+- code: jurisdiction
+  title: Jurisdiction
+  items:
+  - county_or_city_jurisdiction
+  - source_record_reference
+- code: trade_code
+  title: Trade Code
+  items:
+  - trade_code
+  - trade_description
+- code: before_cover_conditions
+  title: Before Cover Conditions
+  items:
+  - ready_for_inspection
+  - concealment_pending
+- code: request
+  title: Request
+  items:
+  - requested_date
+  - requested_window
+  - scheduling_method
+- code: result_placeholder
+  title: Result Placeholder
+  items:
+  - result_status
+  - inspector_notes
+export_profile: inspection_packet

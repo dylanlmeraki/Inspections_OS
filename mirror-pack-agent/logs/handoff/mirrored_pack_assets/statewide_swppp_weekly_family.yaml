@@ -1,0 +1,42 @@
+task_key: statewide_swppp_weekly_family
+assets:
+- asset_key: cgp_2022_governing_order
+  title: California Construction General Permit Order 2022-0057-DWQ
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: swppp_weekly_wizard_template
+  title: SWPPP Weekly Inspection Wizard Template (swppp.weekly.v1)
+  classification: direct_mirror
+  acquisition_state: direct_mirror_downloaded
+  direct_mirror_candidate: true
+  fallback_behavior: use_as_canonical_template
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: mosswood_bmp_inspection_example
+  title: Mosswood BMP Inspection Sample (11-22-24)
+  classification: example_output_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: use_for_field_mapping_reference_only
+  confidence_band: medium
+  completeness_rating: partial
+- asset_key: swppp_weekly_photo_on_fail_rule
+  title: SWPPP Weekly Photo-on-Fail Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: cgp_d1_risk_worksheet
+  title: CGP Attachment D.1 Risk Determination Worksheet
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: high
+  completeness_rating: partial

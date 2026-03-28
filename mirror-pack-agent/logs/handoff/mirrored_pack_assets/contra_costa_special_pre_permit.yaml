@@ -1,0 +1,51 @@
+task_key: contra_costa_special_pre_permit
+assets:
+- asset_key: contra_costa_special_inspections_program_and_recognized_agencies
+  title: Contra Costa County Special Inspections Program and Recognized Agencies
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: use_as_recognition_control_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: contra_costa_recognized_agency_gate_rule
+  title: Contra Costa Recognized Agency Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: contra_costa_general_pre_permit_gate_rule
+  title: General Special Inspection Pre-Permit Cover and Agency Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: contra_costa_county_cover_form
+  title: Contra Costa County Special Inspections Cover Form (County-Issued)
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: block_until_acquired
+  confidence_band: low
+  completeness_rating: partial
+- asset_key: walnut_creek_special_inspection_program
+  title: Walnut Creek Special Inspection and Observation Program (Contra Costa county
+    city)
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_as_city_specific_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: contra_costa_city_coverage_gap_note
+  title: Contra Costa County vs City Special Inspections Coverage Note
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: surface_as_ambiguity_in_jurisdiction_selector
+  confidence_band: low
+  completeness_rating: partial

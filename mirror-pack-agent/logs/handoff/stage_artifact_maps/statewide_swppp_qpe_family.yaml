@@ -1,0 +1,55 @@
+task_key: statewide_swppp_qpe_family
+workflow_stage_codes:
+- swppp.pre_qpe
+- swppp.during_qpe
+- swppp.post_qpe
+required_artifacts_by_stage:
+- workflow_stage_code: swppp.pre_qpe
+  asset_keys:
+  - swppp_pre_qpe_wizard_template
+  - cgp_2022_governing_order_qpe
+  - pre_qpe_forecast_gate_rule
+  - mosswood_storm_inspection_examples
+  packet_roles:
+  - gate_rule
+  - governing_order
+  - inspection_sample
+  - inspection_template
+- workflow_stage_code: swppp.during_qpe
+  asset_keys:
+  - cgp_2022_governing_order_qpe
+  - mosswood_storm_inspection_examples
+  - during_qpe_wizard_template
+  packet_roles:
+  - governing_order
+  - inspection_sample
+  - inspection_template
+- workflow_stage_code: swppp.post_qpe
+  asset_keys:
+  - cgp_2022_governing_order_qpe
+  - mosswood_storm_inspection_examples
+  - post_qpe_wizard_template
+  packet_roles:
+  - governing_order
+  - inspection_sample
+  - inspection_template
+summary:
+  task_key: statewide_swppp_qpe_family
+  pack_family_count: 1
+  asset_count: 6
+  direct_mirror_count: 1
+  source_reference_only_count: 1
+  trigger_only_count: 1
+  recognition_control_only_count: 0
+  example_output_only_count: 1
+  unresolved_count: 2
+  completeness_rating: partial
+  blocker_items:
+  - "swppp.during_qpe stage has no wizard manifest \u2014 stage cannot execute until\
+    \ manifest is authored"
+  - "swppp.post_qpe stage has no wizard manifest \u2014 stage cannot execute until\
+    \ manifest is authored"
+  - "QSP/QSD inspector qualification field is absent from all QPE manifests \u2014\
+    \ required by CGP Attachment G"
+  - "CGP governing order PDF not locally mirrored \u2014 source_reference_only; same\
+    \ acquisition as weekly family"

@@ -1,0 +1,189 @@
+task_key: baaqmd_asbestos_readiness
+
+jurisdiction_keys:
+  - bay_area_regional
+
+inspection_type_keys:
+  - asbestos_j
+
+workflow_stage_codes:
+  - asbestos.j_ready
+  - asbestos.date_revision
+  - asbestos.pre_demo
+
+pack_families:
+  - asbestos_baaqmd
+
+asset_entries:
+  - asset_key: asbestos_j_readiness_wizard_template
+    title: BAAQMD Asbestos J# Readiness Wizard Template (asbestos.j_readiness.v1)
+    classification: direct_mirror
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.j_ready
+    packet_roles:
+      - inspection_template
+    source_evidence:
+      - source_file: docs/source_set/manifests/asbestos_baaqmd.manifest.yaml
+      - template_key: asbestos.j_readiness.v1
+      - export_profile: compliance_packet
+    direct_mirror_candidate: true
+    fallback_behavior: use_as_canonical_template
+    confidence: high
+    notes: >
+      Wizard manifest is fully defined with sections: project_scope, notice,
+      date_lock, acknowledgment. Gate: asbestos.j_ready. This is the primary
+      execution asset for the j_ready stage.
+
+  - asset_key: baaqmd_asbestos_permit_program_page
+    title: BAAQMD Asbestos Program Requirements (Online)
+    classification: source_reference_only
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.j_ready
+      - asbestos.date_revision
+      - asbestos.pre_demo
+    packet_roles:
+      - reference_asset
+    source_evidence:
+      - source_record_key: regional_baaqmd_asbestos_permit_program
+      - source_url: https://www.baaqmd.gov/permits/asbestos
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: high
+    notes: >
+      BAAQMD requires notification at least 10 business days before every demolition
+      and certain renovations. This page is the canonical rule source. No mirrored
+      local PDF. Classified source_reference_only. Expose as vault link.
+
+  - asset_key: baaqmd_asbestos_compliance_tips_flowchart
+    title: BAAQMD Asbestos Compliance Tips and Demolition Flowchart
+    classification: source_reference_only
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.pre_demo
+    packet_roles:
+      - pre_demo_guidance
+    source_evidence:
+      - source_record_key: regional_baaqmd_asbestos_compliance_tips_and_demolition_flowchart
+      - source_url: https://www.baaqmd.gov/~/media/files/compliance-and-enforcement/asbestos/asbestos_tips.pdf
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: medium
+    notes: >
+      Operational demolition readiness guide. Source URL known but not locally
+      mirrored. Keep linked to j_ready checklist and acknowledgement capture.
+      Useful for training wizard display text on pre_demo stage.
+
+  - asset_key: baaqmd_date_revision_advisory_contractors
+    title: BAAQMD Online Asbestos Notifications Advisory for Contractors
+    classification: source_reference_only
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.date_revision
+    packet_roles:
+      - revision_control_guidance
+    source_evidence:
+      - source_record_key: regional_baaqmd_online_asbestos_notifications_advisory_contractors
+      - source_url: https://www.baaqmd.gov/~/media/files/compliance-and-enforcement/asbestos/online_asbestos_notifications_advisory_contractors_2024.pdf
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: medium
+    notes: >
+      Used as source for stale-date alerts and revision workflows. Drives the
+      date_revision stage warning rule (severity=warning, not blocker).
+      Bind start and end dates as hard schedule fields and warn when dates drift.
+
+  - asset_key: baaqmd_date_revision_gate_rule
+    title: BAAQMD Date Revision Stage Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.date_revision
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: asbestos.date_revision
+      - blocker_code: BAAQMD_DATE_REVISION_REQUIRED
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_warning_gate
+    confidence: high
+    notes: >
+      This rule fires as a warning (not blocker) when project.asbestos.dates_changed=true.
+      Gate fires before work proceeds with changed dates.
+
+  - asset_key: baaqmd_j_readiness_gate_rule
+    title: BAAQMD J# Readiness Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.j_ready
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: asbestos.j_readiness
+      - blocker_code: BAAQMD_J_NOTICE_NOT_READY
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Blocker: j_number, start_date, end_date, and acknowledgment letter must be
+      present before advancing from j_ready stage.
+
+  - asset_key: baaqmd_ack_letter_slot
+    title: BAAQMD Acknowledgment Letter Upload Slot
+    classification: unresolved
+    jurisdiction_scope: bay_area_regional
+    inspection_type_scope:
+      - asbestos_j
+    workflow_stage_scope:
+      - asbestos.j_ready
+    packet_roles:
+      - acknowledgment_document
+    source_evidence:
+      - source_file: docs/source_set/manifests/asbestos_baaqmd.manifest.yaml
+      - manifest_item: acknowledgment.ack_letter_uploaded
+    direct_mirror_candidate: false
+    fallback_behavior: block_until_defined
+    confidence: low
+    notes: >
+      The manifest lists ack_letter_uploaded as an item in the acknowledgment section.
+      However, the exact document format of the BAAQMD acknowledgment letter
+      (system-issued vs. user-uploaded scan vs. auto-retrieved from portal) is not
+      defined in the available source evidence. Cannot bind a document slot without
+      knowing the issuing format.
+
+packet_roles_present:
+  - inspection_template
+  - reference_asset
+  - pre_demo_guidance
+  - revision_control_guidance
+  - gate_rule
+  - acknowledgment_document
+
+fallback_behavior: >
+  For source_reference_only assets, expose verified source URLs as vault references.
+  The j_ready wizard template is fully defined. The date_revision and pre_demo stages
+  have gate rules defined but wizard manifests for those stages (if needed beyond
+  the j_ready template) are not yet present.
+
+completeness_rating: partial
+
+unresolved_count: 1

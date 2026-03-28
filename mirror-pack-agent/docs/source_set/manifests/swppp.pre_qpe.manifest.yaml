@@ -1,0 +1,42 @@
+template_key: swppp.pre_qpe.v1
+family: swppp
+surface_modes:
+- mobile_field_runner
+- desktop_tablet
+jurisdiction_scope:
+- ca_statewide
+inspection_type_key: swppp_active_series
+stage_code: swppp.pre_qpe
+display_name: SWPPP Pre-QPE Inspection
+wizard:
+  gates:
+  - forecast_metadata_required
+  guided_sections:
+  - forecast
+  - storm_readiness
+  - bmp_preparation
+  - photos
+  - gate_preview
+sections:
+- code: forecast
+  title: Forecast Metadata
+  items:
+  - forecast_source_name
+  - forecast_issued_at
+  - qualifying_event_window
+- code: storm_readiness
+  title: Storm Readiness
+  items:
+  - materials_secured
+  - drain_inlets_protected
+  - stockpiles_protected
+- code: bmp_preparation
+  title: BMP Preparation
+  items:
+  - perimeter_verified
+  - stabilization_verified
+- code: photos
+  title: Photo Evidence
+  items:
+  - pre_storm_overview_photos
+export_profile: compliance_packet

@@ -1,0 +1,51 @@
+task_key: statewide_swppp_qpe_family
+assets:
+- asset_key: swppp_pre_qpe_wizard_template
+  title: SWPPP Pre-QPE Inspection Wizard Template (swppp.pre_qpe.v1)
+  classification: direct_mirror
+  acquisition_state: direct_mirror_downloaded
+  direct_mirror_candidate: true
+  fallback_behavior: use_as_canonical_template
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: cgp_2022_governing_order_qpe
+  title: California Construction General Permit Order 2022-0057-DWQ (QPE applicability
+    sections)
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: pre_qpe_forecast_gate_rule
+  title: Pre-QPE Forecast Metadata Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: mosswood_storm_inspection_examples
+  title: Mosswood Storm Inspection Reports (Multiple Dates Feb 2025)
+  classification: example_output_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: use_for_field_mapping_reference_only
+  confidence_band: medium
+  completeness_rating: partial
+- asset_key: during_qpe_wizard_template
+  title: SWPPP During-QPE Inspection Wizard Template
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: block_stage_until_template_acquired
+  confidence_band: low
+  completeness_rating: partial
+- asset_key: post_qpe_wizard_template
+  title: SWPPP Post-QPE Inspection Wizard Template
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: block_stage_until_template_acquired
+  confidence_band: low
+  completeness_rating: partial

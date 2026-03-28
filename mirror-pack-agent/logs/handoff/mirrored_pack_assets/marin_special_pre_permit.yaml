@@ -1,0 +1,51 @@
+task_key: marin_special_pre_permit
+assets:
+- asset_key: marin_building_permit_submittal_checklist_special_inspection_trigger
+  title: "Marin County Building Permit Submittal Checklist \u2014 Special Inspection\
+    \ Trigger"
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: use_as_trigger_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: marin_trigger_acknowledgment_gate_rule
+  title: Marin County Special Inspection Trigger Acknowledgment Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: general_pre_permit_gate_rule_marin
+  title: General Special Inspection Pre-Permit Cover and Agency Gate Rule (Marin)
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: san_rafael_special_inspection_form
+  title: San Rafael Special Inspection Form (Marin county city)
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_as_city_specific_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: marin_city_county_coverage_gap_note
+  title: Marin County vs City Special Inspections Coverage Note
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: surface_as_ambiguity_in_jurisdiction_selector
+  confidence_band: low
+  completeness_rating: partial
+- asset_key: marin_county_cover_form
+  title: Marin County Special Inspections Cover Form (County-Issued Unincorporated)
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: block_until_acquired
+  confidence_band: low
+  completeness_rating: partial

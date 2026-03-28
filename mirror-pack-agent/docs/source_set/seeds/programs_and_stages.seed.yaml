@@ -1,0 +1,189 @@
+regulatory_programs:
+- program_key: swppp_cgp
+  code: SWPPP_CGP
+  name: Construction stormwater / CGP
+  scope_level: statewide
+- program_key: special_inspections
+  code: SPECIAL_INSPECTIONS
+  name: Special inspections
+  scope_level: county_city
+- program_key: dust_control
+  code: DUST_CONTROL
+  name: Dust control
+  scope_level: city
+- program_key: asbestos_baaqmd
+  code: ASBESTOS_BAAQMD
+  name: Asbestos / demolition-renovation notification
+  scope_level: regional
+- program_key: hazmat_cers
+  code: HAZMAT_CERS
+  name: HazMat / CERS packet readiness
+  scope_level: statewide
+- program_key: trade_inspections
+  code: TRADE_INSPECTIONS
+  name: Trade inspections
+  scope_level: county_city
+inspection_types:
+- inspection_type_key: swppp_enrollment
+  program_key: swppp_cgp
+  code: swppp.enrollment
+  name: SWPPP enrollment
+- inspection_type_key: swppp_active_series
+  program_key: swppp_cgp
+  code: swppp.active_series
+  name: SWPPP active inspection series
+- inspection_type_key: special_cbc17
+  program_key: special_inspections
+  code: special.cbc17
+  name: CBC Chapter 17 special inspections
+- inspection_type_key: special_calgreen
+  program_key: special_inspections
+  code: special.calgreen
+  name: CALGreen special inspector verification
+- inspection_type_key: dust_sf
+  program_key: dust_control
+  code: dust.sf_construction
+  name: San Francisco construction dust control
+- inspection_type_key: asbestos_j
+  program_key: asbestos_baaqmd
+  code: asbestos.j_readiness
+  name: BAAQMD asbestos J# readiness
+- inspection_type_key: hazmat_hmbp
+  program_key: hazmat_cers
+  code: hazmat.hmbp
+  name: HazMat / HMBP packet readiness
+- inspection_type_key: trade_building
+  program_key: trade_inspections
+  code: trade.building
+  name: Building trade inspections
+workflow_stages:
+- workflow_stage_key: swppp_enrollment_gate
+  program_key: swppp_cgp
+  code: swppp.enrollment_gate
+  ordinal: 10
+  name: Enrollment / threshold gate
+- workflow_stage_key: swppp_prd_assembly
+  program_key: swppp_cgp
+  code: swppp.prd_assembly
+  ordinal: 20
+  name: PRD assembly
+- workflow_stage_key: swppp_noi_ready
+  program_key: swppp_cgp
+  code: swppp.noi_ready
+  ordinal: 30
+  name: NOI readiness / signer path
+- workflow_stage_key: swppp_opening_conditions
+  program_key: swppp_cgp
+  code: swppp.opening_conditions
+  ordinal: 40
+  name: Field opening conditions
+- workflow_stage_key: swppp_weekly
+  program_key: swppp_cgp
+  code: swppp.weekly
+  ordinal: 50
+  name: Routine inspections
+- workflow_stage_key: swppp_pre_qpe
+  program_key: swppp_cgp
+  code: swppp.pre_qpe
+  ordinal: 60
+  name: Pre-QPE inspection
+- workflow_stage_key: swppp_during_qpe
+  program_key: swppp_cgp
+  code: swppp.during_qpe
+  ordinal: 65
+  name: During-QPE inspection
+- workflow_stage_key: swppp_post_qpe
+  program_key: swppp_cgp
+  code: swppp.post_qpe
+  ordinal: 70
+  name: Post-QPE inspection
+- workflow_stage_key: swppp_annual_report
+  program_key: swppp_cgp
+  code: swppp.annual_report
+  ordinal: 80
+  name: Annual reporting
+- workflow_stage_key: swppp_not_closeout
+  program_key: swppp_cgp
+  code: swppp.not_closeout
+  ordinal: 90
+  name: NOT closeout
+- workflow_stage_key: special_pre_permit
+  program_key: special_inspections
+  code: special.pre_permit
+  ordinal: 10
+  name: Pre-permit packet
+- workflow_stage_key: special_reporting
+  program_key: special_inspections
+  code: special.reporting
+  ordinal: 20
+  name: Construction reporting
+- workflow_stage_key: special_escalation
+  program_key: special_inspections
+  code: special.escalation
+  ordinal: 30
+  name: Escalation / amendment
+- workflow_stage_key: special_closeout
+  program_key: special_inspections
+  code: special.closeout
+  ordinal: 40
+  name: Closeout / verification
+- workflow_stage_key: dust_applicability
+  program_key: dust_control
+  code: dust.applicability
+  ordinal: 10
+  name: Applicability gate
+- workflow_stage_key: dust_plan_approval
+  program_key: dust_control
+  code: dust.plan_approval
+  ordinal: 20
+  name: Plan approval
+- workflow_stage_key: dust_monitoring
+  program_key: dust_control
+  code: dust.monitoring
+  ordinal: 30
+  name: Monitoring and evidence
+- workflow_stage_key: asbestos_j_ready
+  program_key: asbestos_baaqmd
+  code: asbestos.j_ready
+  ordinal: 10
+  name: J# readiness
+- workflow_stage_key: asbestos_date_revision
+  program_key: asbestos_baaqmd
+  code: asbestos.date_revision
+  ordinal: 20
+  name: Date revision control
+- workflow_stage_key: asbestos_pre_demo
+  program_key: asbestos_baaqmd
+  code: asbestos.pre_demo
+  ordinal: 30
+  name: Pre-demolition checklist
+- workflow_stage_key: hazmat_threshold_gate
+  program_key: hazmat_cers
+  code: hazmat.threshold_gate
+  ordinal: 10
+  name: Threshold gate
+- workflow_stage_key: hazmat_packet_assembly
+  program_key: hazmat_cers
+  code: hazmat.packet_assembly
+  ordinal: 20
+  name: Packet assembly
+- workflow_stage_key: hazmat_review
+  program_key: hazmat_cers
+  code: hazmat.review
+  ordinal: 30
+  name: Review / export
+- workflow_stage_key: trade_request
+  program_key: trade_inspections
+  code: trade.request
+  ordinal: 10
+  name: Request capture
+- workflow_stage_key: trade_scheduling
+  program_key: trade_inspections
+  code: trade.scheduling
+  ordinal: 20
+  name: Scheduling
+- workflow_stage_key: trade_result_capture
+  program_key: trade_inspections
+  code: trade.result_capture
+  ordinal: 30
+  name: Result handling

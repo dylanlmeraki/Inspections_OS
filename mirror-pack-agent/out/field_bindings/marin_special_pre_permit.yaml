@@ -1,0 +1,126 @@
+task_key: marin_special_pre_permit
+
+canonical_field_sets:
+  - special_pre_permit_trigger
+  - special_pre_permit_cover
+  - special_pre_permit_agency
+
+bindings:
+  - binding_key: marin_trigger_acknowledged
+    canonical_field_key: project.special_inspections.trigger_acknowledged
+    packet_field_key: pre_permit.trigger_acknowledged
+    target_section_key: trigger
+    target_field_key: trigger_acknowledged
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.marin.requires_trigger_ack:
+      trigger fires when project.structural_drawings_required=true;
+      source: county_marin_building_permit_submittal_checklist_special_inspection_trigger
+      (version: county-replacement, 2024-12-20); binder confirms requirement_type=trigger.
+      County checklist language: "Structural Drawings — List structural observations and
+      special inspections." (Structural Plans, Sections, and Calculations section).
+    notes: >
+      Gate blocker MARIN_SPECIAL_TRIGGER_NOT_ACKNOWLEDGED fires until this field is set.
+      Classification of source as trigger_only (not source_reference_only) confirmed by
+      BayArea Next Pass Binder 2026-03-21.
+
+  - binding_key: marin_structural_drawings_required
+    canonical_field_key: project.structural_drawings_required
+    packet_field_key: pre_permit.structural_drawings_required
+    target_section_key: trigger
+    target_field_key: structural_drawings_required
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.marin.requires_trigger_ack:
+      condition is project.structural_drawings_required=true.
+    notes: This field governs whether the Marin trigger gate fires at all.
+
+  - binding_key: marin_cover_form_key
+    canonical_field_key: project.special_inspections.cover_form_key
+    packet_field_key: pre_permit.cover_form_key
+    target_section_key: cover_form_selection
+    target_field_key: cover_form_key
+    status: partial
+    transform: form_key_from_jurisdiction
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.pre_permit.requires_cover_and_agency:
+      requires project.special_inspections.cover_form_key;
+      For San Rafael: city_san_rafael_special_inspection_form (verified-direct URL).
+      For unincorporated Marin: unresolved — no county form acquired.
+    notes: >
+      Partially resolved for San Rafael sub-jurisdiction only. Unresolved for
+      unincorporated Marin County. Must route based on project address at intake.
+
+  - binding_key: marin_agency_name
+    canonical_field_key: project.special_inspections.agency_name
+    packet_field_key: pre_permit.agency_name
+    target_section_key: agency_selection
+    target_field_key: agency_name
+    status: partial
+    transform: string
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.pre_permit.requires_cover_and_agency:
+      requires project.special_inspections.agency_name.
+      Marin County does not have an identified recognized agencies list in the source set
+      (unlike Contra Costa which has a small agencies PDF). The trigger checklist PDF
+      does not appear to contain an agencies list.
+    notes: >
+      Agency name must be captured as a free-text field until a Marin recognized
+      agencies list is acquired. A lookup validation cannot be enforced without the list.
+
+unresolved_bindings:
+  - binding_key: marin_unincorporated_cover_form
+    canonical_field_key: project.special_inspections.unincorporated_cover_form
+    packet_field_key: pre_permit.unincorporated_cover_form
+    target_section_key: cover_form_selection
+    target_field_key: unincorporated_cover_form
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      No Marin County unincorporated special inspection statement/cover form is present
+      in the source set. The trigger checklist PDF (4274 bytes) serves only as a permit
+      submittal trigger reference, not a fillable form.
+    notes: >
+      Acquire the Marin Community Development Agency / County Building and Safety
+      special inspection statement form for unincorporated projects. Contact Marin CDA
+      or search https://www.marincounty.gov/depts/cd.
+
+  - binding_key: marin_recognized_agencies_list
+    canonical_field_key: project.special_inspections.agencies_list_marin
+    packet_field_key: pre_permit.agencies_list_marin
+    target_section_key: agency_selection
+    target_field_key: agencies_list_marin
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      No Marin County recognized special inspection agencies list has been identified
+      in the source set. Unlike Contra Costa (small PDF exists), no agencies-list
+      PDF or reference exists for Marin County in the current evidence base.
+    notes: >
+      Search Marin Community Development Agency building safety pages for a recognized
+      special inspection agencies list. Until acquired, the agency field must remain
+      free-text without validation against an approved list.
+
+  - binding_key: marin_city_jurisdiction_routing
+    canonical_field_key: project.jurisdiction.city_or_unincorporated_marin
+    packet_field_key: pre_permit.city_or_unincorporated_marin
+    target_section_key: jurisdiction_requirements
+    target_field_key: city_or_unincorporated_marin
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      form_records.seed.yaml: county_marin_special_inspections_city_county_gap_note
+      (verification_status: gap-note). Same structural ambiguity as Contra Costa.
+    notes: >
+      Project address must determine whether the project is within an incorporated
+      Marin city or unincorporated Marin County. Implement via GIS boundary lookup
+      or address-based city membership check.

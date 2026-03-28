@@ -1,0 +1,21 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required: [task_key, assets]
+properties:
+  task_key: {type: string}
+  assets:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [asset_key, title, classification, acquisition_state, direct_mirror_candidate, fallback_behavior, confidence_band, completeness_rating]
+      properties:
+        asset_key: {type: string}
+        title: {type: string}
+        classification: {type: string}
+        acquisition_state: {type: string}
+        direct_mirror_candidate: {type: boolean}
+        fallback_behavior: {type: string}
+        confidence_band: {type: string}
+        completeness_rating: {type: string}

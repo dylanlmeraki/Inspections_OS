@@ -1,0 +1,27 @@
+task_key: statewide_swppp_weekly_family
+scope:
+  jurisdiction_keys:
+    - ca_statewide
+  inspection_type_keys:
+    - swppp_active_series
+  workflow_stage_codes:
+    - swppp.weekly
+inputs:
+  required_files:
+    - docs/source_set/InspectionOS_Source_of_Truth_v2.docx
+    - docs/source_set/InspectionOS_PRD_v2.docx
+    - docs/source_set/InspectionOS_BayArea_Next_Pass_Binder_2026-03-21.pdf
+    - docs/source_set/InspectionOS_BayArea_Official_Forms_Index_v3.pdf
+    - docs/source_set/InspectionOS_MVP_App_Native_Schema_and_Service_Layer_v2.pdf
+    - docs/source_set/mosswood_swppp_weekly.pdf
+  optional_files:
+    - docs/source_set/water_pollution_control_plan_examples/
+outputs:
+  pack_registry: out/pack_registry/statewide_swppp_weekly_family.yaml
+  field_bindings: out/field_bindings/statewide_swppp_weekly_family.yaml
+  unresolved: out/unresolved/statewide_swppp_weekly_family.md
+  summary: out/summary/statewide_swppp_weekly_family.json
+rules:
+  no_runtime_code_edits: true
+  no_fake_direct_mirrors: true
+  max_output_files: 4

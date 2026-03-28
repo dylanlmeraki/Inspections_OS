@@ -1,0 +1,22 @@
+{
+  "source_record_key": "statewide_ca_waterboards_construction_general_permit_order_2022_0057_dwq",
+  "requested_url": "https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-0057-dwq-with-attachments/cgp2022_order.pdf",
+  "requested_urls": [
+    "https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-0057-dwq-with-attachments/cgp2022_order.pdf"
+  ],
+  "final_url": "https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-0057-dwq-with-attachments/cgp2022_order.pdf",
+  "status": "downloaded",
+  "fetched_at": "2026-03-25T22:11:54Z",
+  "content_type": "application/pdf",
+  "sha256": "4ae8c2a6e5df3cd58b4f2ef8712f5c47cb00812d2537d049ad2d53d6f3b6dbeb",
+  "file_size": 832144,
+  "stored_path": "acquired/files/statewide_ca_waterboards_construction_general_permit_order_2022_0057_dwq__STATEWIDE_CA-WaterBoards_Construction-General-Permit_Order-2022-0057-DWQ.pdf",
+  "page_title": null,
+  "discovered_pdf_links": [],
+  "notes": "",
+  "http_status": 200,
+  "redirect_chain": [
+    "https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-0057-dwq-with-attachments/cgp2022_order.pdf"
+  ],
+  "source_type_detected": "pdf"
+}

@@ -1,0 +1,25 @@
+- task_rule_key: swppp_weekly_active
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  cadence_code: weekly
+  trigger_rule: while(project.programs.swppp.active == true)
+- task_rule_key: swppp_pre_qpe
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  cadence_code: forecast_event
+  trigger_rule: when(forecast.qualifying_precipitation_event == true)
+- task_rule_key: swppp_annual_report
+  jurisdiction_key: ca_statewide
+  inspection_type_key: swppp_active_series
+  cadence_code: annual
+  trigger_rule: when(reporting_year.end_window_open == true)
+- task_rule_key: special_reporting_periodic
+  jurisdiction_key: ca_statewide
+  inspection_type_key: special_cbc17
+  cadence_code: weekly_or_project_defined
+  trigger_rule: when(project.special_inspections.active == true)
+- task_rule_key: dust_daily_active
+  jurisdiction_key: san_francisco
+  inspection_type_key: dust_sf
+  cadence_code: daily_when_active
+  trigger_rule: when(project.programs.dust_control.active == true)

@@ -1,0 +1,29 @@
+{
+  "yaml.schemas": {
+    "./schemas/task_manifest.schema.yaml": "tasks/*.yaml",
+    "./schemas/field_bindings.schema.yaml": "out/field_bindings/*.yaml",
+    "./schemas/pack_registry.schema.yaml": "out/pack_registry/*.yaml",
+    "./schemas/summary.schema.yaml": "out/summary/*.yaml"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["out/summary/*.json"],
+      "url": "./schemas/summary.schema.yaml"
+    }
+  ],
+  "chat.mcp.serverSampling": {
+    "mirror-pack-agent/.vscode/mcp.json: com.microsoft/azure": {
+      "allowedModels": [
+        "copilot/auto",
+        "claude-code/claude-haiku-4.5"
+      ]
+    }
+  },
+  "python-envs.pythonProjects": [
+    {
+      "path": ".vscode",
+      "envManager": "ms-python.python:venv",
+      "packageManager": "ms-python.python:pip"
+    }
+  ]
+}

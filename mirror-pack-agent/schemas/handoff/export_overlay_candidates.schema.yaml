@@ -1,0 +1,19 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required: [task_key, overlay_candidates]
+properties:
+  task_key: {type: string}
+  overlay_candidates:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [asset_key, classification, eligible_for_overlay, target_sections]
+      properties:
+        asset_key: {type: string}
+        classification: {type: string}
+        eligible_for_overlay: {type: boolean}
+        target_sections:
+          type: array
+          items: {type: string}

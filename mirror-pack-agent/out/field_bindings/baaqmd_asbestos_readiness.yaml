@@ -1,0 +1,156 @@
+task_key: baaqmd_asbestos_readiness
+
+canonical_field_sets:
+  - asbestos_project_scope
+  - asbestos_notice_readiness
+  - asbestos_date_lock
+  - asbestos_acknowledgment
+
+bindings:
+  - binding_key: asbestos_demolition_flag
+    canonical_field_key: project.asbestos.demolition_flag
+    packet_field_key: project_scope.demolition_flag
+    target_section_key: project_scope
+    target_field_key: demolition_flag
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[project_scope].items[demolition_flag];
+      BAAQMD rule: all demolitions require notification.
+    notes: Every demolition triggers j_ready stage.
+
+  - binding_key: asbestos_covered_renovation_flag
+    canonical_field_key: project.asbestos.covered_renovation_flag
+    packet_field_key: project_scope.covered_renovation_flag
+    target_section_key: project_scope
+    target_field_key: covered_renovation_flag
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[project_scope].items[covered_renovation_flag];
+      BAAQMD covered renovation requires notification for certain renovation types.
+    notes: ""
+
+  - binding_key: asbestos_residential_small_building_flag
+    canonical_field_key: project.asbestos.residential_small_building_flag
+    packet_field_key: project_scope.residential_small_building_flag
+    target_section_key: project_scope
+    target_field_key: residential_small_building_flag
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[project_scope].items[residential_small_building_flag]
+    notes: Small residential buildings may have exemptions; flag drives rule branching.
+
+  - binding_key: asbestos_j_number
+    canonical_field_key: project.asbestos.j_number
+    packet_field_key: notice.j_number
+    target_section_key: notice
+    target_field_key: j_number
+    status: mapped
+    transform: string
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[notice].items[j_number];
+      packet_rules.seed.yaml rule_key=asbestos.j_readiness requires j_number.
+    notes: Gate blocker BAAQMD_J_NOTICE_NOT_READY fires if missing.
+
+  - binding_key: asbestos_notice_submitted_at
+    canonical_field_key: project.asbestos.notice_submitted_at
+    packet_field_key: notice.notice_submitted_at
+    target_section_key: notice
+    target_field_key: notice_submitted_at
+    status: mapped
+    transform: iso8601_datetime
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[notice].items[notice_submitted_at];
+      BAAQMD requires submission at least 10 business days before demolition.
+    notes: Must validate >= 10 business days before work_start_date.
+
+  - binding_key: asbestos_work_start_date
+    canonical_field_key: project.asbestos.start_date
+    packet_field_key: notice.work_start_date
+    target_section_key: notice
+    target_field_key: work_start_date
+    status: mapped
+    transform: iso8601_date
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[notice].items[work_start_date];
+      packet_rules.seed.yaml rule_key=asbestos.j_readiness
+    notes: Bound as a hard schedule field; drift triggers date_revision stage warning.
+
+  - binding_key: asbestos_work_end_date
+    canonical_field_key: project.asbestos.end_date
+    packet_field_key: notice.work_end_date
+    target_section_key: notice
+    target_field_key: work_end_date
+    status: mapped
+    transform: iso8601_date
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[notice].items[work_end_date];
+      BAAQMD date revision advisory (contractors 2024) establishes revision obligations.
+    notes: Drift without revision action triggers BAAQMD_DATE_REVISION_REQUIRED warning.
+
+  - binding_key: asbestos_dates_confirmed_match_field_plan
+    canonical_field_key: project.asbestos.dates_confirmed_match_field_plan
+    packet_field_key: date_lock.dates_confirmed_match_field_plan
+    target_section_key: date_lock
+    target_field_key: dates_confirmed_match_field_plan
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[date_lock].items[dates_confirmed_match_field_plan]
+    notes: ""
+
+  - binding_key: asbestos_revision_required_if_changed
+    canonical_field_key: project.asbestos.revision_required_if_changed
+    packet_field_key: date_lock.revision_required_if_changed
+    target_section_key: date_lock
+    target_field_key: revision_required_if_changed
+    status: mapped
+    transform: boolean_computed
+    requiredness: conditional
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[date_lock].items[revision_required_if_changed];
+      packet_rules.seed.yaml rule_key=asbestos.date_revision
+    notes: Computed as true when project.asbestos.dates_changed=true.
+
+  - binding_key: asbestos_ack_letter_uploaded
+    canonical_field_key: project.asbestos.ack_letter_uploaded
+    packet_field_key: acknowledgment.ack_letter_uploaded
+    target_section_key: acknowledgment
+    target_field_key: ack_letter_uploaded
+    status: partial
+    transform: document_vault_reference
+    requiredness: required
+    evidence_basis: >
+      asbestos_baaqmd.manifest.yaml sections[acknowledgment].items[ack_letter_uploaded]
+    notes: >
+      Field binding partially resolved: the slot exists in the wizard manifest
+      and maps to a document vault upload. However, the exact format of the
+      BAAQMD acknowledgment letter (system-issued vs. scan) is unresolved.
+      Mark as partial pending format clarification.
+
+unresolved_bindings:
+  - binding_key: asbestos_ack_letter_format
+    canonical_field_key: project.asbestos.ack_letter_format
+    packet_field_key: acknowledgment.ack_letter_format
+    target_section_key: acknowledgment
+    target_field_key: ack_letter_format
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      BAAQMD issues an online acknowledgment via its notice portal. Whether the
+      system auto-downloads a PDF receipt, displays a confirmation number, or
+      requires a manual upload scan is not documented in the available source set.
+    notes: >
+      Contact BAAQMD compliance team or inspect the BAAQMD online notification portal
+      to determine the exact acknowledgment output format. Update after confirmation.

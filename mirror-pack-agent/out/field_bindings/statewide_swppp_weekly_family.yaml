@@ -1,0 +1,215 @@
+task_key: statewide_swppp_weekly_family
+
+canonical_field_sets:
+  - swppp_weekly_site_conditions
+  - swppp_weekly_bmp_controls
+  - swppp_weekly_documentation_presence
+  - swppp_weekly_deficiencies
+  - swppp_weekly_signoff
+
+bindings:
+  - binding_key: weekly_weather_summary
+    canonical_field_key: run.weather_summary
+    packet_field_key: site_conditions.weather_summary
+    target_section_key: site_conditions
+    target_field_key: weather_summary
+    status: mapped
+    transform: pass_through
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[site_conditions].items[weather_summary];
+      BMP Inspection 11-22-24.pdf shows a weather field at top of inspection form.
+    notes: Weather summary is a standard SWPPP weekly opening field.
+
+  - binding_key: weekly_active_disturbance_areas
+    canonical_field_key: run.site.active_disturbance_areas
+    packet_field_key: site_conditions.active_disturbance_areas
+    target_section_key: site_conditions
+    target_field_key: active_disturbance_areas
+    status: mapped
+    transform: text_or_structured_list
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[site_conditions].items[active_disturbance_areas]
+    notes: ""
+
+  - binding_key: weekly_runoff_risk
+    canonical_field_key: run.site.runoff_risk
+    packet_field_key: site_conditions.runoff_risk
+    target_section_key: site_conditions
+    target_field_key: runoff_risk
+    status: mapped
+    transform: enum_low_medium_high
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[site_conditions].items[runoff_risk];
+      CGP 2022-0057-DWQ drives documentation of runoff risk in field reports.
+    notes: ""
+
+  - binding_key: weekly_stabilized_entrance
+    canonical_field_key: run.bmp.stabilized_entrance
+    packet_field_key: bmp_controls.stabilized_entrance
+    target_section_key: bmp_controls
+    target_field_key: stabilized_entrance
+    status: mapped
+    transform: pass_fail_with_notes
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[bmp_controls].items[stabilized_entrance];
+      BMP Inspection 11-22-24.pdf shows BMP control line items with pass/fail.
+    notes: photo_on_fail gate applies per packet_rules.seed.yaml rule_key=swppp.weekly.photo_on_fail
+
+  - binding_key: weekly_perimeter_control
+    canonical_field_key: run.bmp.perimeter_control
+    packet_field_key: bmp_controls.perimeter_control
+    target_section_key: bmp_controls
+    target_field_key: perimeter_control
+    status: mapped
+    transform: pass_fail_with_notes
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[bmp_controls].items[perimeter_control]
+    notes: photo_on_fail gate applies.
+
+  - binding_key: weekly_sediment_control
+    canonical_field_key: run.bmp.sediment_control
+    packet_field_key: bmp_controls.sediment_control
+    target_section_key: bmp_controls
+    target_field_key: sediment_control
+    status: mapped
+    transform: pass_fail_with_notes
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[bmp_controls].items[sediment_control]
+    notes: photo_on_fail gate applies.
+
+  - binding_key: weekly_good_housekeeping
+    canonical_field_key: run.bmp.good_housekeeping
+    packet_field_key: bmp_controls.good_housekeeping
+    target_section_key: bmp_controls
+    target_field_key: good_housekeeping
+    status: mapped
+    transform: pass_fail_with_notes
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[bmp_controls].items[good_housekeeping]
+    notes: ""
+
+  - binding_key: weekly_swppp_onsite
+    canonical_field_key: run.docs.swppp_onsite
+    packet_field_key: documentation_presence.swppp_onsite
+    target_section_key: documentation_presence
+    target_field_key: swppp_onsite
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[documentation_presence].items[swppp_onsite];
+      packet_rules.seed.yaml rule_key=swppp.opening.requires_wdid_and_docs
+    notes: Confirmed per opening gate rule.
+
+  - binding_key: weekly_wdid_posted
+    canonical_field_key: run.docs.wdid_posted
+    packet_field_key: documentation_presence.wdid_posted
+    target_section_key: documentation_presence
+    target_field_key: wdid_posted
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[documentation_presence].items[wdid_posted]
+    notes: ""
+
+  - binding_key: weekly_training_roster_current
+    canonical_field_key: run.docs.training_roster_current
+    packet_field_key: documentation_presence.training_roster_current
+    target_section_key: documentation_presence
+    target_field_key: training_roster_current
+    status: mapped
+    transform: boolean_with_comment
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[documentation_presence].items[training_roster_current]
+    notes: ""
+
+  - binding_key: weekly_failed_items_issue
+    canonical_field_key: run.deficiencies.failed_items_issue_creation
+    packet_field_key: deficiencies.failed_items_issue_creation
+    target_section_key: deficiencies
+    target_field_key: failed_items_issue_creation
+    status: mapped
+    transform: issue_creation_reference
+    requiredness: conditional_on_fail
+    evidence_basis: >
+      swppp.manifest.yaml sections[deficiencies].items[failed_items_issue_creation]
+    notes: Must create issue record when any BMP item fails.
+
+  - binding_key: weekly_corrective_due_date
+    canonical_field_key: run.deficiencies.corrective_due_date
+    packet_field_key: deficiencies.corrective_due_date
+    target_section_key: deficiencies
+    target_field_key: corrective_due_date
+    status: mapped
+    transform: iso8601_date
+    requiredness: conditional_on_fail
+    evidence_basis: >
+      swppp.manifest.yaml sections[deficiencies].items[corrective_due_date]
+    notes: ""
+
+  - binding_key: weekly_inspector_signature
+    canonical_field_key: run.signoff.inspector_signature
+    packet_field_key: signoff.inspector_signature
+    target_section_key: signoff
+    target_field_key: inspector_signature
+    status: mapped
+    transform: digital_signature_or_name_string
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[signoff].items[inspector_signature]
+    notes: ""
+
+  - binding_key: weekly_inspection_timestamp
+    canonical_field_key: run.signoff.inspection_timestamp
+    packet_field_key: signoff.inspection_timestamp
+    target_section_key: signoff
+    target_field_key: inspection_timestamp
+    status: mapped
+    transform: iso8601_datetime
+    requiredness: required
+    evidence_basis: >
+      swppp.manifest.yaml sections[signoff].items[inspection_timestamp]
+    notes: ""
+
+unresolved_bindings:
+  - binding_key: weekly_bmp_item_detail_fields
+    canonical_field_key: run.bmp.item_level_detail
+    packet_field_key: bmp_controls.item_detail_narrative
+    target_section_key: bmp_controls
+    target_field_key: item_detail_narrative
+    status: unresolved
+    transform: unresolved
+    requiredness: unknown
+    evidence_basis: >
+      BMP Inspection 11-22-24.pdf suggests per-BMP-item narrative rows but exact
+      field schema is inferred from the example output only. No official blank form
+      with labeled field structure has been mirrored.
+    notes: >
+      Requires a blank official SWPPP weekly form from the governing authority or a
+      precise field map from the wizard engineering team. Currently only derivable
+      from example_output_only evidence.
+
+  - binding_key: weekly_photo_attachment_metadata
+    canonical_field_key: run.photos.attachment_metadata
+    packet_field_key: photos.attachment_metadata
+    target_section_key: photos
+    target_field_key: attachment_metadata
+    status: unresolved
+    transform: unresolved
+    requiredness: conditional_on_fail
+    evidence_basis: >
+      swppp.manifest.yaml sections[photos].items[photo_required_on_fail];
+      packet_rules.seed.yaml rule_key=swppp.weekly.photo_on_fail
+    notes: >
+      The gate rule definition is clear, but the exact metadata fields captured
+      per photo (GPS coordinates, timestamp, BMP reference tag) are not specified
+      in the available manifests. Needs wizard engineering specification.

@@ -1,0 +1,58 @@
+task_key: baaqmd_asbestos_readiness
+assets:
+- asset_key: asbestos_j_readiness_wizard_template
+  title: BAAQMD Asbestos J# Readiness Wizard Template (asbestos.j_readiness.v1)
+  classification: direct_mirror
+  acquisition_state: direct_mirror_downloaded
+  direct_mirror_candidate: true
+  fallback_behavior: use_as_canonical_template
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: baaqmd_asbestos_permit_program_page
+  title: BAAQMD Asbestos Program Requirements (Online)
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: baaqmd_asbestos_compliance_tips_flowchart
+  title: BAAQMD Asbestos Compliance Tips and Demolition Flowchart
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: medium
+  completeness_rating: partial
+- asset_key: baaqmd_date_revision_advisory_contractors
+  title: BAAQMD Online Asbestos Notifications Advisory for Contractors
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: medium
+  completeness_rating: partial
+- asset_key: baaqmd_date_revision_gate_rule
+  title: BAAQMD Date Revision Stage Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_warning_gate
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: baaqmd_j_readiness_gate_rule
+  title: BAAQMD J# Readiness Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: baaqmd_ack_letter_slot
+  title: BAAQMD Acknowledgment Letter Upload Slot
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: block_until_defined
+  confidence_band: low
+  completeness_rating: partial

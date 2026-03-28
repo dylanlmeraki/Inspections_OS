@@ -1,0 +1,57 @@
+template_key: swppp.weekly.v1
+family: swppp
+surface_modes:
+- mobile_field_runner
+- desktop_tablet
+jurisdiction_scope:
+- ca_statewide
+inspection_type_key: swppp_active_series
+stage_code: swppp.weekly
+display_name: SWPPP Weekly Inspection
+wizard:
+  project_step: select_or_create_project
+  program_step: activate_swppp_program_if_needed
+  stage_step: confirm_stage_from_task_or_manual_selection
+  guided_sections:
+  - site_conditions
+  - bmp_controls
+  - documentation_presence
+  - deficiencies
+  - photos
+  - signoff
+  - gate_preview
+sections:
+- code: site_conditions
+  title: Site Conditions
+  items:
+  - weather_summary
+  - active_disturbance_areas
+  - runoff_risk
+- code: bmp_controls
+  title: BMP Controls
+  items:
+  - stabilized_entrance
+  - perimeter_control
+  - sediment_control
+  - good_housekeeping
+- code: documentation_presence
+  title: Documentation Presence
+  items:
+  - swppp_onsite
+  - wdid_posted
+  - training_roster_current
+- code: deficiencies
+  title: Deficiencies and Actions
+  items:
+  - failed_items_issue_creation
+  - corrective_due_date
+- code: photos
+  title: Photo Evidence
+  items:
+  - photo_required_on_fail
+- code: signoff
+  title: Inspector Signoff
+  items:
+  - inspector_signature
+  - inspection_timestamp
+export_profile: compliance_packet

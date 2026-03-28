@@ -1,0 +1,108 @@
+task_key: contra_costa_special_pre_permit
+
+canonical_field_sets:
+  - special_pre_permit_cover
+  - special_pre_permit_agency
+  - special_pre_permit_jurisdiction
+
+bindings:
+  - binding_key: contra_costa_cover_form_key
+    canonical_field_key: project.special_inspections.cover_form_key
+    packet_field_key: pre_permit.cover_form_key
+    target_section_key: jurisdiction_requirements
+    target_field_key: cover_form_key
+    status: partial
+    transform: form_key_from_jurisdiction
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.pre_permit.requires_cover_and_agency:
+      requires project.special_inspections.cover_form_key;
+      source_record_key: county_contra_costa_special_inspections_program_and_recognized_agencies;
+      for unincorporated Contra Costa: cover form key is unresolved (no county form mirrored).
+      For Walnut Creek: city_walnut_creek_special_inspection_and_observation_program.
+    notes: >
+      Partially resolved for Walnut Creek sub-jurisdiction. Fully unresolved for
+      unincorporated Contra Costa County. Must route based on project location.
+
+  - binding_key: contra_costa_agency_name
+    canonical_field_key: project.special_inspections.agency_name
+    packet_field_key: pre_permit.agency_name
+    target_section_key: agency_selection
+    target_field_key: agency_name
+    status: partial
+    transform: lookup_from_agencies_list
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.contra.requires_recognized_agency;
+      form_record: county_contra_costa_special_inspections_program_and_recognized_agencies;
+      source PDF is present but at 4.3 KB may not contain a complete machine-readable list.
+    notes: >
+      The lookup source exists (the PDF) but its machine-readable structure is
+      unconfirmed. If the PDF is a narrative reference page rather than a complete
+      firms list, a separate structured agencies list must be obtained.
+
+  - binding_key: contra_costa_selected_agency_confirmed
+    canonical_field_key: project.special_inspections.selected_agency
+    packet_field_key: pre_permit.selected_agency
+    target_section_key: agency_selection
+    target_field_key: selected_agency
+    status: partial
+    transform: selection_from_recognized_list
+    requiredness: required
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=special.contra.requires_recognized_agency:
+      CONTRA_SPECIAL_AGENCY_NOT_SELECTED blocker fires until field is set.
+    notes: Status is partial because the recognized list completeness is unconfirmed.
+
+unresolved_bindings:
+  - binding_key: contra_costa_unincorporated_cover_form
+    canonical_field_key: project.special_inspections.unincorporated_cover_form
+    packet_field_key: pre_permit.unincorporated_cover_form
+    target_section_key: jurisdiction_requirements
+    target_field_key: unincorporated_cover_form
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      No form for unincorporated Contra Costa County special inspection statement
+      is present in the source set. The Contra Costa recognized agencies PDF (4.3 KB)
+      does not appear to be a fillable cover form.
+    notes: >
+      Acquire a Contra Costa County Building Inspection Division special inspection
+      statement/cover form PDF from the county building department directly.
+
+  - binding_key: contra_costa_agencies_list_machine_readable
+    canonical_field_key: project.special_inspections.agencies_list
+    packet_field_key: pre_permit.agencies_list
+    target_section_key: agency_selection
+    target_field_key: agencies_list
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      The provided PDF ([COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies (1).pdf,
+      4313 bytes) is physically present but at 4.3 KB is too small to be a complete
+      structured agencies list. The actual recognized agencies firms list with name,
+      certification level, and contact details is not confirmed present.
+    notes: >
+      Retrieve the complete recognized agencies list from the Contra Costa Building
+      Inspection Division website. If a machine-readable version (CSV, table) is
+      available, prefer that. Otherwise parse from the full PDF if one exists.
+
+  - binding_key: contra_costa_city_vs_county_routing
+    canonical_field_key: project.jurisdiction.city_or_unincorporated
+    packet_field_key: pre_permit.city_or_unincorporated
+    target_section_key: jurisdiction_requirements
+    target_field_key: city_or_unincorporated
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      form_records.seed.yaml: county_contra_costa_county_vs_city_special_inspections_coverage_note
+      (verification_status: gap-note). The gap between county and city paths is explicitly
+      documented as a coverage note but not resolved.
+    notes: >
+      Project intake must determine whether the project address is within an
+      incorporated city (use city-specific form) or unincorporated county land
+      (use county form — currently unresolved). Jurisdiction resolver logic must
+      be implemented with city boundary lookup data.

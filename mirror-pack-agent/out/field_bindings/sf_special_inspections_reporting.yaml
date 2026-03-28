@@ -1,0 +1,205 @@
+task_key: sf_special_inspections_reporting
+
+canonical_field_sets:
+  - special_reporting_jurisdiction_requirements
+  - special_reporting_inspection_events
+  - special_reporting_nonconformance
+  - special_reporting_distribution
+  - special_reporting_signature_footer
+
+bindings:
+  - binding_key: sf_cover_form_reference
+    canonical_field_key: run.jurisdiction_requirements.cover_form_reference
+    packet_field_key: jurisdiction_requirements.cover_form_reference
+    target_section_key: jurisdiction_requirements
+    target_field_key: cover_form_reference
+    status: mapped
+    transform: document_vault_reference
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[jurisdiction_requirements].items[cover_form_reference];
+      form_records.seed.yaml: city_san_francisco_dbi_special_inspection_and_structural_observation_form_2025
+      as cover_form.
+    notes: References the SF DBI 2025 cover form document slot.
+
+  - binding_key: sf_recognized_agency_reference
+    canonical_field_key: run.jurisdiction_requirements.recognized_agency_reference
+    packet_field_key: jurisdiction_requirements.recognized_agency_reference
+    target_section_key: jurisdiction_requirements
+    target_field_key: recognized_agency_reference
+    status: mapped
+    transform: lookup_from_approved_agencies_list
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[jurisdiction_requirements].items[recognized_agency_reference];
+      packet_rules.seed.yaml rule_key=special.pre_permit.requires_cover_and_agency
+    notes: SF uses COI requirement as recognized agency control.
+
+  - binding_key: sf_coi_requirement_if_applicable
+    canonical_field_key: run.jurisdiction_requirements.coi_requirement_if_applicable
+    packet_field_key: jurisdiction_requirements.coi_requirement_if_applicable
+    target_section_key: jurisdiction_requirements
+    target_field_key: coi_requirement_if_applicable
+    status: mapped
+    transform: boolean_flag_from_jurisdiction
+    requiredness: required_when_sf
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[jurisdiction_requirements].items[coi_requirement_if_applicable];
+      packet_rules.seed.yaml rule_key=special.sf.requires_coi_language;
+      SF DBI inspection services page (effective 2024-02-05).
+    notes: Computed true for all SF jurisdiction projects.
+
+  - binding_key: sf_report_system_or_trade
+    canonical_field_key: run.inspection_events.system_or_trade
+    packet_field_key: inspection_events.system_or_trade
+    target_section_key: inspection_events
+    target_field_key: system_or_trade
+    status: mapped
+    transform: string_or_enum
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[inspection_events].items[system_or_trade]
+    notes: "Examples: concrete, masonry, structural steel, welding, soils."
+
+  - binding_key: sf_report_location
+    canonical_field_key: run.inspection_events.location
+    packet_field_key: inspection_events.location
+    target_section_key: inspection_events
+    target_field_key: location
+    status: mapped
+    transform: string
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[inspection_events].items[location]
+    notes: ""
+
+  - binding_key: sf_report_finding_summary
+    canonical_field_key: run.inspection_events.finding_summary
+    packet_field_key: inspection_events.finding_summary
+    target_section_key: inspection_events
+    target_field_key: finding_summary
+    status: mapped
+    transform: text
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[inspection_events].items[finding_summary]
+    notes: ""
+
+  - binding_key: sf_ncr_flag
+    canonical_field_key: run.nonconformance.ncr_flag
+    packet_field_key: nonconformance.ncr_flag
+    target_section_key: nonconformance
+    target_field_key: ncr_flag
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[nonconformance].items[ncr_flag]
+    notes: ""
+
+  - binding_key: sf_ncr_description
+    canonical_field_key: run.nonconformance.ncr_description
+    packet_field_key: nonconformance.ncr_description
+    target_section_key: nonconformance
+    target_field_key: ncr_description
+    status: mapped
+    transform: text
+    requiredness: conditional_on_ncr_flag
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[nonconformance].items[ncr_description]
+    notes: Required when ncr_flag=true.
+
+  - binding_key: sf_issue_creation
+    canonical_field_key: run.nonconformance.issue_creation
+    packet_field_key: nonconformance.issue_creation
+    target_section_key: nonconformance
+    target_field_key: issue_creation
+    status: mapped
+    transform: issue_reference
+    requiredness: conditional_on_ncr_flag
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[nonconformance].items[issue_creation]
+    notes: ""
+
+  - binding_key: sf_distributed_to_owner
+    canonical_field_key: run.distribution.distributed_to_owner
+    packet_field_key: distribution.distributed_to_owner
+    target_section_key: distribution
+    target_field_key: distributed_to_owner
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[distribution].items[distributed_to_owner]
+    notes: ""
+
+  - binding_key: sf_distributed_to_engineer
+    canonical_field_key: run.distribution.distributed_to_engineer
+    packet_field_key: distribution.distributed_to_engineer
+    target_section_key: distribution
+    target_field_key: distributed_to_engineer
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[distribution].items[distributed_to_engineer]
+    notes: ""
+
+  - binding_key: sf_distributed_to_ahj
+    canonical_field_key: run.distribution.distributed_to_ahj_if_required
+    packet_field_key: distribution.distributed_to_ahj_if_required
+    target_section_key: distribution
+    target_field_key: distributed_to_ahj_if_required
+    status: mapped
+    transform: boolean
+    requiredness: conditional_on_ncr
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[distribution].items[distributed_to_ahj_if_required]
+    notes: Required when NCR is issued or when SF DBI requires notification.
+
+  - binding_key: sf_inspector_signature
+    canonical_field_key: run.signature_footer.inspector_signature
+    packet_field_key: signature_footer.inspector_signature
+    target_section_key: signature_footer
+    target_field_key: inspector_signature
+    status: mapped
+    transform: digital_signature_or_name_string
+    requiredness: required
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[signature_footer].items[inspector_signature]
+    notes: ""
+
+  - binding_key: sf_coi_footer_text
+    canonical_field_key: run.signature_footer.coi_footer_if_sf
+    packet_field_key: signature_footer.coi_footer_if_sf
+    target_section_key: signature_footer
+    target_field_key: coi_footer_if_sf
+    status: mapped
+    transform: static_text_injection_sf_jurisdiction
+    requiredness: required_when_sf
+    evidence_basis: >
+      special_inspections.manifest.yaml sections[signature_footer].items[coi_footer_if_sf];
+      source_record: city_san_francisco_dbi_special_inspections_conflict_of_interest_attestation;
+      effective_date: 2024-02-05; verified-direct.
+    notes: >
+      Inject the SF DBI-mandated COI attestation language beneath the signature line.
+      Gate rule (SF_COI_ATTESTATION_MISSING) blocks submission if absent.
+
+unresolved_bindings:
+  - binding_key: sf_coi_attestation_exact_text
+    canonical_field_key: run.signature_footer.coi_attestation_verbatim_text
+    packet_field_key: signature_footer.coi_attestation_verbatim_text
+    target_section_key: signature_footer
+    target_field_key: coi_attestation_verbatim_text
+    status: unresolved
+    transform: unresolved
+    requiredness: required
+    evidence_basis: >
+      The SF DBI inspection services page confirms that COI attestation language
+      is required and effective 2024-02-05, but the exact verbatim text of the
+      attestation language is not present in the available source set. Only the
+      source_url and requirement statement are known.
+    notes: >
+      Fetch the SF DBI inspection services page directly to extract the exact
+      COI attestation language. The text must be stored verbatim in the product
+      for injection into report footers. Do not approximate or paraphrase.

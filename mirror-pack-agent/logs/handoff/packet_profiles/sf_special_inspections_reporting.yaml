@@ -1,0 +1,40 @@
+task_key: sf_special_inspections_reporting
+jurisdiction_keys:
+- san_francisco
+inspection_type_keys:
+- special_cbc17
+workflow_stage_codes:
+- special.reporting
+packet_roles_present:
+- inspection_template
+- cover_form
+- process_note
+- coi_requirement
+- gate_rule
+fallback_behavior: 'For source_reference_only assets, expose verified source URLs
+  as vault references with annual revision monitoring. The COI attestation is enforced
+  as a gate rule on every SF report submission. The reporting wizard template is fully
+  defined.
+
+  '
+readiness_score:
+  score_0_to_100: 85
+  direct_mirror_present: true
+  authoritative_source_present: true
+  field_map_completeness: complete
+  stage_completeness: complete
+  export_readiness: fallback_ready
+  unresolved_blockers:
+  - "SF COI attestation verbatim text not yet extracted \u2014 exact text must be\
+    \ retrieved from SF DBI inspection services page and stored as a versioned product\
+    \ constant before gate can be enforced in text-verification mode"
+  - "SF DBI cover form and process PDF not locally mirrored \u2014 source_reference_only;\
+    \ vault URL references acceptable for MVP"
+  - "SF DBI weekly report form existence unconfirmed \u2014 query needed to determine\
+    \ if AHJ-issued weekly form is required or firm-generated with COI footer is acceptable"
+source_asset_keys:
+- sf_special_reporting_wizard_template
+- sf_dbi_special_inspection_form_2025
+- sf_dbi_special_inspections_process_2025
+- sf_dbi_coi_attestation_requirement
+- sf_coi_gate_rule

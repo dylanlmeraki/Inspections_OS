@@ -1,0 +1,30 @@
+task_key: baaqmd_asbestos_readiness
+overlay_candidates:
+- asset_key: asbestos_j_readiness_wizard_template
+  classification: direct_mirror
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: baaqmd_asbestos_permit_program_page
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: baaqmd_asbestos_compliance_tips_flowchart
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: baaqmd_date_revision_advisory_contractors
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: baaqmd_date_revision_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: baaqmd_j_readiness_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: baaqmd_ack_letter_slot
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []

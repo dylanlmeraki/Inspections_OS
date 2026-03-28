@@ -1,0 +1,58 @@
+task_key: sf_dust_control_monitoring
+assets:
+- asset_key: sf_dust_monitoring_wizard_template
+  title: San Francisco Dust Control Monitoring Log Wizard Template (dust.sf.monitoring.v1)
+  classification: direct_mirror
+  acquisition_state: direct_mirror_downloaded
+  direct_mirror_candidate: true
+  fallback_behavior: use_as_canonical_template
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: sf_dph_dust_control_plan_submission
+  title: San Francisco Dust Control Plan Submission Guidance
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: sf_dph_dust_control_overview_pdf
+  title: San Francisco DPH Dust Control Overview and Requirements PDF
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: medium
+  completeness_rating: partial
+- asset_key: sf_dust_applicability_gate_rule
+  title: SF Dust Control Applicability Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: sf_dust_plan_required_gate_rule
+  title: SF Dust Control Plan Required Gate Rule
+  classification: trigger_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: enforce_as_gate_constraint
+  confidence_band: high
+  completeness_rating: partial
+- asset_key: sf_dust_article_22b_requirements
+  title: San Francisco Dust Control Article 22B Requirements
+  classification: source_reference_only
+  acquisition_state: source_reference_verified
+  direct_mirror_candidate: false
+  fallback_behavior: expose_source_url_as_vault_reference
+  confidence_band: medium
+  completeness_rating: partial
+- asset_key: sf_dust_monitoring_checklist_blank
+  title: SF DPH Dust Control Monitoring Checklist (Blank Form)
+  classification: unresolved
+  acquisition_state: unresolved
+  direct_mirror_candidate: false
+  fallback_behavior: block_until_confirmed
+  confidence_band: low
+  completeness_rating: partial

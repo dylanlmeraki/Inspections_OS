@@ -1,0 +1,143 @@
+task_key: sf_special_inspections_reporting
+
+jurisdiction_keys:
+  - san_francisco
+
+inspection_type_keys:
+  - special_cbc17
+
+workflow_stage_codes:
+  - special.reporting
+
+pack_families:
+  - special_inspections
+
+asset_entries:
+  - asset_key: sf_special_reporting_wizard_template
+    title: Special Inspections Weekly Report Wizard Template (special.reporting.weekly.v1)
+    classification: direct_mirror
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.reporting
+    packet_roles:
+      - inspection_template
+    source_evidence:
+      - source_file: docs/source_set/manifests/special_inspections.manifest.yaml
+      - template_key: special.reporting.weekly.v1
+      - export_profile: compliance_packet
+    direct_mirror_candidate: true
+    fallback_behavior: use_as_canonical_template
+    confidence: high
+    notes: >
+      Wizard manifest is fully defined. Sections: jurisdiction_requirements,
+      inspection_events, nonconformance, distribution, signature_footer,
+      gate_preview. The SF-specific coi_footer_if_sf item in signature_footer
+      directly encodes the SF conflict-of-interest attestation requirement.
+
+  - asset_key: sf_dbi_special_inspection_form_2025
+    title: San Francisco Special Inspection and Structural Observation Form (2025)
+    classification: source_reference_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.reporting
+    packet_roles:
+      - cover_form
+    source_evidence:
+      - source_record_key: city_san_francisco_dbi_special_inspection_and_structural_observation_form_2025
+      - source_url: https://media.api.sf.gov/documents/Special_Inspection_and_Structural_Observation_Form_2025.pdf
+      - verification_status: verified-direct
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: high
+    notes: >
+      This is the SF DBI official cover form for special inspections. URL is
+      verified-direct. No local mirrored PDF in the bundle. Must be mirrored with
+      hash tracking since SF updates annually. For weekly reporting stage, this
+      form is primarily referenced to confirm cover form completeness, not re-filled.
+
+  - asset_key: sf_dbi_special_inspections_process_2025
+    title: San Francisco DBI Special Inspections Process (2025)
+    classification: source_reference_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.reporting
+    packet_roles:
+      - process_note
+    source_evidence:
+      - source_record_key: city_san_francisco_dbi_special_inspections_process_2025
+      - source_url: https://media.api.sf.gov/documents/Special_Inspections_Process_2025.pdf
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: medium
+    notes: >
+      Core SF special-inspections process reference. Governs statement, reporting,
+      and final compliance sequence. Pairs with COI attestation for report submission.
+
+  - asset_key: sf_dbi_coi_attestation_requirement
+    title: San Francisco Special Inspections Conflict of Interest Attestation Requirement
+    classification: recognition_control_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.reporting
+    packet_roles:
+      - coi_requirement
+    source_evidence:
+      - source_record_key: city_san_francisco_dbi_special_inspections_conflict_of_interest_attestation
+      - source_url: https://www.sf.gov/departments/department-building-inspection/inspection-services
+      - verification_status: verified-direct
+      - effective_date: "2024-02-05"
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_report_footer_gate
+    confidence: high
+    notes: >
+      SF DBI page states: COI attestation language must appear beneath the signature
+      line of every special inspection report submission, effective 2024-02-05.
+      This is a recognition/attestation control. The gate rule
+      (packet_rules=special.sf.requires_coi_language) enforces this as a blocker.
+      Mapped to signature_footer.coi_footer_if_sf in the wizard template.
+
+  - asset_key: sf_coi_gate_rule
+    title: SF COI Attestation Report Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - special_cbc17
+    workflow_stage_scope:
+      - special.reporting
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: special.sf.requires_coi_language
+      - blocker_code: SF_COI_ATTESTATION_MISSING
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Blocker: special_report.signature_footer_contains_coi_attestation must be
+      true for all SF special inspection report submissions.
+
+packet_roles_present:
+  - inspection_template
+  - cover_form
+  - process_note
+  - coi_requirement
+  - gate_rule
+
+fallback_behavior: >
+  For source_reference_only assets, expose verified source URLs as vault references
+  with annual revision monitoring. The COI attestation is enforced as a gate rule
+  on every SF report submission. The reporting wizard template is fully defined.
+
+completeness_rating: partial
+
+unresolved_count: 1

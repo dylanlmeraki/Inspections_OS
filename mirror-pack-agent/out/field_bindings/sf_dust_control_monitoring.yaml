@@ -1,0 +1,179 @@
+task_key: sf_dust_control_monitoring
+
+canonical_field_sets:
+  - dust_sf_applicability
+  - dust_sf_approved_plan
+  - dust_sf_controls
+  - dust_sf_receptor_observations
+
+bindings:
+  - binding_key: dust_sf_disturbed_acres
+    canonical_field_key: project.site.disturbed_acres
+    packet_field_key: applicability.disturbed_acres
+    target_section_key: applicability
+    target_field_key: disturbed_acres
+    status: mapped
+    transform: decimal_acres
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[applicability].items[disturbed_acres];
+      packet_rules.seed.yaml rule_key=dust.sf.applicability: plan_required when >0.5 acres.
+    notes: Threshold 0.5 acres is the SF DPH trigger for plan requirement.
+
+  - binding_key: dust_sf_sensitive_receptors
+    canonical_field_key: project.site.sensitive_receptors_within_1000ft
+    packet_field_key: applicability.sensitive_receptors_within_1000ft
+    target_section_key: applicability
+    target_field_key: sensitive_receptors_within_1000ft
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[applicability].items[sensitive_receptors_within_1000ft];
+      source_record: city_san_francisco_dph_dust_control_plan_submission: threshold 1000ft
+    notes: ""
+
+  - binding_key: dust_sf_plan_required_computed
+    canonical_field_key: project.programs.dust_control.plan_required
+    packet_field_key: applicability.plan_required
+    target_section_key: applicability
+    target_field_key: plan_required
+    status: mapped
+    transform: computed_boolean
+    requiredness: computed
+    evidence_basis: >
+      packet_rules.seed.yaml rule_key=dust.sf.applicability:
+      plan_required = disturbed_acres > 0.5 AND sensitive_receptors_within_1000ft == true
+    notes: Computed field. Not user-entered directly.
+
+  - binding_key: dust_sf_approved_plan_uploaded
+    canonical_field_key: project.programs.dust_control.approved_plan_uploaded
+    packet_field_key: approved_plan_reference.approved_plan_uploaded
+    target_section_key: approved_plan_reference
+    target_field_key: approved_plan_uploaded
+    status: mapped
+    transform: document_vault_reference
+    requiredness: required_when_plan_required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[approved_plan_reference].items[approved_plan_uploaded];
+      packet_rules.seed.yaml rule_key=dust.sf.plan_required blocker=SF_DUST_PLAN_NOT_UPLOADED
+    notes: Gate blocks monitoring stage until plan is uploaded.
+
+  - binding_key: dust_sf_plan_revision
+    canonical_field_key: project.programs.dust_control.plan_revision
+    packet_field_key: approved_plan_reference.plan_revision
+    target_section_key: approved_plan_reference
+    target_field_key: plan_revision
+    status: mapped
+    transform: string_version
+    requiredness: optional
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[approved_plan_reference].items[plan_revision]
+    notes: Captures plan version/revision number.
+
+  - binding_key: dust_sf_watering
+    canonical_field_key: run.controls.watering
+    packet_field_key: controls.watering
+    target_section_key: controls
+    target_field_key: watering
+    status: mapped
+    transform: boolean_with_frequency_note
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[controls].items[watering]
+    notes: ""
+
+  - binding_key: dust_sf_trackout
+    canonical_field_key: run.controls.trackout
+    packet_field_key: controls.trackout
+    target_section_key: controls
+    target_field_key: trackout
+    status: mapped
+    transform: boolean_with_notes
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[controls].items[trackout]
+    notes: ""
+
+  - binding_key: dust_sf_stockpile_covering
+    canonical_field_key: run.controls.stockpile_covering
+    packet_field_key: controls.stockpile_covering
+    target_section_key: controls
+    target_field_key: stockpile_covering
+    status: mapped
+    transform: boolean_with_notes
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[controls].items[stockpile_covering]
+    notes: ""
+
+  - binding_key: dust_sf_stop_work_if_needed
+    canonical_field_key: run.controls.stop_work_if_needed
+    packet_field_key: controls.stop_work_if_needed
+    target_section_key: controls
+    target_field_key: stop_work_if_needed
+    status: mapped
+    transform: boolean
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[controls].items[stop_work_if_needed]
+    notes: Must be logged; triggers issue creation if true.
+
+  - binding_key: dust_sf_visible_dust
+    canonical_field_key: run.receptor_observations.visible_dust
+    packet_field_key: receptor_observations.visible_dust
+    target_section_key: receptor_observations
+    target_field_key: visible_dust
+    status: mapped
+    transform: boolean_with_description
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[receptor_observations].items[visible_dust]
+    notes: ""
+
+  - binding_key: dust_sf_complaints_received
+    canonical_field_key: run.receptor_observations.complaints_received
+    packet_field_key: receptor_observations.complaints_received
+    target_section_key: receptor_observations
+    target_field_key: complaints_received
+    status: mapped
+    transform: boolean_with_narrative
+    requiredness: required
+    evidence_basis: >
+      dust_control_sf.manifest.yaml sections[receptor_observations].items[complaints_received]
+    notes: ""
+
+unresolved_bindings:
+  - binding_key: dust_sf_article_22b_source_url
+    canonical_field_key: program.dust_control.regulatory_basis_url
+    packet_field_key: applicability.regulatory_basis_url
+    target_section_key: applicability
+    target_field_key: regulatory_basis_url
+    status: unresolved
+    transform: unresolved
+    requiredness: informational
+    evidence_basis: >
+      form_records.seed.yaml references city_san_francisco_dust_control_article_22b_requirements
+      as a source record, but no source_url appears in the available portion of
+      source_records.seed.yaml reviewed. The Article 22B regulatory basis URL must be
+      retrieved and added to the vault reference.
+    notes: >
+      Search SF environment code for Article 22B or query SF DPH directly to
+      obtain the canonical regulatory basis URL. This is informational for display,
+      not an execution blocker.
+
+  - binding_key: dust_sf_monitoring_form_format
+    canonical_field_key: run.monitoring_form_format
+    packet_field_key: monitoring.form_format
+    target_section_key: monitoring
+    target_field_key: form_format
+    status: unresolved
+    transform: unresolved
+    requiredness: unknown
+    evidence_basis: >
+      No SF DPH-issued monitoring checklist form has been identified in the source set.
+      The wizard template provides a product-native monitoring log, but whether the
+      AHJ requires a specific prescribed form is unconfirmed.
+    notes: >
+      Query SF DPH to confirm whether a specific monitoring log form is required or
+      whether the product-native wizard report satisfies the monitoring documentation requirement.

@@ -1,0 +1,35 @@
+{
+  "task_key": "statewide_swppp_weekly_family",
+  "pack_family_count": 1,
+  "asset_count": 5,
+  "direct_mirror_count": 1,
+  "source_reference_only_count": 2,
+  "trigger_only_count": 1,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 1,
+  "unresolved_count": 2,
+  "completeness_rating": "partial",
+  "blocker_items": [
+    "CGP governing order PDF not locally mirrored — classified source_reference_only; vault reference acceptable for MVP but full mirror needed for offline export",
+    "BMP item-level detail field schema unresolved — wizard engineering spec required before binding can be finalized",
+    "Photo attachment metadata fields unresolved — wizard engineering spec required"
+  ],
+  "classification_notes": {
+    "direct_mirror_assets": [
+      "swppp_weekly_wizard_template"
+    ],
+    "source_reference_only_assets": [
+      "cgp_2022_governing_order",
+      "cgp_d1_risk_worksheet"
+    ],
+    "trigger_only_assets": [
+      "swppp_weekly_photo_on_fail_rule"
+    ],
+    "recognition_control_only_assets": [],
+    "example_output_only_assets": [
+      "mosswood_bmp_inspection_example"
+    ],
+    "unresolved_assets": [],
+    "note": "Auto-derived from pack_registry classifications to preserve scope-level summary notes."
+  }
+}

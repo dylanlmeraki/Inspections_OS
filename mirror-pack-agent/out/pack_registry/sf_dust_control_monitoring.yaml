@@ -1,0 +1,183 @@
+task_key: sf_dust_control_monitoring
+
+jurisdiction_keys:
+  - san_francisco
+
+inspection_type_keys:
+  - dust_sf
+
+workflow_stage_codes:
+  - dust.applicability
+  - dust.plan_approval
+  - dust.monitoring
+
+pack_families:
+  - dust_control
+
+asset_entries:
+  - asset_key: sf_dust_monitoring_wizard_template
+    title: San Francisco Dust Control Monitoring Log Wizard Template (dust.sf.monitoring.v1)
+    classification: direct_mirror
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.monitoring
+    packet_roles:
+      - inspection_template
+    source_evidence:
+      - source_file: docs/source_set/manifests/dust_control_sf.manifest.yaml
+      - template_key: dust.sf.monitoring.v1
+      - export_profile: compliance_packet
+    direct_mirror_candidate: true
+    fallback_behavior: use_as_canonical_template
+    confidence: high
+    notes: >
+      Wizard manifest fully defined. Sections: applicability, approved_plan_reference,
+      controls, receptor_observations, photos, gate_preview. Covers dust.monitoring stage.
+
+  - asset_key: sf_dph_dust_control_plan_submission
+    title: San Francisco Dust Control Plan Submission Guidance
+    classification: source_reference_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.applicability
+      - dust.plan_approval
+    packet_roles:
+      - approval_submission
+    source_evidence:
+      - source_record_key: city_san_francisco_dph_dust_control_plan_submission
+      - source_url: https://www.sf.gov/submit-dust-control-plan
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: high
+    notes: >
+      SF DPH: projects >0.5 acre with sensitive receptors within 1,000 ft must
+      submit a site-specific dust control plan before construction begins.
+      This gate drives applicability and plan_approval stages.
+
+  - asset_key: sf_dph_dust_control_overview_pdf
+    title: San Francisco DPH Dust Control Overview and Requirements PDF
+    classification: source_reference_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.applicability
+      - dust.monitoring
+    packet_roles:
+      - requirements_detail
+    source_evidence:
+      - source_record_key: city_san_francisco_dph_dust_control_overview_and_requirements
+      - source_url: https://www.sf.gov/sites/default/files/2024-03/Dust%20Control%20--%20Department%20of%20Public%20Health.pdf
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: medium
+    notes: >
+      DPH PDF explains SF agency roles (DBI, DPW, DPH) and plan requirements.
+      Useful for wizard display text. No local mirror present.
+
+  - asset_key: sf_dust_applicability_gate_rule
+    title: SF Dust Control Applicability Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.applicability
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: dust.sf.applicability
+      - blocker_code: SF_DUST_APPLICABILITY_NOT_RESOLVED
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Computes: plan_required = (disturbed_acres > 0.5) AND
+      (sensitive_receptors_within_1000ft = true). Must resolve before advancing.
+
+  - asset_key: sf_dust_plan_required_gate_rule
+    title: SF Dust Control Plan Required Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.plan_approval
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: dust.sf.plan_required
+      - blocker_code: SF_DUST_PLAN_NOT_UPLOADED
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Blocker: when plan_required=true, approved dust control plan must be
+      uploaded to the document vault before advancing to monitoring.
+
+  - asset_key: sf_dust_article_22b_requirements
+    title: San Francisco Dust Control Article 22B Requirements
+    classification: source_reference_only
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.applicability
+    packet_roles:
+      - requirements_detail
+    source_evidence:
+      - source_record_key: city_san_francisco_dust_control_article_22b_requirements
+      - form_record: city_san_francisco_dust_control_article_22b_requirements
+      - verification_status: verified-indirect
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: medium
+    notes: >
+      Article 22B is the regulatory basis for SF dust control requirements.
+      Found in form_records seed but no direct source_url was captured in
+      the available evidence. Classified source_reference_only pending URL retrieval.
+
+  - asset_key: sf_dust_monitoring_checklist_blank
+    title: SF DPH Dust Control Monitoring Checklist (Blank Form)
+    classification: unresolved
+    jurisdiction_scope: san_francisco
+    inspection_type_scope:
+      - dust_sf
+    workflow_stage_scope:
+      - dust.monitoring
+    packet_roles:
+      - inspection_form
+    source_evidence: []
+    direct_mirror_candidate: false
+    fallback_behavior: block_until_confirmed
+    confidence: low
+    notes: >
+      It is unclear whether SF DPH issues a specific prescribed monitoring
+      checklist form or whether the product-native wizard report satisfies
+      monitoring documentation requirements. No blank DPH monitoring form
+      appears in the source set. The wizard template covers the monitoring
+      stage but the AHJ-required format is unconfirmed.
+
+packet_roles_present:
+  - inspection_template
+  - approval_submission
+  - requirements_detail
+  - gate_rule
+  - inspection_form
+
+fallback_behavior: >
+  For source_reference_only assets, expose verified source URLs as vault references.
+  The monitoring wizard template is fully defined. The applicability and plan_approval
+  stage gates are defined. If plan is required and not uploaded, block advancement.
+
+completeness_rating: partial
+
+unresolved_count: 1

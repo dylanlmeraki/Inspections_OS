@@ -1,0 +1,177 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required:
+  - task_key
+  - jurisdiction_keys
+  - inspection_type_keys
+  - workflow_stage_codes
+  - pack_families
+  - asset_entries
+  - packet_roles_present
+  - fallback_behavior
+  - completeness_rating
+  - unresolved_count
+properties:
+  task_key:
+    type: string
+  jurisdiction_keys:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+  inspection_type_keys:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+  workflow_stage_codes:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+  pack_families:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+  packet_roles_present:
+    type: array
+    uniqueItems: true
+    items:
+      type: string
+  fallback_behavior:
+    type: string
+  completeness_rating:
+    type: string
+    enum: [none, low, medium, high, partial, production_candidate]
+  confidence_band:
+    type: string
+    enum: [low, medium, high]
+  unresolved_count:
+    type: integer
+    minimum: 0
+  readiness_score:
+    type: object
+    additionalProperties: false
+    required:
+      - score_0_to_100
+      - direct_mirror_present
+      - authoritative_source_present
+      - field_map_completeness
+      - stage_completeness
+      - export_readiness
+      - unresolved_blockers
+    properties:
+      score_0_to_100:
+        type: integer
+        minimum: 0
+        maximum: 100
+      direct_mirror_present:
+        type: boolean
+      authoritative_source_present:
+        type: boolean
+      field_map_completeness:
+        type: string
+        enum: [none, partial, mostly_complete, complete]
+      stage_completeness:
+        type: string
+        enum: [none, partial, mostly_complete, complete]
+      export_readiness:
+        type: string
+        enum: [not_ready, prototype_only, fallback_ready, direct_mirror_ready]
+      unresolved_blockers:
+        type: array
+        items:
+          type: string
+  asset_entries:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - asset_key
+        - title
+        - classification
+        - jurisdiction_scope
+        - inspection_type_scope
+        - workflow_stage_scope
+        - packet_roles
+        - source_evidence
+        - direct_mirror_candidate
+        - fallback_behavior
+        - notes
+      properties:
+        asset_key:
+          type: string
+        title:
+          type: string
+        classification:
+          type: string
+          enum:
+            - direct_mirror
+            - source_reference_only
+            - trigger_only
+            - recognition_control_only
+            - example_output_only
+            - unresolved
+        jurisdiction_scope:
+          type: [string, array]
+          minLength: 1
+          items:
+            type: string
+        inspection_type_scope:
+          type: [string, array]
+          minLength: 1
+          items:
+            type: string
+        workflow_stage_scope:
+          type: [string, array]
+          minLength: 1
+          items:
+            type: string
+        packet_roles:
+          type: [string, array]
+          minLength: 1
+          items:
+            type: string
+        source_evidence:
+          type: array
+          items:
+            type: [string, object]
+        direct_mirror_candidate:
+          type: boolean
+        fallback_behavior:
+          type: string
+        confidence:
+          type: string
+          enum: [low, medium, high]
+        confidence_band:
+          type: string
+          enum: [low, medium, high]
+        completeness_rating:
+          type: string
+          enum: [none, low, medium, high, partial, production_candidate]
+        acquisition_state:
+          type: string
+          enum:
+            - direct_mirror_downloaded
+            - source_reference_verified
+            - html_page_snapshotted
+            - pdf_link_discovered_not_downloaded
+            - requires_manual_login
+            - requires_manual_review
+            - ambiguous_source
+            - superseded_source
+            - obsolete_source
+            - unresolved
+        notes:
+          type: string
+      anyOf:
+        - required: [confidence]
+        - required: [confidence_band]

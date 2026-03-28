@@ -1,0 +1,25 @@
+task_key: contra_costa_special_pre_permit
+scope:
+  jurisdiction_keys:
+    - contra_costa_county
+  inspection_type_keys:
+    - special_cbc17
+  workflow_stage_codes:
+    - special.pre_permit
+inputs:
+  required_files:
+    - docs/source_set/InspectionOS_Source_of_Truth_v2.docx
+    - docs/source_set/InspectionOS_PRD_v2.docx
+    - docs/source_set/InspectionOS_BayArea_Next_Pass_Binder_2026-03-21.pdf
+    - docs/source_set/[COUNTY-Contra-Costa]_Special-Inspections-Program-and-Recognized-Agencies.pdf
+  optional_files:
+    - docs/source_set/contra_costa_packet_examples/
+outputs:
+  pack_registry: out/pack_registry/contra_costa_special_pre_permit.yaml
+  field_bindings: out/field_bindings/contra_costa_special_pre_permit.yaml
+  unresolved: out/unresolved/contra_costa_special_pre_permit.md
+  summary: out/summary/contra_costa_special_pre_permit.json
+rules:
+  no_runtime_code_edits: true
+  no_fake_direct_mirrors: true
+  max_output_files: 4

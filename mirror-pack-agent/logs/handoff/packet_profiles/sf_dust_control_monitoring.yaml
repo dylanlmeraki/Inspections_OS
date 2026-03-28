@@ -1,0 +1,44 @@
+task_key: sf_dust_control_monitoring
+jurisdiction_keys:
+- san_francisco
+inspection_type_keys:
+- dust_sf
+workflow_stage_codes:
+- dust.applicability
+- dust.plan_approval
+- dust.monitoring
+packet_roles_present:
+- inspection_template
+- approval_submission
+- requirements_detail
+- gate_rule
+- inspection_form
+fallback_behavior: 'For source_reference_only assets, expose verified source URLs
+  as vault references. The monitoring wizard template is fully defined. The applicability
+  and plan_approval stage gates are defined. If plan is required and not uploaded,
+  block advancement.
+
+  '
+readiness_score:
+  score_0_to_100: 70
+  direct_mirror_present: true
+  authoritative_source_present: true
+  field_map_completeness: complete
+  stage_completeness: complete
+  export_readiness: fallback_ready
+  unresolved_blockers:
+  - "SF DPH monitoring checklist form format unconfirmed \u2014 query needed to determine\
+    \ if AHJ prescribes a specific form or if wizard-native log is acceptable"
+  - "Article 22B regulatory basis source_url not present in available evidence \u2014\
+    \ informational gap, not an execution blocker"
+  - "Three source_reference_only reference assets not locally mirrored \u2014 acceptable\
+    \ for MVP via vault URL references but require crawler acquisition for offline\
+    \ capability"
+source_asset_keys:
+- sf_dust_monitoring_wizard_template
+- sf_dph_dust_control_plan_submission
+- sf_dph_dust_control_overview_pdf
+- sf_dust_applicability_gate_rule
+- sf_dust_plan_required_gate_rule
+- sf_dust_article_22b_requirements
+- sf_dust_monitoring_checklist_blank

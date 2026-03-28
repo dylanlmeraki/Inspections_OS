@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GateEvaluation",
+  "type": "object",
+  "required": [
+    "gateEvaluationId",
+    "runId",
+    "jurisdictionKey",
+    "stageCode",
+    "status",
+    "requirements",
+    "blockers",
+    "ruleSnapshotRef"
+  ],
+  "properties": {
+    "gateEvaluationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "runId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "jurisdictionKey": {
+      "type": "string"
+    },
+    "stageCode": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "blocked",
+        "warning",
+        "waived"
+      ]
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "status",
+          "kind",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "field",
+              "document",
+              "source_record",
+              "attachment",
+              "signature",
+              "text_snippet",
+              "task"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "met",
+              "unmet",
+              "waived",
+              "warning"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "waiverEligible": {
+      "type": "boolean"
+    },
+    "ruleSnapshotRef": {
+      "type": "string"
+    }
+  }
+}

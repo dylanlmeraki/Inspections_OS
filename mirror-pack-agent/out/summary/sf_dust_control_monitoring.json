@@ -1,0 +1,37 @@
+{
+  "task_key": "sf_dust_control_monitoring",
+  "pack_family_count": 1,
+  "asset_count": 7,
+  "direct_mirror_count": 1,
+  "source_reference_only_count": 3,
+  "trigger_only_count": 2,
+  "recognition_control_only_count": 0,
+  "example_output_only_count": 0,
+  "unresolved_count": 1,
+  "completeness_rating": "partial",
+  "blocker_items": [
+    "SF DPH monitoring checklist form format unconfirmed — query needed to determine if AHJ prescribes a specific form or if wizard-native log is acceptable",
+    "Article 22B regulatory basis source_url not present in available evidence — informational gap, not an execution blocker",
+    "Three source_reference_only reference assets not locally mirrored — acceptable for MVP via vault URL references but require crawler acquisition for offline capability"
+  ],
+  "classification_notes": {
+    "direct_mirror_assets": [
+      "sf_dust_monitoring_wizard_template"
+    ],
+    "source_reference_only_assets": [
+      "sf_dph_dust_control_plan_submission",
+      "sf_dph_dust_control_overview_pdf",
+      "sf_dust_article_22b_requirements"
+    ],
+    "trigger_only_assets": [
+      "sf_dust_applicability_gate_rule",
+      "sf_dust_plan_required_gate_rule"
+    ],
+    "recognition_control_only_assets": [],
+    "example_output_only_assets": [],
+    "unresolved_assets": [
+      "sf_dust_monitoring_checklist_blank"
+    ],
+    "note": "Auto-derived from pack_registry classifications to preserve scope-level summary notes."
+  }
+}

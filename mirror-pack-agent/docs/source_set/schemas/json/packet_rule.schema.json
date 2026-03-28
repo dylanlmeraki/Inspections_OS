@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JurisdictionPacketRule",
+  "type": "object",
+  "required": [
+    "rule_key",
+    "jurisdiction_key",
+    "inspection_type_key",
+    "workflow_stage_code",
+    "required_flag",
+    "rule_expression"
+  ],
+  "properties": {
+    "rule_key": {
+      "type": "string"
+    },
+    "jurisdiction_key": {
+      "type": "string"
+    },
+    "inspection_type_key": {
+      "type": "string"
+    },
+    "workflow_stage_code": {
+      "type": "string"
+    },
+    "required_flag": {
+      "type": "boolean"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "blocker",
+        "warning",
+        "info"
+      ]
+    },
+    "packet_role": {
+      "type": "string"
+    },
+    "rule_expression": {
+      "type": "object"
+    }
+  }
+}

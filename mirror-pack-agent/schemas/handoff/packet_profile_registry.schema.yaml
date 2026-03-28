@@ -1,0 +1,13 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+additionalProperties: false
+required: [task_key, jurisdiction_keys, inspection_type_keys, workflow_stage_codes, packet_roles_present, fallback_behavior, readiness_score, source_asset_keys]
+properties:
+  task_key: {type: string}
+  jurisdiction_keys: {type: array, items: {type: string}}
+  inspection_type_keys: {type: array, items: {type: string}}
+  workflow_stage_codes: {type: array, items: {type: string}}
+  packet_roles_present: {type: array, items: {type: string}}
+  fallback_behavior: {type: string}
+  readiness_score: {type: object}
+  source_asset_keys: {type: array, items: {type: string}}

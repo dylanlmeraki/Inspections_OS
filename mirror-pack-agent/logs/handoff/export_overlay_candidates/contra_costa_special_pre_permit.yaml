@@ -1,0 +1,28 @@
+task_key: contra_costa_special_pre_permit
+overlay_candidates:
+- asset_key: contra_costa_special_inspections_program_and_recognized_agencies
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections:
+  - agency_selection
+  - jurisdiction_requirements
+- asset_key: contra_costa_recognized_agency_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: contra_costa_general_pre_permit_gate_rule
+  classification: trigger_only
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: contra_costa_county_cover_form
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []
+- asset_key: walnut_creek_special_inspection_program
+  classification: source_reference_only
+  eligible_for_overlay: true
+  target_sections: []
+- asset_key: contra_costa_city_coverage_gap_note
+  classification: unresolved
+  eligible_for_overlay: false
+  target_sections: []

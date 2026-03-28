@@ -1,0 +1,173 @@
+task_key: statewide_swppp_qpe_family
+
+jurisdiction_keys:
+  - ca_statewide
+
+inspection_type_keys:
+  - swppp_active_series
+
+workflow_stage_codes:
+  - swppp.pre_qpe
+  - swppp.during_qpe
+  - swppp.post_qpe
+
+pack_families:
+  - swppp
+
+asset_entries:
+  - asset_key: swppp_pre_qpe_wizard_template
+    title: SWPPP Pre-QPE Inspection Wizard Template (swppp.pre_qpe.v1)
+    classification: direct_mirror
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.pre_qpe
+    packet_roles:
+      - inspection_template
+    source_evidence:
+      - source_file: docs/source_set/manifests/swppp.pre_qpe.manifest.yaml
+      - template_key: swppp.pre_qpe.v1
+      - export_profile: compliance_packet
+    direct_mirror_candidate: true
+    fallback_behavior: use_as_canonical_template
+    confidence: high
+    notes: >
+      Fully defined wizard manifest with sections: forecast, storm_readiness,
+      bmp_preparation, photos. Gate field: forecast_metadata_required.
+      This manifest is the primary execution asset for swppp.pre_qpe stage.
+
+  - asset_key: cgp_2022_governing_order_qpe
+    title: California Construction General Permit Order 2022-0057-DWQ (QPE applicability sections)
+    classification: source_reference_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.pre_qpe
+      - swppp.during_qpe
+      - swppp.post_qpe
+    packet_roles:
+      - governing_order
+    source_evidence:
+      - source_record_key: statewide_ca_waterboards_construction_general_permit_order_2022_0057_dwq
+      - verification_status: verified-direct
+      - source_url: https://www.waterboards.ca.gov/water_issues/programs/stormwater/construction/docs/2022-0057-dwq-with-attachments/cgp2022_order.pdf
+    direct_mirror_candidate: false
+    fallback_behavior: expose_source_url_as_vault_reference
+    confidence: high
+    notes: >
+      The CGP governs QPE obligations including qualifying storm thresholds,
+      inspector qualifications (QSP/QSD), and pre/during/post storm inspection
+      cadence. No local mirror present; source URL is verified-direct.
+
+  - asset_key: pre_qpe_forecast_gate_rule
+    title: Pre-QPE Forecast Metadata Gate Rule
+    classification: trigger_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.pre_qpe
+    packet_roles:
+      - gate_rule
+    source_evidence:
+      - source_file: docs/source_set/seeds/packet_rules.seed.yaml
+      - rule_key: swppp.pre_qpe.requires_forecast_reference
+      - blocker_code: PRE_QPE_FORECAST_METADATA_MISSING
+    direct_mirror_candidate: false
+    fallback_behavior: enforce_as_gate_constraint
+    confidence: high
+    notes: >
+      Forecast source name, issued_at timestamp, and qualifying event window are
+      required before the pre_qpe stage can proceed. This is a gate trigger, not a form.
+
+  - asset_key: mosswood_storm_inspection_examples
+    title: Mosswood Storm Inspection Reports (Multiple Dates Feb 2025)
+    classification: example_output_only
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.pre_qpe
+      - swppp.during_qpe
+      - swppp.post_qpe
+    packet_roles:
+      - inspection_sample
+    source_evidence:
+      - local_file: "docs/source_set/Mosswood 2-13-25.pdf"
+      - local_file: "docs/source_set/Mosswood 2-14-25.pdf"
+      - local_file: "docs/source_set/Mosswood 2-25-25.pdf"
+      - local_file: "docs/source_set/mosswood 2-12-25.pdf"
+      - local_file: "docs/source_set/mosswood 2-3-25_2.pdf"
+      - local_file: "docs/source_set/mosswood 2-4-25_2.pdf"
+      - local_file: "docs/source_set/mosswood 2-5-25_2.pdf"
+      - local_file: "docs/source_set/mosswood 2-20-25.pdf"
+      - local_file: "docs/source_set/mosswood 2-25-25_0001.pdf"
+      - local_file: "docs/source_set/mosswood 2-25-25_2.pdf"
+      - local_file: "docs/source_set/mosswood 2-4-25_2_0001.pdf"
+      - local_file: "docs/source_set/Mosswood 12-14-25_2.pdf"
+    direct_mirror_candidate: false
+    fallback_behavior: use_for_field_mapping_reference_only
+    confidence: medium
+    notes: >
+      Multiple filled Mosswood inspection reports serve as example_output_only
+      evidence. Useful for understanding real-world field density for QPE-event
+      storm inspections (pre, during, post storm water discharge). Must not be
+      represented as mirrored official source forms.
+
+  - asset_key: during_qpe_wizard_template
+    title: SWPPP During-QPE Inspection Wizard Template
+    classification: unresolved
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.during_qpe
+    packet_roles:
+      - inspection_template
+    source_evidence: []
+    direct_mirror_candidate: false
+    fallback_behavior: block_stage_until_template_acquired
+    confidence: low
+    notes: >
+      No wizard manifest for swppp.during_qpe exists in the manifests directory.
+      The programs_and_stages seed defines this stage (ordinal 65) but no
+      template_key=swppp.during_qpe has been provided. This stage must not be
+      activated without a wizard manifest.
+
+  - asset_key: post_qpe_wizard_template
+    title: SWPPP Post-QPE Inspection Wizard Template
+    classification: unresolved
+    jurisdiction_scope: ca_statewide
+    inspection_type_scope:
+      - swppp_active_series
+    workflow_stage_scope:
+      - swppp.post_qpe
+    packet_roles:
+      - inspection_template
+    source_evidence: []
+    direct_mirror_candidate: false
+    fallback_behavior: block_stage_until_template_acquired
+    confidence: low
+    notes: >
+      No wizard manifest for swppp.post_qpe exists in the manifests directory.
+      The programs_and_stages seed defines this stage (ordinal 70) but no
+      template_key=swppp.post_qpe has been provided. Must not be activated
+      until a manifest is authored and vetted.
+
+packet_roles_present:
+  - governing_order
+  - inspection_template
+  - gate_rule
+  - inspection_sample
+
+fallback_behavior: >
+  For source_reference_only assets, expose the verified source URL in the admin
+  document vault. The pre_qpe stage wizard template is fully defined and can
+  execute. The during_qpe and post_qpe stages must be blocked at the stage
+  definition level until wizard manifests are provided.
+
+completeness_rating: partial
+
+unresolved_count: 2
